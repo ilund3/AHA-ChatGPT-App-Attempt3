@@ -94,22 +94,15 @@
       
       #menu-items {
         display: none;
-        flex: 1;
         flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-end;
         align-items: center;
+        gap: 0;
         padding: 0;
         margin-left: 20px;
-        min-width: 0;
       }
 
       #menu-items.active {
-        display: flex !important;
-        background-color: yellow !important; /* DEBUG */
-        border: 5px solid red !important; /* DEBUG - very visible border */
-        min-height: 70px;
-        width: 100%;
+        display: flex;
       }
       
       #bar-container.expanded #emergency-text {
@@ -121,18 +114,14 @@
         align-items: center;
         justify-content: center;
         padding: 8px 12px;
-        color: #000 !important;
-        background-color: red !important; /* DEBUG */
+        color: #000;
         text-decoration: none;
         font-family: "Inter", system-ui, -apple-system, sans-serif;
-        font-size: 13px !important;
-        font-weight: bold !important;
+        font-size: 13px;
+        font-weight: bold;
         border-right: 1px solid #f3f4f6;
         cursor: pointer;
         white-space: nowrap;
-        flex: 0 1 auto;
-        z-index: 1001 !important;
-        position: relative !important;
       }
 
       .menu-item:last-child {
@@ -168,14 +157,14 @@
     <div id="bar-container">
       <div id="top-bar">
         <div id="menu-wrapper">
-          <button id="hamburger-button" aria-label="Toggle menu" onclick="console.log('INLINE CLICK HANDLER FIRED!'); handleHamburgerClick(event);">
+          <button id="hamburger-button" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
           </button>
         </div>
         <div id="emergency-text">
-          <strong>⚠️ Emergency:</strong> TEST6 If this is a life-threatening emergency, call <strong>911</strong> immediately.
+          If this is a life-threatening emergency, call <strong>911</strong> immediately.
         </div>
         <div id="menu-items">
           <a href="#" class="menu-item" data-action="store">Store</a>
@@ -188,168 +177,34 @@
     </div>
     <script>
       (function() {
-        console.log("Script starting...");
-        
         const hamburgerButton = document.getElementById("hamburger-button");
         const menuItems = document.getElementById("menu-items");
         const barContainer = document.getElementById("bar-container");
         const menuItemLinks = document.querySelectorAll(".menu-item");
 
-        console.log("Elements found:", {
-          hamburgerButton: !!hamburgerButton,
-          menuItems: !!menuItems,
-          barContainer: !!barContainer,
-          menuItemLinks: menuItemLinks.length
-        });
-
         // Function to notify ChatGPT of the widget's current height
         function notifyHeight() {
           if (window.openai?.notifyIntrinsicHeight && barContainer) {
-            // Force a reflow to get accurate measurements
             void barContainer.offsetHeight;
             const height = barContainer.scrollHeight;
             window.openai.notifyIntrinsicHeight(height);
-            console.log(`Notified height: ${height}px`);
           }
         }
 
-        // Global function for inline onclick handler - SIMPLIFIED
-        window.handleHamburgerClick = function(e) {
-          if (e) {
-            e.stopPropagation();
-            e.preventDefault();
-          }
-          
-          if (!hamburgerButton || !menuItems || !barContainer) {
-            return;
-          }
-          
-          // Just toggle classes - let CSS handle everything
-          const wasActive = menuItems.classList.contains("active");
-          hamburgerButton.classList.toggle("active");
-          menuItems.classList.toggle("active");
-          barContainer.classList.toggle("expanded");
-          
-          // Verify the state after toggle
-          const isNowActive = menuItems.classList.contains("active");
-          console.log("Toggle: wasActive=" + wasActive + ", isNowActive=" + isNowActive);
-          
-          // Force the state if something went wrong
-          if (isNowActive !== !wasActive) {
-            console.log("Fixing toggle state...");
-            if (!wasActive) {
-              hamburgerButton.classList.add("active");
-              menuItems.classList.add("active");
-              barContainer.classList.add("expanded");
-            } else {
-              hamburgerButton.classList.remove("active");
-              menuItems.classList.remove("active");
-              barContainer.classList.remove("expanded");
-            }
-          }
-          
-          // Get computed styles AFTER applying inline styles
-          setTimeout(() => {
-            const computedStyle = window.getComputedStyle(menuItems);
-            console.log("=== COMPUTED STYLES AFTER APPLYING INLINE STYLES ===");
-            console.log("Menu items computed styles:", {
-              display: computedStyle.display,
-              flexDirection: computedStyle.flexDirection,
-              flexWrap: computedStyle.flexWrap,
-              width: computedStyle.width,
-              height: computedStyle.height,
-              maxHeight: computedStyle.maxHeight,
-              overflow: computedStyle.overflow,
-              opacity: computedStyle.opacity,
-              position: computedStyle.position,
-              top: computedStyle.top,
-              left: computedStyle.left,
-              right: computedStyle.right
-            });
-          }, 10);
-          
-          // Get computed styles immediately
-          const computedStyle = window.getComputedStyle(menuItems);
-          console.log("Menu items computed styles (immediate):", {
-            display: computedStyle.display,
-            flexDirection: computedStyle.flexDirection,
-            flexWrap: computedStyle.flexWrap,
-            width: computedStyle.width,
-            height: computedStyle.height,
-            opacity: computedStyle.opacity
-          });
-          
-          // Get dimensions
-          console.log("Menu items dimensions:", {
-            offsetWidth: menuItems.offsetWidth,
-            offsetHeight: menuItems.offsetHeight,
-            scrollWidth: menuItems.scrollWidth,
-            scrollHeight: menuItems.scrollHeight,
-            clientWidth: menuItems.clientWidth,
-            clientHeight: menuItems.clientHeight
-          });
-          
-          // Check each menu item
-          menuItemLinks.forEach((item, index) => {
-            const itemStyle = window.getComputedStyle(item);
-            console.log(`Menu item ${index} (${item.textContent}):`, {
-              offsetWidth: item.offsetWidth,
-              offsetHeight: item.offsetHeight,
-              flex: itemStyle.flex,
-              whiteSpace: itemStyle.whiteSpace
-            });
-          });
-          
-          // Check emergency text
-          const emergencyText = document.getElementById("emergency-text");
-          if (emergencyText) {
-            const emergencyStyle = window.getComputedStyle(emergencyText);
-            console.log("Emergency text:", {
-              display: emergencyStyle.display,
-              opacity: emergencyStyle.opacity,
-              visibility: emergencyStyle.visibility,
-              offsetWidth: emergencyText.offsetWidth,
-              offsetHeight: emergencyText.offsetHeight
-            });
-          }
-          
-          // Check top-bar
-          const topBar = document.getElementById("top-bar");
-          if (topBar) {
-            const topBarStyle = window.getComputedStyle(topBar);
-            console.log("Top bar:", {
-              display: topBarStyle.display,
-              flexDirection: topBarStyle.flexDirection,
-              height: topBarStyle.height,
-              offsetHeight: topBar.offsetHeight
-            });
-          }
-          
-          // Check bar container
-          const containerStyle = window.getComputedStyle(barContainer);
-          console.log("Bar container dimensions:", {
-            offsetHeight: barContainer.offsetHeight,
-            scrollHeight: barContainer.scrollHeight,
-            height: containerStyle.height
-          });
-          
-          // Notify ChatGPT of height change after transition completes
-          setTimeout(() => {
-            console.log("After transition:", {
-              menuItemsHeight: menuItems.offsetHeight,
-              barContainerHeight: barContainer.offsetHeight
-            });
-            notifyHeight();
-          }, 400);
-        };
-
-        // Also attach via addEventListener as backup
+        // Simple click handler
         if (hamburgerButton) {
-          console.log("Attaching addEventListener to hamburger button...");
-          hamburgerButton.addEventListener("click", window.handleHamburgerClick);
-          console.log("addEventListener attached successfully");
-        } else {
-          console.error("Cannot attach event listener - hamburgerButton is null!");
+          hamburgerButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            hamburgerButton.classList.toggle("active");
+            menuItems.classList.toggle("active");
+            barContainer.classList.toggle("expanded");
+            
+            setTimeout(() => {
+              notifyHeight();
+            }, 300);
+          });
         }
 
         // Handle menu item clicks
@@ -357,29 +212,24 @@
           item.addEventListener("click", async (e) => {
             e.preventDefault();
             const action = item.getAttribute("data-action");
-            console.log(`Menu item clicked: ${action}`);
             
             // Request fullscreen mode when menu item is clicked
             if (window.openai?.requestDisplayMode) {
               try {
-                const response = await window.openai.requestDisplayMode({ mode: "fullscreen" });
-                if (response.mode === "fullscreen") {
-                  console.log("Widget expanded to fullscreen");
-                }
+                await window.openai.requestDisplayMode({ mode: "fullscreen" });
               } catch (error) {
                 console.error("Failed to request fullscreen:", error);
               }
             }
             
             // Close menu after selection
-            if (hamburgerButton) hamburgerButton.classList.remove("active");
-            if (menuItems) menuItems.classList.remove("active");
-            if (barContainer) barContainer.classList.remove("expanded");
+            hamburgerButton.classList.remove("active");
+            menuItems.classList.remove("active");
+            barContainer.classList.remove("expanded");
             
-            // Notify ChatGPT of height change
             setTimeout(() => {
               notifyHeight();
-            }, 350);
+            }, 300);
           });
         });
 
@@ -388,12 +238,10 @@
           notifyHeight();
         }, 100);
 
-        // Also notify on window resize
+        // Notify on window resize
         window.addEventListener("resize", () => {
           notifyHeight();
         });
-
-        console.log("AHA Widget loaded");
       })();
     </script>
   </body>
