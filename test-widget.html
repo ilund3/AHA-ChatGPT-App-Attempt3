@@ -3,61 +3,334 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AHA Widget Test</title>
+    <title>AHA Widget Test - ChatGPT Simulation</title>
     <style>
-        body {
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: system-ui, -apple-system, sans-serif;
             background: #f5f5f5;
-        }
-        .test-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
             padding: 20px;
+        }
+
+        .test-header {
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+
         h1 {
-            margin-top: 0;
+            margin: 0 0 10px 0;
+            color: #333;
         }
-        iframe {
-            width: 100%;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            min-height: 200px;
+
+        .info {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
         }
-        .reload-btn {
-            margin-top: 10px;
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
             padding: 8px 16px;
-            background: #007bff;
-            color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
         }
-        .reload-btn:hover {
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
             background: #0056b3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e7f3ff;
+            border-left: 3px solid #007bff;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        /* Widget container - simulates ChatGPT's widget area */
+        .widget-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Compact mode (default) - simulates widget in chat */
+        .widget-container.compact {
+            max-width: 800px;
+            border: 2px solid #ddd;
+        }
+
+        /* Fullscreen mode - simulates widget expanded in ChatGPT */
+        .widget-container.fullscreen {
+            max-width: 100%;
+            width: 100%;
+            border: none;
+            border-radius: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        /* Widget iframe */
+        .widget-iframe {
+            width: 100%;
+            border: none;
+            display: block;
+            transition: height 0.3s ease;
+        }
+
+        /* Fullscreen overlay controls */
+        .fullscreen-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: none;
+        }
+
+        .widget-container.fullscreen .fullscreen-controls {
+            display: block;
+        }
+
+        .btn-close {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-close:hover {
+            background: rgba(0, 0, 0, 0.9);
         }
     </style>
 </head>
 <body>
-    <div class="test-container">
-        <h1>AHA Widget Test Page</h1>
-        <p>This page loads the widget in an iframe. Make changes to <code>public/aha-widget.html</code> and click "Reload Widget" to see updates.</p>
-        <button class="reload-btn" onclick="reloadWidget()">Reload Widget</button>
-        <iframe id="widget-frame" src="public/aha-widget.html" style="margin-top: 20px;"></iframe>
+    <div class="test-header">
+        <h1>AHA Widget Test - ChatGPT Simulation</h1>
+        <div class="info">
+            This page simulates the ChatGPT environment with the <code>window.openai</code> API.
+            The widget can request fullscreen mode, which will expand it to fill the viewport.
+        </div>
+        <div class="controls">
+            <button class="btn-primary" onclick="reloadWidget()">Reload Widget</button>
+            <button class="btn-secondary" onclick="resetToCompact()">Reset to Compact</button>
+        </div>
+        <div class="status" id="status">
+            Status: Widget loaded in compact mode (simulating chat view)
+        </div>
     </div>
+
+    <div class="widget-container compact" id="widget-container">
+        <iframe 
+            id="widget-frame" 
+            class="widget-iframe"
+            src="public/aha-widget.html"
+            title="AHA Widget">
+        </iframe>
+        <div class="fullscreen-controls">
+            <button class="btn-close" id="exit-fullscreen-btn" onclick="exitFullscreen()">Exit Fullscreen</button>
+        </div>
+    </div>
+
     <script>
+        let currentHeight = 200;
+        let isFullscreen = false;
+
+        // Mock the window.openai API that ChatGPT provides
+        function setupOpenAIMock() {
+            const iframe = document.getElementById('widget-frame');
+            const iframeWindow = iframe.contentWindow;
+
+            if (iframeWindow) {
+                // Wait for iframe to load
+                iframe.addEventListener('load', () => {
+                    const widgetWindow = iframe.contentWindow;
+
+                    // Mock window.openai API
+                    widgetWindow.window.openai = {
+                        // Request display mode (fullscreen)
+                        requestDisplayMode: async function(options) {
+                            console.log('Widget requested display mode:', options);
+                            
+                            if (options.mode === 'fullscreen') {
+                                enterFullscreen();
+                                return { mode: 'fullscreen' };
+                            }
+                            
+                            return { mode: 'compact' };
+                        },
+
+                        // Notify intrinsic height
+                        notifyIntrinsicHeight: function(height) {
+                            console.log('Widget notified height:', height);
+                            currentHeight = height;
+                            updateIframeHeight();
+                        }
+                    };
+
+                    // Initial height notification
+                    setTimeout(() => {
+                        if (widgetWindow.window.openai?.notifyIntrinsicHeight) {
+                            const initialHeight = widgetWindow.document.body.scrollHeight;
+                            widgetWindow.window.openai.notifyIntrinsicHeight(initialHeight);
+                        }
+                    }, 100);
+                });
+            }
+        }
+
+        function enterFullscreen() {
+            const container = document.getElementById('widget-container');
+            container.classList.remove('compact');
+            container.classList.add('fullscreen');
+            isFullscreen = true;
+            updateStatus('Status: Widget in fullscreen mode (simulating ChatGPT fullscreen)');
+            updateIframeHeight();
+        }
+
+        function exitFullscreen() {
+            console.log('Exit fullscreen called');
+            const container = document.getElementById('widget-container');
+            const iframe = document.getElementById('widget-frame');
+            
+            if (!container) {
+                console.error('Container not found');
+                return;
+            }
+            
+            // Try to close any open tabs in the widget
+            try {
+                const widgetWindow = iframe.contentWindow;
+                if (widgetWindow && widgetWindow.document) {
+                    // Hide all tabs programmatically
+                    const allTabViews = widgetWindow.document.querySelectorAll('.tab-view');
+                    allTabViews.forEach(view => {
+                        view.classList.remove('active');
+                    });
+                    
+                    // Remove active tab class from bar container
+                    const barContainer = widgetWindow.document.getElementById('bar-container');
+                    if (barContainer) {
+                        barContainer.classList.remove('has-active-tab');
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not access iframe content:', e);
+            }
+            
+            // Exit fullscreen mode
+            container.classList.remove('fullscreen');
+            container.classList.add('compact');
+            isFullscreen = false;
+            updateStatus('Status: Widget in compact mode (simulating chat view)');
+            updateIframeHeight();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetToCompact() {
+            exitFullscreen();
+            reloadWidget();
+        }
+
+        function updateIframeHeight() {
+            const iframe = document.getElementById('widget-frame');
+            if (isFullscreen) {
+                // In fullscreen, let it grow naturally
+                iframe.style.height = 'auto';
+                iframe.style.minHeight = '100vh';
+            } else {
+                // In compact mode, use the notified height
+                iframe.style.height = currentHeight + 'px';
+                iframe.style.minHeight = '200px';
+            }
+        }
+
+        function updateStatus(message) {
+            document.getElementById('status').textContent = message;
+        }
+
         function reloadWidget() {
             const iframe = document.getElementById('widget-frame');
             iframe.src = iframe.src; // Force reload
+            currentHeight = 200;
+            updateIframeHeight();
+            setupOpenAIMock();
         }
-        
-        // Auto-reload every 2 seconds for development (optional)
-        // setInterval(reloadWidget, 2000);
+
+        // Listen for messages from iframe (if widget uses postMessage)
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.type === 'height') {
+                currentHeight = event.data.height;
+                updateIframeHeight();
+            }
+        });
+
+        // Initialize
+        setupOpenAIMock();
+
+        // Add event listener to exit button as backup
+        document.addEventListener('DOMContentLoaded', () => {
+            const exitBtn = document.getElementById('exit-fullscreen-btn');
+            if (exitBtn) {
+                exitBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    exitFullscreen();
+                });
+            }
+        });
+
+        // Auto-reload on file changes (for development)
+        // Uncomment for auto-reload during development
+        // setInterval(() => {
+        //     fetch('public/aha-widget.html', { method: 'HEAD', cache: 'no-cache' })
+        //         .then(() => reloadWidget());
+        // }, 2000);
     </script>
 </body>
 </html>
-
