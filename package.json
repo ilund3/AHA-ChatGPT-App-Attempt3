@@ -1,0 +1,23 @@
+{
+  "name": "aha-chatgpt-app",
+  "version": "0.1.0",
+  "description": "American Heart Association ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.2",
+    "zod": "^3.25.76"
+  },
+  "keywords": [
+    "chatgpt",
+    "mcp",
+    "aha"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+
