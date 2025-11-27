@@ -4,13 +4,14 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { z } from "zod";
 
-// Read the HTML template and logo image
-const ahaHtmlTemplate = readFileSync("public/aha-widget.html", "utf8");
+// Read the logo image (only needed once)
 const logoImage = readFileSync("public/AHA Logo.png");
 const logoBase64 = logoImage.toString("base64");
 
-// The HTML template no longer uses the logo, but we keep the code for potential future use
-const ahaHtml = ahaHtmlTemplate;
+// Function to read HTML fresh on each request (no caching)
+function getAhaHtml() {
+  return readFileSync("public/aha-widget.html", "utf8");
+}
 
 // Load AHA resources
 const ahaResources = JSON.parse(readFileSync("resources/aha-resources.json", "utf8"));
@@ -92,7 +93,7 @@ function createAhaServer() {
         {
           uri: "ui://widget/aha.html",
           mimeType: "text/html+skybridge",
-          text: ahaHtml,
+          text: getAhaHtml(), // Read fresh on each request
           _meta: {
             "openai/widgetPrefersBorder": true,
           },

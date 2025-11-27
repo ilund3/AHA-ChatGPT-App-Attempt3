@@ -30,11 +30,11 @@
         background: #ffffff;
         border-bottom: 1px solid #e5e7eb;
         transition: height 0.3s ease;
-        overflow: hidden;
+        overflow: visible;
       }
 
       #bar-container.expanded {
-        /* Keep height at 70px - no expansion */
+        overflow: visible;
       }
 
       #top-bar {
@@ -86,58 +86,53 @@
         transform: rotate(-45deg) translate(7px, -7px);
       }
 
-      #menu-items {
-        display: none !important;
+      #emergency-text {
         flex: 1;
+        text-align: right;
+        padding-left: 20px;
+      }
+      
+      #menu-items {
+        display: none;
+        flex: 1;
+        flex-direction: row;
+        flex-wrap: nowrap;
         justify-content: flex-end;
         align-items: center;
-        opacity: 0;
-        visibility: hidden;
-        overflow: visible;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
         padding: 0;
         margin-left: 20px;
-        height: 70px !important;
-        max-height: 70px !important;
-        min-height: 70px !important;
+        min-width: 0;
       }
 
       #menu-items.active {
         display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        height: 70px !important;
-        max-height: 70px !important;
-        min-height: 70px !important;
-        background-color: yellow !important; /* TEMP DEBUG - remove after */
+        background-color: yellow !important; /* DEBUG */
+        border: 5px solid red !important; /* DEBUG - very visible border */
+        min-height: 70px;
+        width: 100%;
+      }
+      
+      #bar-container.expanded #emergency-text {
+        display: none !important;
       }
 
       .menu-item {
-        display: flex !important;
+        display: flex;
         align-items: center;
         justify-content: center;
         padding: 8px 12px;
-        color: #333 !important;
+        color: #000 !important;
+        background-color: red !important; /* DEBUG */
         text-decoration: none;
         font-family: "Inter", system-ui, -apple-system, sans-serif;
         font-size: 13px !important;
-        font-weight: 400;
-        border-bottom: none !important;
+        font-weight: bold !important;
         border-right: 1px solid #f3f4f6;
         cursor: pointer;
-        transition: background-color 0.2s ease;
         white-space: nowrap;
-        text-align: center;
-        overflow: visible;
-        text-overflow: ellipsis;
         flex: 0 1 auto;
-        min-width: 0;
-        line-height: 1.4;
-        visibility: visible !important;
-        opacity: 1 !important;
-        background-color: rgba(255, 0, 0, 0.2) !important; /* TEMP DEBUG - red tint */
+        z-index: 1001 !important;
+        position: relative !important;
       }
 
       .menu-item:last-child {
@@ -180,7 +175,7 @@
           </button>
         </div>
         <div id="emergency-text">
-          <strong>⚠️ Emergency:</strong> If this is a life-threatening emergency, call <strong>911</strong> immediately.
+          <strong>⚠️ Emergency:</strong> TEST3 If this is a life-threatening emergency, call <strong>911</strong> immediately.
         </div>
         <div id="menu-items">
           <a href="#" class="menu-item" data-action="store">Store</a>
@@ -218,133 +213,39 @@
           }
         }
 
-        // Global function for inline onclick handler
+        // Global function for inline onclick handler - SIMPLIFIED
         window.handleHamburgerClick = function(e) {
           if (e) {
             e.stopPropagation();
             e.preventDefault();
           }
-          console.log("=== HAMBURGER CLICKED (via handleHamburgerClick) ===");
           
           if (!hamburgerButton || !menuItems || !barContainer) {
-            console.error("Missing elements!", { hamburgerButton, menuItems, barContainer });
             return;
           }
           
+          // Just toggle classes - let CSS handle everything
           const wasActive = menuItems.classList.contains("active");
-          console.log("BEFORE TOGGLE - wasActive:", wasActive);
-          
           hamburgerButton.classList.toggle("active");
           menuItems.classList.toggle("active");
           barContainer.classList.toggle("expanded");
           
-          const isActive = menuItems.classList.contains("active");
-          console.log("AFTER TOGGLE - isActive:", isActive);
-          console.log("Hamburger active:", hamburgerButton.classList.contains("active"));
-          console.log("Bar container expanded:", barContainer.classList.contains("expanded"));
+          // Verify the state after toggle
+          const isNowActive = menuItems.classList.contains("active");
+          console.log("Toggle: wasActive=" + wasActive + ", isNowActive=" + isNowActive);
           
-          // IMMEDIATE check of computed styles right after toggle
-          if (isActive) {
-            const immediateComputed = window.getComputedStyle(menuItems);
-            console.log("=== IMMEDIATE CHECK RIGHT AFTER TOGGLE (should be active) ===");
-            console.log("Menu items computed:", {
-              display: immediateComputed.display,
-              visibility: immediateComputed.visibility,
-              opacity: immediateComputed.opacity,
-              classList: menuItems.classList.toString(),
-              hasActiveClass: menuItems.classList.contains("active")
-            });
-          }
-          
-          // Remove any conflicting inline styles and let CSS handle it
-          if (isActive) {
-            console.log("SETTING MENU TO ACTIVE - ensuring visibility...");
-            // Remove height restrictions
-            menuItems.style.height = "";
-            menuItems.style.maxHeight = "";
-            menuItems.style.minHeight = "";
-            // Let CSS handle display via !important, but ensure visibility
-            menuItems.style.display = "";
-            menuItems.style.visibility = "";
-            menuItems.style.opacity = "";
-            menuItems.style.whiteSpace = "nowrap";
-            menuItemLinks.forEach((item, index) => {
-              console.log(`Setting styles for menu item ${index}:`, item.textContent);
-              item.style.display = "";
-              item.style.visibility = "";
-              item.style.opacity = "";
-              item.style.height = "";
-              item.style.width = "";
-              item.style.fontSize = "";
-              item.style.whiteSpace = "nowrap";
-              item.style.color = "";
-            });
-            console.log("Menu items styles applied - CSS should handle display");
-            
-            // Check bounding rectangles IMMEDIATELY when active
-            requestAnimationFrame(() => {
-              const computed = window.getComputedStyle(menuItems);
-              const rect = menuItems.getBoundingClientRect();
-              const topBar = document.getElementById("top-bar");
-              const topBarRect = topBar ? topBar.getBoundingClientRect() : null;
-              
-              console.log("=== IMMEDIATE BOUNDING RECT CHECK (when active) ===");
-              console.log("Menu items container:", {
-                display: computed.display,
-                visibility: computed.visibility,
-                opacity: computed.opacity,
-                position: computed.position,
-                zIndex: computed.zIndex,
-                boundingRect: {
-                  top: rect.top,
-                  left: rect.left,
-                  right: rect.right,
-                  bottom: rect.bottom,
-                  width: rect.width,
-                  height: rect.height
-                },
-                offsetWidth: menuItems.offsetWidth,
-                offsetHeight: menuItems.offsetHeight
-              });
-              
-              if (topBarRect) {
-                console.log("Top bar bounding rect:", topBarRect);
-                console.log("Menu items inside top bar?", 
-                  rect.top >= topBarRect.top && 
-                  rect.bottom <= topBarRect.bottom &&
-                  rect.left >= topBarRect.left &&
-                  rect.right <= topBarRect.right
-                );
-              }
-              
-              menuItemLinks.forEach((item, i) => {
-                const itemStyle = window.getComputedStyle(item);
-                const itemRect = item.getBoundingClientRect();
-                console.log(`Item ${i} (${item.textContent}):`, {
-                  display: itemStyle.display,
-                  visibility: itemStyle.visibility,
-                  opacity: itemStyle.opacity,
-                  color: itemStyle.color,
-                  backgroundColor: itemStyle.backgroundColor,
-                  boundingRect: {
-                    top: itemRect.top,
-                    left: itemRect.left,
-                    right: itemRect.right,
-                    bottom: itemRect.bottom,
-                    width: itemRect.width,
-                    height: itemRect.height
-                  },
-                  offsetWidth: item.offsetWidth,
-                  offsetHeight: item.offsetHeight
-                });
-              });
-            });
-          } else {
-            console.log("SETTING MENU TO INACTIVE - hiding...");
-            menuItems.style.display = "";
-            menuItems.style.height = "";
-            menuItems.style.maxHeight = "";
-            menuItems.style.visibility = "";
+          // Force the state if something went wrong
+          if (isNowActive !== !wasActive) {
+            console.log("Fixing toggle state...");
+            if (!wasActive) {
+              hamburgerButton.classList.add("active");
+              menuItems.classList.add("active");
+              barContainer.classList.add("expanded");
+            } else {
+              hamburgerButton.classList.remove("active");
+              menuItems.classList.remove("active");
+              barContainer.classList.remove("expanded");
+            }
           }
           
           // Get computed styles AFTER applying inline styles
