@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHA Widget Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        iframe {
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            min-height: 200px;
+        }
+        .reload-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .reload-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>AHA Widget Test Page</h1>
+        <p>This page loads the widget in an iframe. Make changes to <code>public/aha-widget.html</code> and click "Reload Widget" to see updates.</p>
+        <button class="reload-btn" onclick="reloadWidget()">Reload Widget</button>
+        <iframe id="widget-frame" src="public/aha-widget.html" style="margin-top: 20px;"></iframe>
+    </div>
+    <script>
+        function reloadWidget() {
+            const iframe = document.getElementById('widget-frame');
+            iframe.src = iframe.src; // Force reload
+        }
+        
+        // Auto-reload every 2 seconds for development (optional)
+        // setInterval(reloadWidget, 2000);
+    </script>
+</body>
+</html>
+
