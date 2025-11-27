@@ -24,16 +24,17 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        height: auto;
         min-height: 70px;
         padding: 0 20px;
         background: #ffffff;
         border-bottom: 1px solid #e5e7eb;
-        transition: min-height 0.3s ease;
+        transition: height 0.3s ease;
         overflow: hidden;
       }
 
       #bar-container.expanded {
-        min-height: auto;
+        /* Keep height at 70px - no expansion */
       }
 
       #top-bar {
@@ -43,6 +44,8 @@
         width: 100%;
         height: 70px;
         min-height: 70px;
+        position: relative;
+        overflow: visible !important;
       }
 
       #menu-wrapper {
@@ -84,36 +87,61 @@
       }
 
       #menu-items {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-height: 0;
+        display: none !important;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
         opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+        visibility: hidden;
+        overflow: visible;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
         padding: 0;
+        margin-left: 20px;
+        height: 70px !important;
+        max-height: 70px !important;
+        min-height: 70px !important;
       }
 
       #menu-items.active {
-        max-height: 500px;
-        opacity: 1;
-        padding: 10px 0 20px 0;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        height: 70px !important;
+        max-height: 70px !important;
+        min-height: 70px !important;
+        background-color: yellow !important; /* TEMP DEBUG - remove after */
       }
 
       .menu-item {
-        display: block;
-        padding: 12px 20px;
-        color: #333;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        color: #333 !important;
         text-decoration: none;
         font-family: "Inter", system-ui, -apple-system, sans-serif;
-        font-size: 14px;
-        border-bottom: 1px solid #f3f4f6;
+        font-size: 13px !important;
+        font-weight: 400;
+        border-bottom: none !important;
+        border-right: 1px solid #f3f4f6;
         cursor: pointer;
         transition: background-color 0.2s ease;
+        white-space: nowrap;
+        text-align: center;
+        overflow: visible;
+        text-overflow: ellipsis;
+        flex: 0 1 auto;
+        min-width: 0;
+        line-height: 1.4;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background-color: rgba(255, 0, 0, 0.2) !important; /* TEMP DEBUG - red tint */
       }
 
       .menu-item:last-child {
-        border-bottom: none;
+        border-right: none;
       }
 
       .menu-item:hover {
@@ -127,6 +155,13 @@
         font-weight: 500;
         text-align: right;
         padding-left: 20px;
+        transition: opacity 0.3s ease, max-width 0.3s ease;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      #bar-container.expanded #emergency-text {
+        display: none !important;
       }
 
       #emergency-text strong {
@@ -138,7 +173,7 @@
     <div id="bar-container">
       <div id="top-bar">
         <div id="menu-wrapper">
-          <button id="hamburger-button" aria-label="Toggle menu">
+          <button id="hamburger-button" aria-label="Toggle menu" onclick="console.log('INLINE CLICK HANDLER FIRED!'); handleHamburgerClick(event);">
             <span></span>
             <span></span>
             <span></span>
@@ -147,47 +182,318 @@
         <div id="emergency-text">
           <strong>⚠️ Emergency:</strong> If this is a life-threatening emergency, call <strong>911</strong> immediately.
         </div>
-      </div>
-      <div id="menu-items">
-        <a href="#" class="menu-item" data-action="store">Store</a>
-        <a href="#" class="menu-item" data-action="support-groups">Support groups near me</a>
-        <a href="#" class="menu-item" data-action="volunteer">Volunteer</a>
-        <a href="#" class="menu-item" data-action="saved">Saved</a>
-        <a href="#" class="menu-item" data-action="discussions">Discussions</a>
+        <div id="menu-items">
+          <a href="#" class="menu-item" data-action="store">Store</a>
+          <a href="#" class="menu-item" data-action="support-groups">Support groups near me</a>
+          <a href="#" class="menu-item" data-action="volunteer">Volunteer</a>
+          <a href="#" class="menu-item" data-action="saved">Saved</a>
+          <a href="#" class="menu-item" data-action="discussions">Discussions</a>
+        </div>
       </div>
     </div>
-    <script type="module">
-      const hamburgerButton = document.getElementById("hamburger-button");
-      const menuItems = document.getElementById("menu-items");
-      const barContainer = document.getElementById("bar-container");
-      const menuItemLinks = document.querySelectorAll(".menu-item");
+    <script>
+      (function() {
+        console.log("Script starting...");
+        
+        const hamburgerButton = document.getElementById("hamburger-button");
+        const menuItems = document.getElementById("menu-items");
+        const barContainer = document.getElementById("bar-container");
+        const menuItemLinks = document.querySelectorAll(".menu-item");
 
-      // Toggle menu on hamburger click
-      hamburgerButton.addEventListener("click", (e) => {
-        e.stopPropagation();
-        hamburgerButton.classList.toggle("active");
-        menuItems.classList.toggle("active");
-        barContainer.classList.toggle("expanded");
-      });
-
-      // Handle menu item clicks
-      menuItemLinks.forEach((item) => {
-        item.addEventListener("click", (e) => {
-          e.preventDefault();
-          const action = item.getAttribute("data-action");
-          console.log(`Menu item clicked: ${action}`);
-          
-          // You can add logic here to handle each menu item action
-          // For example, call window.openai.callTool() if needed
-          
-          // Close menu after selection
-          hamburgerButton.classList.remove("active");
-          menuItems.classList.remove("active");
-          barContainer.classList.remove("expanded");
+        console.log("Elements found:", {
+          hamburgerButton: !!hamburgerButton,
+          menuItems: !!menuItems,
+          barContainer: !!barContainer,
+          menuItemLinks: menuItemLinks.length
         });
-      });
 
-      console.log("AHA Widget loaded");
+        // Function to notify ChatGPT of the widget's current height
+        function notifyHeight() {
+          if (window.openai?.notifyIntrinsicHeight && barContainer) {
+            // Force a reflow to get accurate measurements
+            void barContainer.offsetHeight;
+            const height = barContainer.scrollHeight;
+            window.openai.notifyIntrinsicHeight(height);
+            console.log(`Notified height: ${height}px`);
+          }
+        }
+
+        // Global function for inline onclick handler
+        window.handleHamburgerClick = function(e) {
+          if (e) {
+            e.stopPropagation();
+            e.preventDefault();
+          }
+          console.log("=== HAMBURGER CLICKED (via handleHamburgerClick) ===");
+          
+          if (!hamburgerButton || !menuItems || !barContainer) {
+            console.error("Missing elements!", { hamburgerButton, menuItems, barContainer });
+            return;
+          }
+          
+          const wasActive = menuItems.classList.contains("active");
+          console.log("BEFORE TOGGLE - wasActive:", wasActive);
+          
+          hamburgerButton.classList.toggle("active");
+          menuItems.classList.toggle("active");
+          barContainer.classList.toggle("expanded");
+          
+          const isActive = menuItems.classList.contains("active");
+          console.log("AFTER TOGGLE - isActive:", isActive);
+          console.log("Hamburger active:", hamburgerButton.classList.contains("active"));
+          console.log("Bar container expanded:", barContainer.classList.contains("expanded"));
+          
+          // IMMEDIATE check of computed styles right after toggle
+          if (isActive) {
+            const immediateComputed = window.getComputedStyle(menuItems);
+            console.log("=== IMMEDIATE CHECK RIGHT AFTER TOGGLE (should be active) ===");
+            console.log("Menu items computed:", {
+              display: immediateComputed.display,
+              visibility: immediateComputed.visibility,
+              opacity: immediateComputed.opacity,
+              classList: menuItems.classList.toString(),
+              hasActiveClass: menuItems.classList.contains("active")
+            });
+          }
+          
+          // Remove any conflicting inline styles and let CSS handle it
+          if (isActive) {
+            console.log("SETTING MENU TO ACTIVE - ensuring visibility...");
+            // Remove height restrictions
+            menuItems.style.height = "";
+            menuItems.style.maxHeight = "";
+            menuItems.style.minHeight = "";
+            // Let CSS handle display via !important, but ensure visibility
+            menuItems.style.display = "";
+            menuItems.style.visibility = "";
+            menuItems.style.opacity = "";
+            menuItems.style.whiteSpace = "nowrap";
+            menuItemLinks.forEach((item, index) => {
+              console.log(`Setting styles for menu item ${index}:`, item.textContent);
+              item.style.display = "";
+              item.style.visibility = "";
+              item.style.opacity = "";
+              item.style.height = "";
+              item.style.width = "";
+              item.style.fontSize = "";
+              item.style.whiteSpace = "nowrap";
+              item.style.color = "";
+            });
+            console.log("Menu items styles applied - CSS should handle display");
+            
+            // Check bounding rectangles IMMEDIATELY when active
+            requestAnimationFrame(() => {
+              const computed = window.getComputedStyle(menuItems);
+              const rect = menuItems.getBoundingClientRect();
+              const topBar = document.getElementById("top-bar");
+              const topBarRect = topBar ? topBar.getBoundingClientRect() : null;
+              
+              console.log("=== IMMEDIATE BOUNDING RECT CHECK (when active) ===");
+              console.log("Menu items container:", {
+                display: computed.display,
+                visibility: computed.visibility,
+                opacity: computed.opacity,
+                position: computed.position,
+                zIndex: computed.zIndex,
+                boundingRect: {
+                  top: rect.top,
+                  left: rect.left,
+                  right: rect.right,
+                  bottom: rect.bottom,
+                  width: rect.width,
+                  height: rect.height
+                },
+                offsetWidth: menuItems.offsetWidth,
+                offsetHeight: menuItems.offsetHeight
+              });
+              
+              if (topBarRect) {
+                console.log("Top bar bounding rect:", topBarRect);
+                console.log("Menu items inside top bar?", 
+                  rect.top >= topBarRect.top && 
+                  rect.bottom <= topBarRect.bottom &&
+                  rect.left >= topBarRect.left &&
+                  rect.right <= topBarRect.right
+                );
+              }
+              
+              menuItemLinks.forEach((item, i) => {
+                const itemStyle = window.getComputedStyle(item);
+                const itemRect = item.getBoundingClientRect();
+                console.log(`Item ${i} (${item.textContent}):`, {
+                  display: itemStyle.display,
+                  visibility: itemStyle.visibility,
+                  opacity: itemStyle.opacity,
+                  color: itemStyle.color,
+                  backgroundColor: itemStyle.backgroundColor,
+                  boundingRect: {
+                    top: itemRect.top,
+                    left: itemRect.left,
+                    right: itemRect.right,
+                    bottom: itemRect.bottom,
+                    width: itemRect.width,
+                    height: itemRect.height
+                  },
+                  offsetWidth: item.offsetWidth,
+                  offsetHeight: item.offsetHeight
+                });
+              });
+            });
+          } else {
+            console.log("SETTING MENU TO INACTIVE - hiding...");
+            menuItems.style.display = "";
+            menuItems.style.height = "";
+            menuItems.style.maxHeight = "";
+            menuItems.style.visibility = "";
+          }
+          
+          // Get computed styles AFTER applying inline styles
+          setTimeout(() => {
+            const computedStyle = window.getComputedStyle(menuItems);
+            console.log("=== COMPUTED STYLES AFTER APPLYING INLINE STYLES ===");
+            console.log("Menu items computed styles:", {
+              display: computedStyle.display,
+              flexDirection: computedStyle.flexDirection,
+              flexWrap: computedStyle.flexWrap,
+              width: computedStyle.width,
+              height: computedStyle.height,
+              maxHeight: computedStyle.maxHeight,
+              overflow: computedStyle.overflow,
+              opacity: computedStyle.opacity,
+              position: computedStyle.position,
+              top: computedStyle.top,
+              left: computedStyle.left,
+              right: computedStyle.right
+            });
+          }, 10);
+          
+          // Get computed styles immediately
+          const computedStyle = window.getComputedStyle(menuItems);
+          console.log("Menu items computed styles (immediate):", {
+            display: computedStyle.display,
+            flexDirection: computedStyle.flexDirection,
+            flexWrap: computedStyle.flexWrap,
+            width: computedStyle.width,
+            height: computedStyle.height,
+            opacity: computedStyle.opacity
+          });
+          
+          // Get dimensions
+          console.log("Menu items dimensions:", {
+            offsetWidth: menuItems.offsetWidth,
+            offsetHeight: menuItems.offsetHeight,
+            scrollWidth: menuItems.scrollWidth,
+            scrollHeight: menuItems.scrollHeight,
+            clientWidth: menuItems.clientWidth,
+            clientHeight: menuItems.clientHeight
+          });
+          
+          // Check each menu item
+          menuItemLinks.forEach((item, index) => {
+            const itemStyle = window.getComputedStyle(item);
+            console.log(`Menu item ${index} (${item.textContent}):`, {
+              offsetWidth: item.offsetWidth,
+              offsetHeight: item.offsetHeight,
+              flex: itemStyle.flex,
+              whiteSpace: itemStyle.whiteSpace
+            });
+          });
+          
+          // Check emergency text
+          const emergencyText = document.getElementById("emergency-text");
+          if (emergencyText) {
+            const emergencyStyle = window.getComputedStyle(emergencyText);
+            console.log("Emergency text:", {
+              display: emergencyStyle.display,
+              opacity: emergencyStyle.opacity,
+              visibility: emergencyStyle.visibility,
+              offsetWidth: emergencyText.offsetWidth,
+              offsetHeight: emergencyText.offsetHeight
+            });
+          }
+          
+          // Check top-bar
+          const topBar = document.getElementById("top-bar");
+          if (topBar) {
+            const topBarStyle = window.getComputedStyle(topBar);
+            console.log("Top bar:", {
+              display: topBarStyle.display,
+              flexDirection: topBarStyle.flexDirection,
+              height: topBarStyle.height,
+              offsetHeight: topBar.offsetHeight
+            });
+          }
+          
+          // Check bar container
+          const containerStyle = window.getComputedStyle(barContainer);
+          console.log("Bar container dimensions:", {
+            offsetHeight: barContainer.offsetHeight,
+            scrollHeight: barContainer.scrollHeight,
+            height: containerStyle.height
+          });
+          
+          // Notify ChatGPT of height change after transition completes
+          setTimeout(() => {
+            console.log("After transition:", {
+              menuItemsHeight: menuItems.offsetHeight,
+              barContainerHeight: barContainer.offsetHeight
+            });
+            notifyHeight();
+          }, 400);
+        };
+
+        // Also attach via addEventListener as backup
+        if (hamburgerButton) {
+          console.log("Attaching addEventListener to hamburger button...");
+          hamburgerButton.addEventListener("click", window.handleHamburgerClick);
+          console.log("addEventListener attached successfully");
+        } else {
+          console.error("Cannot attach event listener - hamburgerButton is null!");
+        }
+
+        // Handle menu item clicks
+        menuItemLinks.forEach((item) => {
+          item.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const action = item.getAttribute("data-action");
+            console.log(`Menu item clicked: ${action}`);
+            
+            // Request fullscreen mode when menu item is clicked
+            if (window.openai?.requestDisplayMode) {
+              try {
+                const response = await window.openai.requestDisplayMode({ mode: "fullscreen" });
+                if (response.mode === "fullscreen") {
+                  console.log("Widget expanded to fullscreen");
+                }
+              } catch (error) {
+                console.error("Failed to request fullscreen:", error);
+              }
+            }
+            
+            // Close menu after selection
+            if (hamburgerButton) hamburgerButton.classList.remove("active");
+            if (menuItems) menuItems.classList.remove("active");
+            if (barContainer) barContainer.classList.remove("expanded");
+            
+            // Notify ChatGPT of height change
+            setTimeout(() => {
+              notifyHeight();
+            }, 350);
+          });
+        });
+
+        // Initial height notification
+        setTimeout(() => {
+          notifyHeight();
+        }, 100);
+
+        // Also notify on window resize
+        window.addEventListener("resize", () => {
+          notifyHeight();
+        });
+
+        console.log("AHA Widget loaded");
+      })();
     </script>
   </body>
 </html>

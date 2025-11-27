@@ -1,0 +1,388 @@
+{
+  "resources": [
+    {
+      "id": "cpr-hands-only",
+      "title": "Hands-Only CPR",
+      "category": "Emergency Response",
+      "content": "Hands-Only CPR is CPR without mouth-to-mouth breaths. It is recommended for use by people who see a teen or adult suddenly collapse in an out-of-hospital setting. The steps are: 1) Call 911 or send someone to do so. 2) Push hard and fast in the center of the chest to the beat of a familiar song that has 100 to 120 beats per minute. Examples include 'Stayin' Alive' by the Bee Gees, 'Crazy in Love' by Beyoncé, or 'Just Dance' by Lady Gaga. Continue until help arrives or the person shows obvious signs of life.",
+      "url": "https://www.heart.org/en/health-topics/cardiac-arrest/hands-only-cpr",
+      "keywords": ["CPR", "cardiac arrest", "emergency", "hands-only", "resuscitation", "chest compressions"]
+    },
+    {
+      "id": "heart-attack-symptoms",
+      "title": "Heart Attack Warning Signs",
+      "category": "Symptoms",
+      "content": "The American Heart Association identifies the following as warning signs of a heart attack: Chest discomfort (most heart attacks involve discomfort in the center of the chest that lasts more than a few minutes, or that goes away and comes back. It can feel like uncomfortable pressure, squeezing, fullness or pain); Discomfort in other areas of the upper body (symptoms can include pain or discomfort in one or both arms, the back, neck, jaw or stomach); Shortness of breath (with or without chest discomfort); Other signs may include breaking out in a cold sweat, nausea or lightheadedness. Women are more likely than men to experience shortness of breath, nausea/vomiting, and back or jaw pain. If you experience any of these symptoms, call 911 immediately.",
+      "url": "https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack",
+      "keywords": ["heart attack", "symptoms", "chest pain", "warning signs", "myocardial infarction", "emergency"]
+    },
+    {
+      "id": "stroke-symptoms-fast",
+      "title": "Stroke Symptoms - F.A.S.T.",
+      "category": "Symptoms",
+      "content": "The American Heart Association uses the acronym F.A.S.T. to help recognize stroke symptoms: F - Face Drooping (Does one side of the face droop or is it numb? Ask the person to smile. Is the person's smile uneven?); A - Arm Weakness (Is one arm weak or numb? Ask the person to raise both arms. Does one arm drift downward?); S - Speech Difficulty (Is speech slurred? Is the person unable to speak or hard to understand? Ask the person to repeat a simple sentence.); T - Time to call 911 (If someone shows any of these symptoms, even if the symptoms go away, call 911 and get them to the hospital immediately. Check the time so you'll know when the first symptoms appeared.). Additional symptoms may include sudden numbness or weakness of the leg, sudden confusion or trouble understanding, sudden trouble seeing in one or both eyes, sudden trouble walking, dizziness, loss of balance or coordination, or sudden severe headache with no known cause.",
+      "url": "https://www.stroke.org/en/about-stroke/stroke-symptoms",
+      "keywords": ["stroke", "FAST", "symptoms", "face drooping", "arm weakness", "speech", "emergency", "brain attack"]
+    },
+    {
+      "id": "tia-mini-stroke",
+      "title": "Transient Ischemic Attack (TIA) - Warning Stroke",
+      "category": "Symptoms",
+      "content": "The American Heart Association explains that a transient ischemic attack (TIA) is a warning stroke, but is commonly referred to by the public as a mini-stroke. TIA is a medical emergency with the same symptoms as ischemic and hemorrhagic strokes. Because most TIA symptoms last from only a few minutes up to 24 hours, they are often dismissed and not taken seriously. TIAs, which occur before about 15% of strokes, are considered 'warning strokes' — they are associated with additional TIAs, full-blown strokes or other cardiovascular problems later. Most of these later health problems happen within just days or weeks of the TIA, so early interventions to reduce risk are vital. Remember 'F.A.S.T.' to know when to call for help. If you or someone with you is experiencing these or other stroke symptoms, urgent medical evaluation and treatment are needed. Call 911 even if the symptoms go away.",
+      "url": "https://www.stroke.org/en/about-stroke/stroke-symptoms",
+      "keywords": ["TIA", "transient ischemic attack", "mini-stroke", "warning stroke", "stroke symptoms", "emergency"]
+    },
+    {
+      "id": "silent-strokes",
+      "title": "Silent Strokes",
+      "category": "Conditions",
+      "content": "The American Heart Association explains that silent strokes are undetected strokes. They occur when a blood vessel blockage in the brain causes cells to die, but no warning signs or symptoms are obvious. About one-fourth of people over age 80 have at least one such area of tissue death, known as a 'silent infarct,' in the brain. The condition is more common with increasing age, and in people who smoke or have a history of vascular disease (conditions that affect your blood vessels). Experts estimate that 10 silent strokes occur for every stroke with detectable symptoms. Despite being called 'silent,' these infarcts have been linked to subtle problems in a person's movement and mental processing. They also are linked to future risk for stroke and dementia. Silent infarcts can be seen in patients through advanced brain imaging techniques such as MRI and CT.",
+      "url": "https://www.stroke.org/en/about-stroke/stroke-symptoms",
+      "keywords": ["silent stroke", "silent infarct", "undetected stroke", "brain imaging", "dementia risk"]
+    },
+    {
+      "id": "blood-pressure-guidelines",
+      "title": "Blood Pressure Guidelines",
+      "category": "Prevention",
+      "content": "The American Heart Association defines normal blood pressure as less than 120/80 mm Hg. Elevated blood pressure is 120-129 systolic and less than 80 diastolic. High blood pressure (Hypertension) Stage 1 is 130-139 systolic or 80-89 diastolic. High blood pressure (Hypertension) Stage 2 is 140 or higher systolic or 90 or higher diastolic. Hypertensive crisis is higher than 180 systolic and/or higher than 120 diastolic - this requires immediate medical attention. High blood pressure is often called the 'silent killer' because it typically has no symptoms. Regular monitoring and lifestyle changes including a healthy diet, regular exercise, maintaining a healthy weight, limiting alcohol, and not smoking can help manage blood pressure.",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure",
+      "keywords": ["blood pressure", "hypertension", "normal", "elevated", "systolic", "diastolic", "prevention"]
+    },
+    {
+      "id": "heart-healthy-diet",
+      "title": "Heart-Healthy Eating",
+      "category": "Nutrition",
+      "content": "The American Heart Association recommends a heart-healthy eating pattern that includes: Fruits and vegetables (aim for variety and eat the rainbow); Whole grains (choose whole grain bread, rice, pasta, and cereals); Healthy protein sources (legumes, nuts, fish and seafood, low-fat or non-fat dairy, and lean cuts of meat); Liquid non-tropical vegetable oils (olive, canola, safflower, sunflower); Minimally processed foods; Foods prepared with little or no salt; Limited or preferably no alcohol intake. The AHA recommends limiting: Saturated fat (found in red meat, butter, cheese, and full-fat dairy products); Trans fat (found in fried foods and baked goods); Sodium (aim for less than 2,300 mg per day, ideally 1,500 mg); Added sugars (limit to no more than 6 teaspoons or 100 calories per day for women, 9 teaspoons or 150 calories per day for men).",
+      "url": "https://www.heart.org/en/healthy-living/healthy-eating",
+      "keywords": ["diet", "nutrition", "heart healthy", "eating", "fruits", "vegetables", "whole grains", "saturated fat", "sodium"]
+    },
+    {
+      "id": "physical-activity",
+      "title": "Physical Activity Recommendations",
+      "category": "Exercise",
+      "content": "The American Heart Association recommends at least 150 minutes per week of moderate-intensity aerobic activity or 75 minutes per week of vigorous aerobic activity, or a combination of both, preferably spread throughout the week. For additional health benefits, aim for 300 minutes per week of moderate-intensity or 150 minutes per week of vigorous-intensity aerobic activity. Also include moderate- to high-intensity muscle-strengthening activity (such as resistance or weights) at least 2 days per week. Children and adolescents should get at least 60 minutes per day of moderate-to-vigorous physical activity. Examples of moderate-intensity activities include brisk walking, water aerobics, dancing, gardening, and doubles tennis. Examples of vigorous-intensity activities include running, swimming laps, fast cycling, hiking uphill, and singles tennis.",
+      "url": "https://www.heart.org/en/healthy-living/fitness",
+      "keywords": ["exercise", "physical activity", "fitness", "aerobic", "strength training", "recommendations", "150 minutes"]
+    },
+    {
+      "id": "cholesterol",
+      "title": "Understanding Cholesterol",
+      "category": "Prevention",
+      "content": "The American Heart Association explains that cholesterol is a waxy substance found in your blood. Your body needs cholesterol to build healthy cells, but high levels of cholesterol can increase your risk of heart disease. There are two types of cholesterol: LDL (low-density lipoprotein) is often called 'bad' cholesterol because it can build up in the walls of your arteries, forming plaque that narrows the arteries. HDL (high-density lipoprotein) is often called 'good' cholesterol because it helps remove LDL cholesterol from your arteries. Triglycerides are another type of fat in your blood. High triglyceride levels combined with high LDL or low HDL cholesterol can increase your risk of heart attack and stroke. Optimal levels: Total cholesterol less than 200 mg/dL; LDL less than 100 mg/dL (or less than 70 mg/dL for those at very high risk); HDL 60 mg/dL or higher; Triglycerides less than 150 mg/dL. Lifestyle changes including a heart-healthy diet, regular exercise, and not smoking can help improve cholesterol levels.",
+      "url": "https://www.heart.org/en/health-topics/cholesterol",
+      "keywords": ["cholesterol", "LDL", "HDL", "triglycerides", "bad cholesterol", "good cholesterol", "prevention"]
+    },
+    {
+      "id": "diabetes-heart",
+      "title": "Diabetes and Heart Disease",
+      "category": "Conditions",
+      "content": "The American Heart Association notes that people with diabetes are twice as likely to have heart disease or a stroke than people without diabetes. High blood sugar from diabetes can damage blood vessels and the nerves that control the heart. The longer you have diabetes, the higher the chances that you will develop heart disease. People with diabetes are also more likely to have certain risk factors that increase the chances of having heart disease or stroke, such as high blood pressure or high cholesterol. Managing diabetes includes: Monitoring blood sugar levels; Taking medications as prescribed; Eating a heart-healthy diet; Getting regular physical activity; Maintaining a healthy weight; Not smoking; Managing stress; Getting regular check-ups. The AHA recommends an A1C goal of less than 7% for most adults with diabetes.",
+      "url": "https://www.heart.org/en/health-topics/diabetes",
+      "keywords": ["diabetes", "blood sugar", "A1C", "heart disease", "stroke", "risk factors", "management"]
+    },
+    {
+      "id": "smoking-cessation",
+      "title": "Smoking and Heart Health",
+      "category": "Prevention",
+      "content": "The American Heart Association states that smoking is a major cause of cardiovascular disease and is the most preventable cause of death in the United States. Smoking damages the heart and blood vessels, increases the risk of heart attack and stroke, and contributes to the development of peripheral artery disease. Secondhand smoke exposure also increases the risk of heart disease. Within 20 minutes of quitting, your heart rate and blood pressure drop. Within 12 hours, the carbon monoxide level in your blood drops to normal. Within 2-3 weeks, your circulation improves and lung function increases. Within 1 year, your risk of coronary heart disease is about half that of a smoker's. Within 5 years, your risk of stroke is reduced to that of a nonsmoker. The AHA provides resources and support for smoking cessation, including counseling, medications, and support groups.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-lifestyle/quit-smoking-tobacco",
+      "keywords": ["smoking", "tobacco", "cessation", "quit smoking", "heart disease", "prevention", "secondhand smoke"]
+    },
+    {
+      "id": "stress-management",
+      "title": "Stress and Heart Health",
+      "category": "Mental Health",
+      "content": "The American Heart Association recognizes that stress can contribute to heart disease. Chronic stress may lead to high blood pressure, which can increase the risk of heart attack and stroke. Stress can also lead to unhealthy behaviors such as overeating, smoking, or not getting enough physical activity. The AHA recommends managing stress through: Regular physical activity; Relaxation techniques such as deep breathing, meditation, or yoga; Getting adequate sleep (7-9 hours per night); Maintaining social connections; Setting realistic goals and priorities; Taking time for hobbies and activities you enjoy; Seeking professional help if needed. It's important to recognize the signs of stress, which may include headaches, muscle tension, fatigue, difficulty sleeping, anxiety, irritability, or changes in appetite.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-lifestyle/stress-management",
+      "keywords": ["stress", "stress management", "mental health", "relaxation", "meditation", "sleep", "heart health"]
+    },
+    {
+      "id": "sleep-heart-health",
+      "title": "Sleep and Heart Health",
+      "category": "Lifestyle",
+      "content": "The American Heart Association has added sleep duration to its list of essential components for optimal cardiovascular health. Adults should aim for 7-9 hours of sleep per night. Getting too little or too much sleep can increase the risk of heart disease. Poor sleep quality or sleep disorders such as sleep apnea can also negatively impact heart health. Sleep apnea, a condition where breathing repeatedly stops and starts during sleep, is associated with high blood pressure, irregular heartbeats, stroke, and heart failure. Signs of sleep problems include difficulty falling or staying asleep, excessive daytime sleepiness, loud snoring, or gasping for air during sleep. Good sleep hygiene includes: Maintaining a regular sleep schedule; Creating a comfortable sleep environment; Avoiding screens before bedtime; Limiting caffeine and alcohol, especially in the evening; Getting regular exercise (but not too close to bedtime).",
+      "url": "https://www.heart.org/en/healthy-living/healthy-lifestyle/sleep",
+      "keywords": ["sleep", "sleep duration", "sleep apnea", "heart health", "cardiovascular health", "7-9 hours"]
+    },
+    {
+      "id": "women-heart-disease",
+      "title": "Heart Disease in Women",
+      "category": "Special Populations",
+      "content": "The American Heart Association emphasizes that heart disease is the number one killer of women, causing 1 in 3 deaths each year. Many women don't recognize their risk or the symptoms of heart disease. Women's heart attack symptoms can be different from men's. While chest pain is the most common symptom for both, women are more likely than men to experience: Shortness of breath; Nausea or vomiting; Back or jaw pain; Unusual fatigue; Dizziness or lightheadedness. Risk factors for heart disease in women include: High blood pressure; High cholesterol; Diabetes; Smoking; Family history; Age (risk increases after menopause); Race/ethnicity (African American and Hispanic women have higher risk); Lifestyle factors. The AHA's Go Red for Women movement raises awareness about heart disease in women and encourages women to know their numbers (blood pressure, cholesterol, blood sugar, BMI) and take action to reduce their risk.",
+      "url": "https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack/heart-attack-symptoms-in-women",
+      "keywords": ["women", "heart disease", "heart attack symptoms", "Go Red", "risk factors", "menopause"]
+    },
+    {
+      "id": "pediatric-heart-health",
+      "title": "Heart Health in Children",
+      "category": "Special Populations",
+      "content": "The American Heart Association recommends that children and adolescents get at least 60 minutes of moderate-to-vigorous physical activity daily. Children should eat a variety of fruits and vegetables, whole grains, lean proteins, and low-fat dairy products. Limit added sugars, saturated fats, and sodium. Screen time should be limited to no more than 1-2 hours per day of quality programming. Children should get adequate sleep: 9-12 hours for ages 6-12, and 8-10 hours for ages 13-18. Children with risk factors such as family history of heart disease, high blood pressure, high cholesterol, diabetes, or obesity should be monitored closely. The AHA recommends that all children have their blood pressure checked starting at age 3. Maintaining a healthy weight is important, as childhood obesity is a risk factor for heart disease later in life.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-lifestyle/kids-health",
+      "keywords": ["children", "pediatric", "kids", "heart health", "physical activity", "screen time", "childhood obesity"]
+    },
+    {
+      "id": "cardiac-rehabilitation",
+      "title": "Cardiac Rehabilitation",
+      "category": "Treatment",
+      "content": "The American Heart Association defines cardiac rehabilitation as a medically supervised program designed to improve cardiovascular health after a heart attack, heart failure, angioplasty, or heart surgery. Cardiac rehab includes: Medical evaluation to assess physical abilities, medical limitations, and other conditions; Physical activity counseling and exercise training to help you learn how to exercise safely, strengthen your muscles, and improve your stamina; Lifestyle education including heart-healthy eating, quitting smoking, managing stress, and understanding your condition; Support and counseling to address fears and return to an active life. Cardiac rehabilitation typically lasts 3 months and includes 36 sessions. The program is covered by Medicare and most insurance plans. Studies show that cardiac rehabilitation can reduce the risk of death from heart disease by up to 30% and improve quality of life.",
+      "url": "https://www.heart.org/en/health-topics/cardiac-rehab",
+      "keywords": ["cardiac rehabilitation", "cardiac rehab", "heart attack recovery", "exercise", "lifestyle", "treatment"]
+    },
+    {
+      "id": "heart-failure",
+      "title": "Heart Failure",
+      "category": "Conditions",
+      "content": "The American Heart Association explains that heart failure occurs when the heart cannot pump enough blood to meet the body's needs. It does not mean the heart has stopped working, but that it needs support to work better. Symptoms of heart failure include: Shortness of breath during activity or at rest; Persistent coughing or wheezing; Swelling in the feet, ankles, legs, or abdomen; Fatigue or feeling tired; Lack of appetite or nausea; Confusion or impaired thinking; Increased heart rate. Heart failure can be caused by coronary artery disease, high blood pressure, diabetes, heart valve disease, or previous heart attack. Treatment includes medications, lifestyle changes (low-sodium diet, fluid restriction, regular exercise), and in some cases, devices or surgery. The AHA emphasizes the importance of following treatment plans, monitoring symptoms, and regular medical check-ups. Early diagnosis and treatment can help manage symptoms and improve quality of life.",
+      "url": "https://www.heart.org/en/health-topics/heart-failure",
+      "keywords": ["heart failure", "congestive heart failure", "symptoms", "treatment", "shortness of breath", "swelling"]
+    },
+    {
+      "id": "atrial-fibrillation",
+      "title": "Atrial Fibrillation (AFib)",
+      "category": "Conditions",
+      "content": "The American Heart Association describes atrial fibrillation (AFib) as a quivering or irregular heartbeat (arrhythmia) that can lead to blood clots, stroke, heart failure, and other heart-related complications. Symptoms may include: Irregular heartbeat; Heart palpitations (rapid, fluttering, or pounding); Lightheadedness; Extreme fatigue; Shortness of breath; Chest pain. Some people with AFib have no symptoms. Risk factors include age (risk increases with age), high blood pressure, obesity, diabetes, heart failure, ischemic heart disease, hyperthyroidism, chronic kidney disease, and alcohol consumption. Treatment goals include preventing blood clots, controlling heart rate, restoring normal rhythm, and treating underlying conditions. Treatment may include medications (anticoagulants, rate control, rhythm control), cardioversion, catheter ablation, or surgery. The AHA recommends lifestyle changes including maintaining a healthy weight, managing blood pressure, limiting alcohol, and getting regular exercise.",
+      "url": "https://www.heart.org/en/health-topics/atrial-fibrillation",
+      "keywords": ["atrial fibrillation", "AFib", "arrhythmia", "irregular heartbeat", "stroke risk", "treatment"]
+    },
+    {
+      "id": "coronary-artery-disease",
+      "title": "Coronary Artery Disease",
+      "category": "Conditions",
+      "content": "The American Heart Association explains that coronary artery disease (CAD) is the most common type of heart disease. It occurs when the coronary arteries that supply blood to the heart muscle become hardened and narrowed due to plaque buildup (atherosclerosis). This reduces blood flow to the heart, which can lead to chest pain (angina), heart attack, or other complications. Risk factors include high blood pressure, high cholesterol, smoking, diabetes, obesity, physical inactivity, unhealthy diet, excessive alcohol use, and family history. Symptoms may include chest pain or discomfort, shortness of breath, fatigue, or no symptoms at all (silent CAD). Treatment includes lifestyle changes (healthy diet, exercise, quitting smoking), medications, and in some cases, procedures such as angioplasty or bypass surgery. Prevention focuses on managing risk factors through lifestyle modifications and regular medical check-ups.",
+      "url": "https://www.heart.org/en/health-topics/consumer/heartvalves",
+      "keywords": ["coronary artery disease", "CAD", "atherosclerosis", "plaque", "angina", "heart disease"]
+    },
+    {
+      "id": "peripheral-artery-disease",
+      "title": "Peripheral Artery Disease",
+      "category": "Conditions",
+      "content": "The American Heart Association describes peripheral artery disease (PAD) as a narrowing of the peripheral arteries that carry blood away from the heart to other parts of the body, most commonly the legs. PAD is caused by atherosclerosis, the same process that causes coronary artery disease. Symptoms may include leg pain when walking (claudication), leg numbness or weakness, coldness in lower leg or foot, sores on toes/feet/legs that won't heal, change in leg color, hair loss on legs, or no symptoms at all. Risk factors include smoking, diabetes, high blood pressure, high cholesterol, age over 50, family history, and physical inactivity. Treatment includes lifestyle changes (quitting smoking, exercise, healthy diet), medications, and in severe cases, procedures to restore blood flow. The AHA emphasizes that PAD is a serious condition that increases the risk of heart attack and stroke.",
+      "url": "https://www.heart.org/en/health-topics/peripheral-artery-disease",
+      "keywords": ["peripheral artery disease", "PAD", "claudication", "leg pain", "atherosclerosis", "circulation"]
+    },
+    {
+      "id": "heart-valve-disease",
+      "title": "Heart Valve Disease",
+      "category": "Conditions",
+      "content": "The American Heart Association explains that heart valve disease occurs when one or more of the heart's four valves don't work properly. The heart valves keep blood flowing in the right direction through the heart. Valve problems can be present at birth (congenital) or develop later in life. Types of valve disease include stenosis (narrowing that restricts blood flow), regurgitation (leaking that allows blood to flow backward), and atresia (missing valve opening). Symptoms may include shortness of breath, fatigue, chest pain, dizziness or fainting, irregular heartbeat, or swelling in ankles/feet/abdomen. Some people have no symptoms. Risk factors include age, infections (rheumatic fever, endocarditis), heart conditions, and congenital defects. Treatment depends on severity and may include medications, lifestyle changes, or valve repair/replacement surgery. Regular monitoring is important for people with valve disease.",
+      "url": "https://www.heart.org/en/health-topics/heart-valve-problems-and-disease",
+      "keywords": ["heart valve disease", "valve stenosis", "valve regurgitation", "heart valves", "surgery"]
+    },
+    {
+      "id": "cardiac-arrest",
+      "title": "Cardiac Arrest",
+      "category": "Emergency Response",
+      "content": "The American Heart Association explains that cardiac arrest is the abrupt loss of heart function, breathing, and consciousness. It occurs when the heart's electrical system malfunctions, causing an irregular heartbeat (arrhythmia). Cardiac arrest is different from a heart attack, which is caused by a blockage in blood flow to the heart. Cardiac arrest can be fatal if not treated immediately. Survival depends on receiving immediate CPR and defibrillation. The AHA emphasizes that calling 911 and starting CPR immediately can double or triple a person's chance of survival. Hands-Only CPR can be performed by anyone and involves pushing hard and fast in the center of the chest. Automated external defibrillators (AEDs) can be used to restore normal heart rhythm. Risk factors include coronary artery disease, heart attack, heart failure, arrhythmias, and certain genetic conditions. Prevention focuses on managing heart disease risk factors.",
+      "url": "https://www.heart.org/en/health-topics/cardiac-arrest",
+      "keywords": ["cardiac arrest", "sudden cardiac arrest", "CPR", "AED", "defibrillation", "emergency"]
+    },
+    {
+      "id": "stroke-types",
+      "title": "Types of Stroke",
+      "category": "Conditions",
+      "content": "The American Heart Association identifies three main types of stroke: Ischemic stroke (most common, accounting for about 87% of strokes) occurs when a blood vessel supplying blood to the brain is blocked, usually by a blood clot. Hemorrhagic stroke occurs when a weakened blood vessel ruptures and bleeds into the brain. Transient ischemic attack (TIA) is a temporary blockage that causes stroke-like symptoms but doesn't cause permanent damage. Ischemic strokes can be caused by thrombosis (clot forms in brain artery) or embolism (clot travels from elsewhere). Hemorrhagic strokes can be intracerebral (bleeding within brain) or subarachnoid (bleeding between brain and skull). Treatment depends on stroke type: Ischemic strokes may be treated with clot-busting drugs or procedures to remove clots. Hemorrhagic strokes may require surgery to repair the ruptured vessel. Time is critical - getting treatment quickly can minimize brain damage.",
+      "url": "https://www.stroke.org/en/about-stroke",
+      "keywords": ["stroke types", "ischemic stroke", "hemorrhagic stroke", "TIA", "blood clot", "brain damage"]
+    },
+    {
+      "id": "stroke-recovery",
+      "title": "Stroke Recovery and Rehabilitation",
+      "category": "Treatment",
+      "content": "The American Heart Association emphasizes that stroke recovery is a lifelong process. Recovery begins in the hospital and continues with rehabilitation to help regain lost abilities and learn new ways to perform daily activities. Rehabilitation may include physical therapy (to improve movement and balance), occupational therapy (to help with daily activities), speech therapy (to improve communication and swallowing), and psychological support. Recovery varies greatly - some people recover fully, while others have lasting disabilities. Factors affecting recovery include the area and extent of brain damage, age, overall health, and motivation. Early rehabilitation is important and typically begins within 24-48 hours after stroke. The AHA recommends working with a rehabilitation team to set goals and track progress. Support from family and caregivers is crucial. Many stroke survivors benefit from support groups and community resources. Recovery can continue for months or years after a stroke.",
+      "url": "https://www.stroke.org/en/life-after-stroke",
+      "keywords": ["stroke recovery", "rehabilitation", "physical therapy", "occupational therapy", "speech therapy", "recovery"]
+    },
+    {
+      "id": "obesity-heart-health",
+      "title": "Obesity and Heart Health",
+      "category": "Prevention",
+      "content": "The American Heart Association recognizes that obesity is a major risk factor for heart disease and stroke. Obesity increases the risk of high blood pressure, high cholesterol, type 2 diabetes, and other conditions that contribute to cardiovascular disease. The AHA defines obesity using body mass index (BMI): Normal weight is BMI 18.5-24.9, overweight is BMI 25-29.9, and obesity is BMI 30 or higher. Waist circumference is also important - men with waist circumference over 40 inches and women over 35 inches are at increased risk. Losing even a small amount of weight (5-10% of body weight) can improve blood pressure, cholesterol, and blood sugar levels. The AHA recommends a combination of healthy eating and regular physical activity for weight management. Fad diets are not recommended. Instead, focus on making sustainable lifestyle changes. Working with healthcare providers to develop a personalized weight management plan is important.",
+      "url": "https://www.heart.org/en/health-topics/weight-management",
+      "keywords": ["obesity", "weight management", "BMI", "waist circumference", "heart disease risk", "weight loss"]
+    },
+    {
+      "id": "alcohol-heart-health",
+      "title": "Alcohol and Heart Health",
+      "category": "Lifestyle",
+      "content": "The American Heart Association states that if you don't drink alcohol, don't start. If you do drink, limit your intake. The AHA recommends no more than 2 drinks per day for men and no more than 1 drink per day for women. One drink is defined as 12 ounces of beer, 5 ounces of wine, or 1.5 ounces of distilled spirits. Drinking too much alcohol can raise blood pressure, increase risk of stroke and heart failure, contribute to obesity, and lead to other health problems. Some studies suggest moderate alcohol consumption may have heart benefits, but the AHA does not recommend drinking alcohol for heart health. The risks generally outweigh any potential benefits. People with certain conditions should avoid alcohol entirely, including those with heart failure, high blood pressure, or a history of stroke. The AHA emphasizes that there are better ways to improve heart health, such as eating a healthy diet, exercising regularly, and not smoking.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/nutrition-basics/alcohol-and-heart-health",
+      "keywords": ["alcohol", "drinking", "moderation", "blood pressure", "heart health", "lifestyle"]
+    },
+    {
+      "id": "sodium-intake",
+      "title": "Sodium and Heart Health",
+      "category": "Nutrition",
+      "content": "The American Heart Association recommends limiting sodium intake to no more than 2,300 milligrams (mg) per day, with an ideal limit of 1,500 mg per day for most adults, especially those with high blood pressure. Most Americans consume far more sodium than recommended - about 3,400 mg per day on average. Most sodium comes from processed and restaurant foods, not the salt shaker. High sodium intake is linked to high blood pressure, which increases the risk of heart disease and stroke. To reduce sodium intake: Read nutrition labels and choose lower-sodium options; Cook more meals at home using fresh ingredients; Use herbs and spices instead of salt for flavoring; Limit processed foods, canned foods, and restaurant meals; Rinse canned foods to remove some sodium. The AHA's Heart-Check mark can help identify foods that meet sodium criteria. Gradually reducing sodium allows taste buds to adjust to less salty foods.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium",
+      "keywords": ["sodium", "salt", "blood pressure", "processed foods", "nutrition", "heart health"]
+    },
+    {
+      "id": "added-sugars",
+      "title": "Added Sugars and Heart Health",
+      "category": "Nutrition",
+      "content": "The American Heart Association recommends limiting added sugars to no more than 6 teaspoons (25 grams or 100 calories) per day for women and 9 teaspoons (36 grams or 150 calories) per day for men. Added sugars are sugars and syrups added to foods during processing or preparation, not naturally occurring sugars in fruits and milk. High intake of added sugars is linked to obesity, high blood pressure, inflammation, and increased risk of heart disease and stroke. Major sources of added sugars include soft drinks, candy, cakes, cookies, pies, fruit drinks, dairy desserts, and many processed foods. To reduce added sugar intake: Read nutrition labels and ingredient lists; Choose water or unsweetened beverages; Limit sweets and desserts; Choose fresh fruits for dessert; Be aware that 'healthy' foods like yogurt and granola bars can be high in added sugars. The AHA recommends focusing on whole, unprocessed foods to naturally limit added sugar intake.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sugar",
+      "keywords": ["added sugars", "sugar", "sweeteners", "obesity", "heart disease", "nutrition"]
+    },
+    {
+      "id": "omega-3-fats",
+      "title": "Omega-3 Fatty Acids and Heart Health",
+      "category": "Nutrition",
+      "content": "The American Heart Association recommends eating fish (particularly fatty fish) at least two times per week as part of a heart-healthy diet. Fatty fish like salmon, mackerel, herring, lake trout, sardines, and albacore tuna are high in omega-3 fatty acids, which have been shown to reduce the risk of heart disease and stroke. Omega-3 fatty acids may help lower triglycerides, reduce blood clotting, decrease the risk of irregular heartbeats, and slightly lower blood pressure. Plant-based sources of omega-3s include walnuts, flaxseeds, chia seeds, and canola oil, though these contain a different type of omega-3 (ALA) that the body converts less efficiently. The AHA does not recommend omega-3 supplements for the general population, as research on their benefits is mixed. Instead, focus on getting omega-3s from food sources. People with heart disease may benefit from supplements, but should consult their healthcare provider first.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/fats/fish-and-omega-3-fatty-acids",
+      "keywords": ["omega-3", "fish", "fatty acids", "salmon", "heart health", "nutrition"]
+    },
+    {
+      "id": "fiber-heart-health",
+      "title": "Fiber and Heart Health",
+      "category": "Nutrition",
+      "content": "The American Heart Association recommends eating foods high in fiber as part of a heart-healthy diet. Dietary fiber, found in plant foods, can help lower cholesterol, reduce the risk of heart disease and stroke, and aid in weight management. The AHA recommends at least 25-30 grams of fiber per day from food sources. Good sources of fiber include whole grains (oats, barley, brown rice, whole wheat), fruits (especially with skin), vegetables, legumes (beans, lentils, chickpeas), nuts, and seeds. Soluble fiber, found in oats, beans, and some fruits, can help lower LDL cholesterol. Insoluble fiber, found in whole grains and vegetables, helps with digestion. To increase fiber intake: Choose whole grain breads and cereals; Eat fruits and vegetables with skin when possible; Add beans and lentils to meals; Snack on nuts and seeds; Gradually increase fiber to avoid digestive discomfort. The AHA emphasizes getting fiber from whole foods rather than supplements.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/nutrition-basics/whole-grains-refined-grains-and-dietary-fiber",
+      "keywords": ["fiber", "dietary fiber", "whole grains", "cholesterol", "heart health", "nutrition"]
+    },
+    {
+      "id": "exercise-benefits",
+      "title": "Benefits of Regular Exercise",
+      "category": "Exercise",
+      "content": "The American Heart Association emphasizes that regular physical activity provides numerous benefits for heart health and overall well-being. Exercise helps: Strengthen the heart and cardiovascular system; Lower blood pressure; Improve cholesterol levels; Control blood sugar; Maintain a healthy weight; Reduce stress; Improve sleep; Boost energy; Improve mood and mental health. Regular exercise can reduce the risk of heart disease, stroke, type 2 diabetes, and some cancers. Even small amounts of activity provide benefits. The AHA recommends starting slowly and gradually increasing activity. Any activity is better than none. For people with heart conditions, it's important to talk to a healthcare provider before starting an exercise program. The AHA encourages finding activities you enjoy to make exercise a sustainable habit. Combining aerobic exercise with strength training provides the most comprehensive benefits for heart health.",
+      "url": "https://www.heart.org/en/healthy-living/fitness",
+      "keywords": ["exercise benefits", "physical activity", "heart health", "fitness", "cardiovascular health"]
+    },
+    {
+      "id": "exercise-safety",
+      "title": "Exercise Safety and Heart Health",
+      "category": "Exercise",
+      "content": "The American Heart Association provides guidelines for safe exercise, especially for people with heart conditions or risk factors. Before starting an exercise program: Consult with your healthcare provider, especially if you have heart disease, high blood pressure, diabetes, or other health conditions; Start slowly and gradually increase intensity and duration; Warm up before exercise and cool down afterward; Stay hydrated by drinking water before, during, and after exercise; Listen to your body and stop if you experience chest pain, dizziness, or extreme shortness of breath; Wear appropriate clothing and footwear; Exercise in safe conditions (avoid extreme heat or cold). Warning signs to stop exercising and seek medical attention include: Chest pain or pressure; Severe shortness of breath; Dizziness or fainting; Irregular heartbeat; Extreme fatigue. The AHA recommends that people with heart conditions work with cardiac rehabilitation specialists to develop safe, effective exercise programs.",
+      "url": "https://www.heart.org/en/healthy-living/fitness/fitness-basics",
+      "keywords": ["exercise safety", "heart conditions", "cardiac rehab", "exercise guidelines", "safety"]
+    },
+    {
+      "id": "meditation-heart-health",
+      "title": "Meditation and Heart Health",
+      "category": "Mental Health",
+      "content": "The American Heart Association recognizes that meditation and mindfulness practices may help reduce stress, which can benefit heart health. Research suggests that meditation may help lower blood pressure, reduce anxiety and depression, improve sleep, and enhance overall well-being. Types of meditation include mindfulness meditation, transcendental meditation, guided meditation, and yoga. The AHA notes that while meditation shows promise, more research is needed to fully understand its cardiovascular benefits. Meditation should be used as a complement to, not a replacement for, proven heart-healthy behaviors like regular exercise, healthy eating, and medication adherence. The AHA recommends starting with short sessions (5-10 minutes) and gradually increasing duration. Many resources are available including apps, classes, and online programs. People with heart conditions should continue following their healthcare provider's recommendations while incorporating meditation as a stress management tool.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-lifestyle/stress-management",
+      "keywords": ["meditation", "mindfulness", "stress reduction", "blood pressure", "mental health", "relaxation"]
+    },
+    {
+      "id": "social-connections",
+      "title": "Social Connections and Heart Health",
+      "category": "Mental Health",
+      "content": "The American Heart Association recognizes that social connections and strong relationships can benefit heart health. Research suggests that people with strong social support have better cardiovascular health and lower risk of heart disease. Social isolation and loneliness are associated with increased risk of heart disease, stroke, and premature death. Benefits of social connections include: Reduced stress; Better adherence to healthy behaviors; Emotional support during difficult times; Increased sense of purpose and belonging. The AHA recommends: Maintaining relationships with family and friends; Participating in social activities and community groups; Volunteering or joining clubs; Seeking support when needed; Building new connections through shared interests. For people recovering from heart events, support groups can be particularly valuable. The AHA's Support Network provides online communities for patients, survivors, and caregivers. Strong social connections are an important part of overall heart health and well-being.",
+      "url": "https://supportnetwork.heart.org",
+      "keywords": ["social connections", "social support", "loneliness", "heart health", "mental health", "community"]
+    },
+    {
+      "id": "oral-health-heart",
+      "title": "Oral Health and Heart Health",
+      "category": "Prevention",
+      "content": "The American Heart Association recognizes the connection between oral health and heart health. Research suggests that poor oral health, particularly gum disease (periodontitis), may be linked to an increased risk of heart disease and stroke. The exact relationship is still being studied, but theories include: Inflammation from gum disease may contribute to inflammation in blood vessels; Bacteria from the mouth may enter the bloodstream and affect the heart; People with poor oral health may have other risk factors for heart disease. The AHA recommends: Brushing teeth at least twice daily with fluoride toothpaste; Flossing daily; Regular dental check-ups and cleanings; Not smoking (which harms both oral and heart health); Managing diabetes (which increases risk of both gum disease and heart disease). The AHA's Healthy Smiles, Healthy Hearts initiative raises awareness about the oral health-heart health connection. Good oral hygiene is an important part of overall health maintenance.",
+      "url": "https://www.heart.org/en/health-topics/oral-health",
+      "keywords": ["oral health", "gum disease", "periodontitis", "dental health", "heart disease", "prevention"]
+    },
+    {
+      "id": "pregnancy-heart-health",
+      "title": "Heart Health During Pregnancy",
+      "category": "Special Populations",
+      "content": "The American Heart Association emphasizes the importance of heart health before, during, and after pregnancy. Pregnancy places additional stress on the heart and cardiovascular system. Women with pre-existing heart conditions need special care during pregnancy. Heart conditions that can affect pregnancy include: Congenital heart defects; Heart valve problems; Heart rhythm disorders; High blood pressure; Heart failure. The AHA recommends: Getting a pre-pregnancy check-up to assess heart health; Managing existing heart conditions with healthcare providers; Monitoring blood pressure during pregnancy; Eating a heart-healthy diet; Staying physically active (with healthcare provider approval); Avoiding smoking and alcohol; Getting adequate sleep and managing stress. Some heart conditions may require medication adjustments during pregnancy. Preeclampsia, a pregnancy complication involving high blood pressure, requires immediate medical attention. The AHA encourages women with heart conditions to work closely with both cardiologists and obstetricians during pregnancy.",
+      "url": "https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack/heart-attack-symptoms-in-women",
+      "keywords": ["pregnancy", "heart health", "preeclampsia", "congenital heart disease", "women's health"]
+    },
+    {
+      "id": "men-heart-health",
+      "title": "Heart Health for Men",
+      "category": "Special Populations",
+      "content": "The American Heart Association notes that heart disease is the leading cause of death for men in the United States. Men tend to develop heart disease about 10 years earlier than women. Common risk factors for men include: High blood pressure; High cholesterol; Smoking; Diabetes; Family history; Age (risk increases after age 45); Physical inactivity; Unhealthy diet; Excessive alcohol use. Men's heart attack symptoms often include: Chest pain or discomfort; Pain in arms, back, neck, or jaw; Shortness of breath; Nausea; Cold sweat. The AHA recommends that men: Know their numbers (blood pressure, cholesterol, blood sugar, BMI); Get regular check-ups starting in their 20s; Adopt heart-healthy lifestyle habits; Manage stress; Get adequate sleep; Limit alcohol; Not smoke. Men should be aware that they may dismiss symptoms or delay seeking medical care, which can be dangerous. Early recognition and treatment of heart problems can save lives.",
+      "url": "https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack",
+      "keywords": ["men", "heart health", "heart disease", "risk factors", "symptoms", "prevention"]
+    },
+    {
+      "id": "african-american-heart-health",
+      "title": "Heart Health in African Americans",
+      "category": "Special Populations",
+      "content": "The American Heart Association recognizes that African Americans face a disproportionate burden of heart disease and stroke. African Americans are more likely to develop high blood pressure at an earlier age and have higher rates of high blood pressure, diabetes, and stroke compared to other racial and ethnic groups. Risk factors include: Higher rates of high blood pressure; Higher rates of diabetes; Higher rates of obesity; Socioeconomic factors affecting access to healthcare; Genetic factors. The AHA emphasizes the importance of: Early and regular blood pressure monitoring; Managing diabetes; Adopting heart-healthy lifestyle habits; Access to quality healthcare; Community-based programs and support. The AHA's EmPOWERED to Serve initiative works to improve health equity in African American communities. Early detection and management of risk factors is crucial. The AHA encourages African Americans to know their family history, get regular check-ups, and work with healthcare providers to manage risk factors.",
+      "url": "https://www.heart.org/en/about-us/empowered-to-serve",
+      "keywords": ["African American", "health equity", "high blood pressure", "diabetes", "stroke", "risk factors"]
+    },
+    {
+      "id": "hispanic-latino-heart-health",
+      "title": "Heart Health in Hispanic/Latino Communities",
+      "category": "Special Populations",
+      "content": "The American Heart Association recognizes that Hispanic/Latino Americans face unique challenges related to heart health. While Hispanic/Latino adults have lower rates of heart disease than non-Hispanic whites, they have higher rates of diabetes and may be less likely to receive preventive care. Risk factors include: Higher rates of diabetes; Higher rates of obesity; Language barriers affecting healthcare access; Cultural factors; Socioeconomic factors. The AHA provides resources in Spanish and works to address health disparities. Key recommendations include: Regular blood pressure and cholesterol screening; Diabetes management; Heart-healthy eating (adapting traditional foods); Regular physical activity; Access to culturally appropriate healthcare. The AHA's Go Red for Women movement includes resources for Hispanic/Latino women. Community health workers (promotores de salud) play an important role in reaching Hispanic/Latino communities. Early detection and management of risk factors is essential for heart health.",
+      "url": "https://www.goredforwomen.org/en",
+      "keywords": ["Hispanic", "Latino", "health equity", "diabetes", "cultural health", "prevention"]
+    },
+    {
+      "id": "family-history",
+      "title": "Family History and Heart Disease Risk",
+      "category": "Prevention",
+      "content": "The American Heart Association emphasizes that family history is an important risk factor for heart disease. If you have a close relative (parent, sibling, or child) who had heart disease at an early age (men before age 55, women before age 65), your risk is increased. However, having a family history doesn't mean you will definitely develop heart disease. Many factors contribute to family history risk, including: Shared genetic factors; Shared lifestyle habits (diet, exercise, smoking); Shared environmental factors. The AHA recommends: Knowing your family history and sharing it with your healthcare provider; Getting earlier and more frequent screenings if you have a family history; Adopting heart-healthy lifestyle habits regardless of family history; Managing other risk factors (blood pressure, cholesterol, diabetes, weight); Not smoking; Regular physical activity; Healthy eating. Even with a family history, lifestyle changes can significantly reduce your risk. Genetic testing may be recommended in some cases, particularly for inherited conditions like familial hypercholesterolemia.",
+      "url": "https://www.heart.org/en/health-topics/consumer/consumer-healthcare",
+      "keywords": ["family history", "genetics", "inherited risk", "heart disease risk", "prevention", "screening"]
+    },
+    {
+      "id": "heart-disease-statistics",
+      "title": "Heart Disease Statistics",
+      "category": "Education",
+      "content": "The American Heart Association provides comprehensive statistics on heart disease and stroke. Key facts include: Heart disease is the leading cause of death in the United States, claiming more lives than all forms of cancer combined; Someone in the U.S. has a heart attack every 40 seconds; Someone dies from cardiovascular disease every 33 seconds; About 805,000 people in the U.S. have a heart attack each year; Stroke is the No. 5 cause of death and a leading cause of disability; About 795,000 people in the U.S. have a stroke each year; On average, 1.9 million brain cells die every minute that a stroke goes untreated; About 70% of cardiac arrests occur at home; Only about 46% of people who experience cardiac arrest outside a hospital receive immediate help before professional help arrives; High blood pressure affects nearly half of U.S. adults. The AHA emphasizes that many cardiovascular events are preventable through lifestyle changes and proper management of risk factors.",
+      "url": "https://www.heart.org/en/about-us/heart-disease-and-stroke-statistics",
+      "keywords": ["statistics", "heart disease", "stroke", "prevalence", "mortality", "education"]
+    },
+    {
+      "id": "heart-healthy-recipes",
+      "title": "Heart-Healthy Recipes and Cooking",
+      "category": "Nutrition",
+      "content": "The American Heart Association provides extensive resources for heart-healthy cooking and recipes. The AHA's cookbooks and recipe database feature meals that are: Low in saturated and trans fats; Low in sodium; Rich in fruits, vegetables, and whole grains; Prepared with heart-healthy cooking methods (baking, grilling, steaming, sautéing). The AHA recommends: Using herbs and spices instead of salt; Choosing lean proteins; Incorporating fish at least twice weekly; Using healthy oils (olive, canola) in moderation; Limiting processed foods; Reading nutrition labels; Planning meals ahead; Cooking at home more often. The AHA's Heart-Check mark certifies foods that meet specific nutritional criteria. The organization provides recipes for all meals and occasions, including traditional favorites made healthier. The AHA emphasizes that heart-healthy eating doesn't mean giving up flavor - it's about making smart choices and using healthy cooking techniques.",
+      "url": "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/recipes",
+      "keywords": ["recipes", "cooking", "heart-healthy meals", "nutrition", "meal planning", "Heart-Check"]
+    },
+    {
+      "id": "medication-adherence",
+      "title": "Medication Adherence and Heart Health",
+      "category": "Treatment",
+      "content": "The American Heart Association emphasizes the importance of taking medications as prescribed for managing heart conditions. Medication adherence means taking medications exactly as your healthcare provider directs - the right medication, at the right time, in the right dose. Poor medication adherence is a major problem that can lead to: Worsening of heart conditions; Increased risk of heart attack and stroke; Hospitalizations; Higher healthcare costs. Common barriers to adherence include: Cost of medications; Side effects; Complex dosing schedules; Forgetfulness; Lack of understanding about why medications are needed. The AHA recommends: Understanding why each medication is prescribed; Asking questions about medications; Using pill organizers or reminder apps; Keeping a medication list; Talking to your healthcare provider about concerns (don't stop medications without medical advice); Working with pharmacists; Exploring assistance programs if cost is an issue. The AHA emphasizes that medications work best when taken consistently and as directed.",
+      "url": "https://www.heart.org/en/health-topics/consumer-healthcare",
+      "keywords": ["medication adherence", "prescription drugs", "treatment", "compliance", "heart conditions"]
+    },
+    {
+      "id": "heart-monitoring-devices",
+      "title": "Heart Monitoring and Devices",
+      "category": "Treatment",
+      "content": "The American Heart Association explains that various devices can help monitor heart health and manage heart conditions. Common devices include: Blood pressure monitors (for home monitoring); Heart rate monitors (for tracking during exercise); Wearable fitness trackers (for general activity and heart rate); Implantable devices (pacemakers, defibrillators, loop recorders for people with specific heart conditions); Continuous glucose monitors (for people with diabetes). Home blood pressure monitoring is particularly important for people with high blood pressure. The AHA recommends: Using validated, automated, upper-arm blood pressure monitors; Taking readings at the same time each day; Following proper technique; Keeping a log of readings; Sharing results with healthcare providers. For people with heart rhythm disorders, implantable devices may be necessary. The AHA emphasizes that these devices should be used under medical supervision and that results should be shared with healthcare providers. Technology can be helpful, but it doesn't replace regular medical care.",
+      "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
+      "keywords": ["monitoring devices", "blood pressure monitor", "heart rate", "wearables", "pacemaker", "defibrillator"]
+    },
+    {
+      "id": "emergency-preparedness",
+      "title": "Emergency Preparedness for Heart Events",
+      "category": "Emergency Response",
+      "content": "The American Heart Association emphasizes the importance of being prepared for heart emergencies. Key steps include: Learning CPR and how to use an AED; Knowing the warning signs of heart attack and stroke; Having an emergency action plan; Keeping important medical information accessible; Ensuring family members know your medical history and medications; Having emergency contacts readily available; Knowing the location of the nearest hospital; Keeping medications organized and accessible. For people with heart conditions, the AHA recommends: Wearing a medical ID bracelet; Carrying a list of medications and allergies; Having a plan for getting to the hospital quickly; Teaching family members about your condition; Keeping emergency medications accessible; Having a healthcare proxy or advance directive. The AHA emphasizes that calling 911 is almost always the fastest way to get lifesaving treatment. Don't drive yourself to the hospital during a heart emergency. Emergency medical services can begin treatment immediately and provide faster care at the hospital.",
+      "url": "https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack",
+      "keywords": ["emergency preparedness", "CPR", "AED", "911", "emergency plan", "medical ID"]
+    },
+    {
+      "id": "support-networks",
+      "title": "Support Networks and Resources",
+      "category": "Support",
+      "content": "The American Heart Association provides numerous support resources for patients, survivors, and caregivers. The AHA's Support Network is an online community connecting people affected by heart disease and stroke. Resources include: Online support groups and forums; Educational materials and resources; Survivor stories and inspiration; Caregiver support; Local community resources; Peer support programs; Professional counseling referrals. The AHA recognizes that emotional support is crucial for recovery and long-term management of heart conditions. Support can help with: Coping with diagnosis; Managing lifestyle changes; Adhering to treatment plans; Dealing with anxiety and depression; Finding hope and motivation. The AHA also provides resources for specific populations, including women (Go Red for Women), stroke survivors, and people with specific heart conditions. The organization emphasizes that seeking support is a sign of strength, not weakness. Many people benefit from connecting with others who have similar experiences.",
+      "url": "https://supportnetwork.heart.org",
+      "keywords": ["support network", "support groups", "caregivers", "survivors", "community", "emotional support"]
+    },
+    {
+      "id": "research-advances",
+      "title": "Heart Disease Research and Advances",
+      "category": "Education",
+      "content": "The American Heart Association is a leading funder of cardiovascular research, having invested more than $5 billion in research since 1949. AHA-funded research has led to major advances including: Development of CPR techniques; Discovery of risk factors for heart disease; Development of treatments for heart attack and stroke; Advances in surgical techniques; New medications and therapies; Understanding of genetic factors; Prevention strategies. Current research focuses on: Precision medicine and personalized treatments; Artificial intelligence in healthcare; Regenerative medicine; New drug therapies; Improved surgical techniques; Better understanding of risk factors; Health equity and disparities. The AHA emphasizes that research is essential for continuing to improve outcomes for people with heart disease and stroke. The organization funds research at institutions across the country and supports early-career researchers. Research advances translate into better care and improved survival rates for patients.",
+      "url": "https://www.heart.org/en/about-us/research",
+      "keywords": ["research", "medical advances", "clinical trials", "funding", "innovation", "treatment"]
+    },
+    {
+      "id": "health-equity",
+      "title": "Health Equity and Cardiovascular Health",
+      "category": "Education",
+      "content": "The American Heart Association is committed to addressing health disparities and achieving health equity. Health equity means everyone has a fair and just opportunity to be as healthy as possible. Disparities exist based on: Race and ethnicity; Socioeconomic status; Geographic location; Education level; Access to healthcare. The AHA works to address these disparities through: Community-based programs; Health education and awareness; Advocacy for policies that improve health; Research on health disparities; Partnerships with community organizations; Training healthcare providers in cultural competency. The AHA's EmPOWERED to Serve initiative focuses on improving health in underserved communities. The organization recognizes that social determinants of health (housing, education, employment, access to healthy food) significantly impact cardiovascular health. Achieving health equity requires addressing both medical and social factors. The AHA is committed to ensuring that all people, regardless of background, have access to quality healthcare and the resources needed for heart health.",
+      "url": "https://www.heart.org/en/about-us/empowered-to-serve",
+      "keywords": ["health equity", "health disparities", "social determinants", "community health", "advocacy"]
+    }
+  ]
+}
