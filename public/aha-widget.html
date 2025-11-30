@@ -28,10 +28,10 @@
         flex-direction: column;
         width: 100%;
         height: auto;
-        min-height: 70px;
-        padding: 0 20px;
+        min-height: 0;
+        padding: 0;
         background: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: none;
         transition: height 0.3s ease;
         overflow: visible;
       }
@@ -41,7 +41,7 @@
       }
 
       #top-bar {
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: space-between;
         width: 100%;
@@ -198,7 +198,6 @@
         padding: 0;
         background: #ffffff;
         align-self: flex-start;
-        min-height: 100vh;
       }
 
       .tab-view.active {
@@ -208,6 +207,11 @@
       /* Hide main navigation bar (hamburger menu) when any tab is active */
       #bar-container.has-active-tab #top-bar {
         display: none;
+      }
+      
+      /* Always show tab navigation */
+      .tab-nav {
+        display: flex;
       }
 
       .tab-content {
@@ -544,20 +548,20 @@
         </div>
         <div id="menu-items">
           <a href="#" class="menu-item" data-action="store">Store</a>
-          <a href="#" class="menu-item" data-action="support-groups">Support groups near me</a>
-          <a href="#" class="menu-item" data-action="volunteer">Volunteer</a>
+          <a href="#" class="menu-item" data-action="support-groups">In Your Community</a>
+          <a href="#" class="menu-item" data-action="volunteer">Get Involved</a>
           <a href="#" class="menu-item" data-action="saved">Saved</a>
           <a href="#" class="menu-item" data-action="discussions">Discussions</a>
         </div>
       </div>
+      <div class="tab-nav">
+        <a href="#" class="tab-nav-item" data-action="store">Store</a>
+        <a href="#" class="tab-nav-item" data-action="support-groups">In Your Community</a>
+        <a href="#" class="tab-nav-item" data-action="volunteer">Get Involved</a>
+        <a href="#" class="tab-nav-item" data-action="saved">Saved</a>
+        <a href="#" class="tab-nav-item" data-action="discussions">Discussions</a>
+      </div>
       <div id="store-view" class="tab-view">
-        <div class="tab-nav">
-          <a href="#" class="tab-nav-item active" data-action="store">Store</a>
-          <a href="#" class="tab-nav-item" data-action="support-groups">Support groups near me</a>
-          <a href="#" class="tab-nav-item" data-action="volunteer">Volunteer</a>
-          <a href="#" class="tab-nav-item" data-action="saved">Saved</a>
-          <a href="#" class="tab-nav-item" data-action="discussions">Discussions</a>
-        </div>
         <div id="store-content">
           <div class="store-controls">
             <div class="search-box">
@@ -596,49 +600,21 @@
         </div>
       </div>
       <div id="support-groups-view" class="tab-view">
-        <div class="tab-nav">
-          <a href="#" class="tab-nav-item" data-action="store">Store</a>
-          <a href="#" class="tab-nav-item active" data-action="support-groups">Support groups near me</a>
-          <a href="#" class="tab-nav-item" data-action="volunteer">Volunteer</a>
-          <a href="#" class="tab-nav-item" data-action="saved">Saved</a>
-          <a href="#" class="tab-nav-item" data-action="discussions">Discussions</a>
-        </div>
         <div class="tab-content">
           <p>Content for support groups...</p>
         </div>
       </div>
       <div id="volunteer-view" class="tab-view">
-        <div class="tab-nav">
-          <a href="#" class="tab-nav-item" data-action="store">Store</a>
-          <a href="#" class="tab-nav-item" data-action="support-groups">Support groups near me</a>
-          <a href="#" class="tab-nav-item active" data-action="volunteer">Volunteer</a>
-          <a href="#" class="tab-nav-item" data-action="saved">Saved</a>
-          <a href="#" class="tab-nav-item" data-action="discussions">Discussions</a>
-        </div>
         <div class="tab-content">
           <p>Content for volunteer...</p>
         </div>
       </div>
       <div id="saved-view" class="tab-view">
-        <div class="tab-nav">
-          <a href="#" class="tab-nav-item" data-action="store">Store</a>
-          <a href="#" class="tab-nav-item" data-action="support-groups">Support groups near me</a>
-          <a href="#" class="tab-nav-item" data-action="volunteer">Volunteer</a>
-          <a href="#" class="tab-nav-item active" data-action="saved">Saved</a>
-          <a href="#" class="tab-nav-item" data-action="discussions">Discussions</a>
-        </div>
         <div class="tab-content">
           <p>Content for saved items...</p>
         </div>
       </div>
       <div id="discussions-view" class="tab-view">
-        <div class="tab-nav">
-          <a href="#" class="tab-nav-item" data-action="store">Store</a>
-          <a href="#" class="tab-nav-item" data-action="support-groups">Support groups near me</a>
-          <a href="#" class="tab-nav-item" data-action="volunteer">Volunteer</a>
-          <a href="#" class="tab-nav-item" data-action="saved">Saved</a>
-          <a href="#" class="tab-nav-item active" data-action="discussions">Discussions</a>
-        </div>
         <div class="tab-content">
           <p>Content for discussions...</p>
         </div>
@@ -652,12 +628,25 @@
         const menuItemLinks = document.querySelectorAll(".menu-item");
 
         // Function to notify ChatGPT of the widget's current height
+        let heightNotifyTimeout = null;
+        let lastNotifiedHeight = 0;
         function notifyHeight() {
-          if (window.openai?.notifyIntrinsicHeight && barContainer) {
-            void barContainer.offsetHeight;
-            const height = barContainer.scrollHeight;
-            window.openai.notifyIntrinsicHeight(height);
+          if (heightNotifyTimeout) {
+            clearTimeout(heightNotifyTimeout);
           }
+          
+          heightNotifyTimeout = setTimeout(() => {
+            if (window.openai?.notifyIntrinsicHeight && barContainer) {
+              void barContainer.offsetHeight;
+              const height = barContainer.scrollHeight;
+              
+              // Only notify if height actually changed to prevent loops
+              if (Math.abs(height - lastNotifiedHeight) > 1) {
+                lastNotifiedHeight = height;
+                window.openai.notifyIntrinsicHeight(height);
+              }
+            }
+          }, 50);
         }
 
         // Simple click handler
@@ -713,8 +702,6 @@
 
           if (targetView) {
             targetView.classList.add("active");
-            // Hide the main navigation bar when a tab is active
-            barContainer.classList.add("has-active-tab");
           }
 
           // Update active states in all tab navs
@@ -745,8 +732,6 @@
           allTabViews.forEach(view => {
             if (view) view.classList.remove("active");
           });
-          // Show the main navigation bar when no tabs are active
-          barContainer.classList.remove("has-active-tab");
           setTimeout(() => {
             notifyHeight();
           }, 100);
@@ -761,25 +746,11 @@
           });
         });
 
-        // Handle menu item clicks
+        // Handle menu item clicks (if menu items are still accessible somehow)
         menuItemLinks.forEach((item) => {
           item.addEventListener("click", async (e) => {
             e.preventDefault();
             const action = item.getAttribute("data-action");
-            
-            // Close menu after selection
-            hamburgerButton.classList.remove("active");
-            menuItems.classList.remove("active");
-            barContainer.classList.remove("expanded");
-            
-            // Request fullscreen mode
-            if (window.openai?.requestDisplayMode) {
-              try {
-                await window.openai.requestDisplayMode({ mode: "fullscreen" });
-              } catch (error) {
-                console.error("Failed to request fullscreen:", error);
-              }
-            }
             
             // Show the selected tab
             showTab(action);
@@ -1124,9 +1095,10 @@
             `;
           }).join('');
 
+          // Notify height after images have a chance to load
           setTimeout(() => {
             notifyHeight();
-          }, 100);
+          }, 300);
         }
 
         // Search functionality
