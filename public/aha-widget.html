@@ -292,12 +292,140 @@
       }
 
 
+      #store-content {
+        padding: 20px;
+      }
+
+      .store-header {
+        margin-bottom: 30px;
+      }
+
+      .store-header h1 {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: #DC143C;
+        margin-bottom: 10px;
+      }
+
+      .store-header p {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #6c757d;
+      }
+
+      .store-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 30px;
+        align-items: center;
+      }
+
+      .search-box {
+        flex: 1;
+        min-width: 250px;
+        position: relative;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 12px 45px 12px 15px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        transition: border-color 0.2s ease;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: #DC143C;
+      }
+
+      .search-box::after {
+        content: "🔍";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .filter-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .filter-select {
+        padding: 12px 15px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        background: #ffffff;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+        min-width: 150px;
+      }
+
+      .filter-select:focus {
+        outline: none;
+        border-color: #DC143C;
+      }
+
+      .category-filters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e5e7eb;
+      }
+
+      .category-filter-btn {
+        padding: 10px 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 25px;
+        background: #ffffff;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #495057;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .category-filter-btn:hover {
+        border-color: #DC143C;
+        color: #DC143C;
+      }
+
+      .category-filter-btn.active {
+        background: #DC143C;
+        border-color: #DC143C;
+        color: #ffffff;
+      }
+
+      .store-results {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .store-results-count {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+      }
+
       #store-items {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 30px;
-        margin-top: 20px;
-        padding: 20px 20px 40px 20px;
+        margin-bottom: 40px;
       }
 
       .store-item {
@@ -315,6 +443,7 @@
       .store-item:hover {
         transform: translateY(-4px);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-color: #DC143C;
       }
 
       .store-item-image {
@@ -324,12 +453,38 @@
         background: #f9fafb;
       }
 
+      .store-item-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #DC143C;
+        color: #ffffff;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .store-item-image-wrapper {
+        position: relative;
+      }
+
       .store-item-content {
         padding: 20px;
       }
 
+      .store-item-category {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+      }
+
       .store-item-title {
-        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
         font-size: 18px;
         font-weight: 600;
         color: #1f2937;
@@ -337,16 +492,40 @@
         line-height: 1.4;
       }
 
+      .store-item-price {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #DC143C;
+        margin-bottom: 10px;
+      }
+
       .store-item-link {
-        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
         font-size: 14px;
         color: #DC143C;
         font-weight: 500;
         text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
       }
 
       .store-item-link:hover {
         text-decoration: underline;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        color: #6c757d;
+      }
+
+      .no-results h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #495057;
       }
     </style>
   </head>
@@ -379,28 +558,41 @@
           <a href="#" class="tab-nav-item" data-action="saved">Saved</a>
           <a href="#" class="tab-nav-item" data-action="discussions">Discussions</a>
         </div>
-        <div id="store-items">
-          <a href="https://amzn.to/4ilzm1q" target="_blank" class="store-item" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/91YrLTBnMcL._SL1500_.jpg" alt="Digital Kitchen Scale" class="store-item-image">
-            <div class="store-item-content">
-              <div class="store-item-title">Digital Kitchen Scale</div>
-              <div class="store-item-link">View on Amazon →</div>
+        <div id="store-content">
+          <div class="store-controls">
+            <div class="search-box">
+              <input type="text" id="store-search" placeholder="Search products...">
             </div>
-          </a>
-          <a href="https://amzn.to/48gx8Md" target="_blank" class="store-item" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/719fCtAm+hL._AC_SL1500_.jpg" alt="High Density Foam Roller" class="store-item-image">
-            <div class="store-item-content">
-              <div class="store-item-title">High Density Foam Roller</div>
-              <div class="store-item-link">View on Amazon →</div>
+            <div class="filter-group">
+              <select class="filter-select" id="sort-select">
+                <option value="featured">Sort: Featured</option>
+                <option value="price-low">Sort: Price Low to High</option>
+                <option value="price-high">Sort: Price High to Low</option>
+                <option value="name-asc">Sort: Name A-Z</option>
+                <option value="name-desc">Sort: Name Z-A</option>
+              </select>
             </div>
-          </a>
-          <a href="https://amzn.to/4oiSvlQ" target="_blank" class="store-item" rel="noopener noreferrer">
-            <img src="https://m.media-amazon.com/images/I/71nujH4E9BL._SL1293_.jpg" alt="Heart Healthy Cookbook" class="store-item-image">
-            <div class="store-item-content">
-              <div class="store-item-title">Heart Healthy Cookbook</div>
-              <div class="store-item-link">View on Amazon →</div>
-            </div>
-          </a>
+          </div>
+
+          <div class="category-filters">
+            <button class="category-filter-btn active" data-category="all">All Products</button>
+            <button class="category-filter-btn" data-category="health-monitoring">Health Monitoring</button>
+            <button class="category-filter-btn" data-category="exercise">Exercise Equipment</button>
+            <button class="category-filter-btn" data-category="cookbooks">Cookbooks</button>
+            <button class="category-filter-btn" data-category="aha-merch">AHA Merchandise</button>
+            <button class="category-filter-btn" data-category="nutrition">Nutrition & Supplements</button>
+            <button class="category-filter-btn" data-category="wellness">Wellness & Lifestyle</button>
+          </div>
+
+          <div class="store-results">
+            <div class="store-results-count" id="results-count">Loading products...</div>
+          </div>
+
+          <div id="store-items"></div>
+          <div id="no-results" class="no-results" style="display: none;">
+            <h3>No products found</h3>
+            <p>Try adjusting your search or filters</p>
+          </div>
         </div>
       </div>
       <div id="support-groups-view" class="tab-view">
@@ -533,10 +725,20 @@
             }
           });
 
+          // If showing store, trigger product render
+          if (action === "store" && renderStoreProducts) {
+            setTimeout(() => {
+              renderStoreProducts();
+            }, 100);
+          }
+
           setTimeout(() => {
             notifyHeight();
           }, 100);
         }
+
+        // Store render function (will be defined later)
+        let renderStoreProducts = null;
 
         // Function to hide all tabs
         function hideAllTabs() {
@@ -597,6 +799,367 @@
         window.addEventListener("resize", () => {
           notifyHeight();
         });
+
+        // Store functionality
+        const storeProducts = [
+          // Health Monitoring
+          {
+            id: 1,
+            name: "Digital Kitchen Scale",
+            category: "health-monitoring",
+            price: 24.99,
+            image: "https://m.media-amazon.com/images/I/91YrLTBnMcL._SL1500_.jpg",
+            link: "https://amzn.to/4ilzm1q",
+            featured: true
+          },
+          {
+            id: 2,
+            name: "Blood Pressure Monitor",
+            category: "health-monitoring",
+            price: 39.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example1",
+            featured: true
+          },
+          {
+            id: 3,
+            name: "Smart Fitness Tracker",
+            category: "health-monitoring",
+            price: 79.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SX466_.jpg",
+            link: "https://amzn.to/example2",
+            featured: false
+          },
+          {
+            id: 4,
+            name: "Heart Rate Monitor Chest Strap",
+            category: "health-monitoring",
+            price: 49.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example3",
+            featured: false
+          },
+          // Exercise Equipment
+          {
+            id: 5,
+            name: "High Density Foam Roller",
+            category: "exercise",
+            price: 19.99,
+            image: "https://m.media-amazon.com/images/I/719fCtAm+hL._AC_SL1500_.jpg",
+            link: "https://amzn.to/48gx8Md",
+            featured: true
+          },
+          {
+            id: 6,
+            name: "Resistance Bands Set",
+            category: "exercise",
+            price: 24.99,
+            image: "https://m.media-amazon.com/images/I/71+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example4",
+            featured: false
+          },
+          {
+            id: 7,
+            name: "Yoga Mat Premium",
+            category: "exercise",
+            price: 34.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example5",
+            featured: false
+          },
+          {
+            id: 8,
+            name: "Adjustable Dumbbells",
+            category: "exercise",
+            price: 129.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example6",
+            featured: false
+          },
+          {
+            id: 9,
+            name: "Walking Treadmill Desk",
+            category: "exercise",
+            price: 299.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example7",
+            featured: false
+          },
+          // Cookbooks
+          {
+            id: 10,
+            name: "Heart Healthy Cookbook",
+            category: "cookbooks",
+            price: 18.99,
+            image: "https://m.media-amazon.com/images/I/71nujH4E9BL._SL1293_.jpg",
+            link: "https://amzn.to/4oiSvlQ",
+            featured: true
+          },
+          {
+            id: 11,
+            name: "Mediterranean Diet Cookbook",
+            category: "cookbooks",
+            price: 16.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example8",
+            featured: false
+          },
+          {
+            id: 12,
+            name: "Low Sodium Recipe Collection",
+            category: "cookbooks",
+            price: 19.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example9",
+            featured: false
+          },
+          {
+            id: 13,
+            name: "Plant-Based Heart Health Guide",
+            category: "cookbooks",
+            price: 22.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example10",
+            featured: false
+          },
+          // AHA Merchandise
+          {
+            id: 14,
+            name: "AHA Red Heart T-Shirt",
+            category: "aha-merch",
+            price: 24.99,
+            image: "https://m.media-amazon.com/images/I/71+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example11",
+            featured: true,
+            badge: "Official"
+          },
+          {
+            id: 15,
+            name: "AHA Awareness Wristband",
+            category: "aha-merch",
+            price: 4.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example12",
+            featured: false,
+            badge: "Official"
+          },
+          {
+            id: 16,
+            name: "AHA Logo Water Bottle",
+            category: "aha-merch",
+            price: 19.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example13",
+            featured: false,
+            badge: "Official"
+          },
+          {
+            id: 17,
+            name: "AHA Heart Health Hoodie",
+            category: "aha-merch",
+            price: 44.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example14",
+            featured: false,
+            badge: "Official"
+          },
+          // Nutrition & Supplements
+          {
+            id: 18,
+            name: "Omega-3 Fish Oil Supplements",
+            category: "nutrition",
+            price: 29.99,
+            image: "https://m.media-amazon.com/images/I/71+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example15",
+            featured: false
+          },
+          {
+            id: 19,
+            name: "CoQ10 Heart Health Supplement",
+            category: "nutrition",
+            price: 34.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example16",
+            featured: false
+          },
+          {
+            id: 20,
+            name: "Magnesium Citrate Capsules",
+            category: "nutrition",
+            price: 19.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example17",
+            featured: false
+          },
+          {
+            id: 21,
+            name: "Low Sodium Sea Salt Alternative",
+            category: "nutrition",
+            price: 12.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example18",
+            featured: false
+          },
+          // Wellness & Lifestyle
+          {
+            id: 22,
+            name: "Stress Relief Essential Oil Diffuser",
+            category: "wellness",
+            price: 39.99,
+            image: "https://m.media-amazon.com/images/I/71+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example19",
+            featured: false
+          },
+          {
+            id: 23,
+            name: "Meditation Cushion Set",
+            category: "wellness",
+            price: 49.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example20",
+            featured: false
+          },
+          {
+            id: 24,
+            name: "Sleep Quality Tracker",
+            category: "wellness",
+            price: 89.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example21",
+            featured: false
+          },
+          {
+            id: 25,
+            name: "Aromatherapy Stress Relief Kit",
+            category: "wellness",
+            price: 24.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example22",
+            featured: false
+          }
+        ];
+
+        let filteredProducts = [...storeProducts];
+        let currentCategory = "all";
+        let currentSort = "featured";
+        let currentSearch = "";
+
+        const storeItemsContainer = document.getElementById("store-items");
+        const storeSearch = document.getElementById("store-search");
+        const sortSelect = document.getElementById("sort-select");
+        const categoryFilterBtns = document.querySelectorAll(".category-filter-btn");
+        const resultsCount = document.getElementById("results-count");
+        const noResults = document.getElementById("no-results");
+
+        function renderProducts() {
+          // Filter by category
+          let products = currentCategory === "all" 
+            ? [...storeProducts] 
+            : storeProducts.filter(p => p.category === currentCategory);
+
+          // Filter by search
+          if (currentSearch.trim()) {
+            const searchLower = currentSearch.toLowerCase();
+            products = products.filter(p => 
+              p.name.toLowerCase().includes(searchLower)
+            );
+          }
+
+          // Sort products
+          products.sort((a, b) => {
+            switch(currentSort) {
+              case "price-low":
+                return a.price - b.price;
+              case "price-high":
+                return b.price - a.price;
+              case "name-asc":
+                return a.name.localeCompare(b.name);
+              case "name-desc":
+                return b.name.localeCompare(a.name);
+              case "featured":
+              default:
+                return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+            }
+          });
+
+          filteredProducts = products;
+
+          // Update results count
+          const count = products.length;
+          resultsCount.textContent = `${count} product${count !== 1 ? 's' : ''} found`;
+
+          // Show/hide no results
+          if (products.length === 0) {
+            storeItemsContainer.style.display = "none";
+            noResults.style.display = "block";
+          } else {
+            storeItemsContainer.style.display = "grid";
+            noResults.style.display = "none";
+          }
+
+          // Render products
+          storeItemsContainer.innerHTML = products.map(product => {
+            const categoryNames = {
+              "health-monitoring": "Health Monitoring",
+              "exercise": "Exercise Equipment",
+              "cookbooks": "Cookbooks",
+              "aha-merch": "AHA Merchandise",
+              "nutrition": "Nutrition & Supplements",
+              "wellness": "Wellness & Lifestyle"
+            };
+
+            return `
+              <a href="${product.link}" target="_blank" class="store-item" rel="noopener noreferrer" data-product-id="${product.id}">
+                <div class="store-item-image-wrapper">
+                  <img src="${product.image}" alt="${product.name}" class="store-item-image">
+                  ${product.badge ? `<div class="store-item-badge">${product.badge}</div>` : ''}
+                </div>
+                <div class="store-item-content">
+                  <div class="store-item-category">${categoryNames[product.category] || product.category}</div>
+                  <div class="store-item-title">${product.name}</div>
+                  <div class="store-item-price">$${product.price.toFixed(2)}</div>
+                  <div class="store-item-link">View on Amazon →</div>
+                </div>
+              </a>
+            `;
+          }).join('');
+
+          setTimeout(() => {
+            notifyHeight();
+          }, 100);
+        }
+
+        // Search functionality
+        if (storeSearch) {
+          storeSearch.addEventListener("input", (e) => {
+            currentSearch = e.target.value;
+            renderProducts();
+          });
+        }
+
+        // Sort functionality
+        if (sortSelect) {
+          sortSelect.addEventListener("change", (e) => {
+            currentSort = e.target.value;
+            renderProducts();
+          });
+        }
+
+        // Category filter functionality
+        categoryFilterBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            categoryFilterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            currentCategory = btn.getAttribute("data-category");
+            renderProducts();
+          });
+        });
+
+        // Initial render
+        renderProducts();
+
+        // Store the render function for use in showTab
+        renderStoreProducts = renderProducts;
       })();
     </script>
   </body>
