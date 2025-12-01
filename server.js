@@ -96,6 +96,7 @@ function createAhaServer() {
           text: getAhaHtml(), // Read fresh on each request
           _meta: {
             "openai/widgetPrefersBorder": true,
+            "openai/widgetDomain": "https://chatgpt.com",
           },
         },
       ],
