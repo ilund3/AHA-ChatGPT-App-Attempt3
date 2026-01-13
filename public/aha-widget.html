@@ -36,31 +36,286 @@
         border-bottom: none;
         transition: height 0.3s ease;
         overflow: visible;
+        max-height: none;
       }
 
       #bar-container.expanded {
         overflow: visible;
-        height: auto;
-        min-height: auto;
+        max-height: none;
       }
 
       #top-bar {
         display: none;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        height: 70px;
-        min-height: 70px;
-        position: relative;
-        overflow: visible !important;
       }
 
-      #menu-wrapper {
+      #hamburger-button {
+        display: none;
+      }
+
+      #emergency-text {
+        display: none;
+      }
+
+      #menu-items {
+        display: none;
+      }
+
+      #search-conversations-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      #search-conversations-button:hover {
+        background: #fff5f5;
+      }
+
+      #search-conversations-button svg {
+        width: 24px;
+        height: 24px;
+        fill: #DC143C;
+      }
+
+      /* Conversations Modal Styles */
+      .conversations-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .conversations-modal.active {
+        display: flex;
+      }
+
+      .conversations-modal-content {
+        background: #ffffff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 900px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .conversations-modal-header {
+        padding: 24px;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .conversations-modal-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0;
+      }
+
+      .conversations-modal-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 28px;
+        color: #6c757d;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      .conversations-modal-close:hover {
+        background: #f3f4f6;
+        color: #1f2937;
+      }
+
+      .conversations-modal-body {
+        padding: 24px;
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      /* Integrations Tab Styles */
+      .integrations-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .integrations-header {
+        margin-bottom: 30px;
+      }
+
+      .integrations-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0 0 10px 0;
+      }
+
+      .integrations-subtitle {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #6c757d;
+        margin: 0;
+      }
+
+      .integrations-category {
+        margin-bottom: 40px;
+      }
+
+      .integrations-category-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0 0 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e5e7eb;
+      }
+
+      .integrations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .integration-card {
+        background: #ffffff;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .integration-card:hover {
+        border-color: #DC143C;
+        box-shadow: 0 4px 12px rgba(220, 20, 60, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .integration-card.connected {
+        border-color: #10b981;
+        background: #f0fdf4;
+      }
+
+      .integration-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .integration-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: #f3f4f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+
+      .integration-icon img {
+        width: 100%;
         height: 100%;
-        overflow: visible;
-        padding-left: 10px;
+        object-fit: contain;
+        padding: 6px;
+      }
+
+      .integration-card.connected .integration-icon {
+        background: #d1fae5;
+      }
+
+      .integration-info {
+        flex: 1;
+      }
+
+      .integration-name {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0 0 4px 0;
+      }
+
+      .integration-status {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        color: #6c757d;
+        margin: 0;
+      }
+
+      .integration-card.connected .integration-status {
+        color: #10b981;
+        font-weight: 500;
+      }
+
+      .integration-description {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #495057;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .integration-connect-btn {
+        margin-top: auto;
+        padding: 10px 20px;
+        border: 2px solid #DC143C;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #DC143C;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .integration-connect-btn:hover {
+        background: #DC143C;
+        color: #ffffff;
+      }
+
+      .integration-card.connected .integration-connect-btn {
+        border-color: #10b981;
+        color: #10b981;
+        background: #ffffff;
+      }
+
+      .integration-card.connected .integration-connect-btn:hover {
+        background: #10b981;
+        color: #ffffff;
       }
 
       #hamburger-button {
@@ -202,15 +457,23 @@
         padding: 0;
         background: #ffffff;
         align-self: flex-start;
+        max-height: 700px;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
 
       .tab-view.active {
         display: block;
       }
 
-      /* Hide main navigation bar (hamburger menu) when any tab is active */
+      /* Always show search button, even when tabs are active */
       #bar-container.has-active-tab #top-bar {
-        display: none;
+        display: flex;
+      }
+      
+      /* Always show search button */
+      #search-conversations-button {
+        display: flex !important;
       }
       
       /* Always show tab navigation */
@@ -1138,6 +1401,40 @@
         top: 0;
         background: #ffffff;
         z-index: 10;
+        flex-shrink: 0;
+      }
+
+      .tab-nav-search-button {
+        margin-right: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      .tab-nav-search-button:hover {
+        background: #fff5f5;
+      }
+
+      .tab-nav-search-button svg {
+        width: 24px;
+        height: 24px;
+        fill: #DC143C;
+      }
+
+      .tab-nav-search-button.active {
+        background: #fff5f5;
+      }
+
+      .tab-nav-search-button.active svg {
+        fill: #DC143C;
       }
 
       .tab-nav-item {
@@ -1671,29 +1968,15 @@
   </head>
   <body>
     <div id="bar-container">
-      <div id="top-bar">
-        <div id="menu-wrapper">
-          <button id="hamburger-button" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-        <div id="emergency-text">
-          If this is a life-threatening emergency, call <strong>911</strong> immediately.
-        </div>
-        <div id="menu-items">
-          <a href="#" class="menu-item" data-action="support-groups">Get Involved</a>
-          <a href="#" class="menu-item" data-action="volunteer">Support Network</a>
-          <a href="#" class="menu-item" data-action="saved">Past Conversations</a>
-          <a href="#" class="menu-item" data-action="store">Store</a>
-          <a href="#" class="menu-item" data-action="donate">Donate</a>
-        </div>
-      </div>
       <div class="tab-nav">
+        <button id="search-conversations-button" class="tab-nav-search-button" aria-label="Search conversations" title="Search conversations" data-action="conversations">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </button>
         <a href="#" class="tab-nav-item" data-action="support-groups">Get Involved</a>
         <a href="#" class="tab-nav-item" data-action="volunteer">Support Network</a>
-        <a href="#" class="tab-nav-item" data-action="saved">Past Conversations</a>
+        <a href="#" class="tab-nav-item" data-action="integrations">Your Integrations</a>
         <a href="#" class="tab-nav-item" data-action="store">Store</a>
         <button type="button" class="donate-button" data-action="donate">Donate</button>
       </div>
@@ -2021,7 +2304,8 @@
           </div>
         </div>
       </div>
-      <div id="saved-view" class="tab-view">
+      <!-- Conversations View -->
+      <div id="conversations-view" class="tab-view">
         <div class="tab-content">
           <div class="past-conversations-container">
             <div class="conversations-search-box">
@@ -2066,6 +2350,171 @@
                   <span class="conversation-date">3 weeks ago</span>
                 </div>
                 <p class="conversation-preview">"I have questions about my cholesterol medication and potential side effects..."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="integrations-view" class="tab-view">
+        <div class="tab-content">
+          <div class="integrations-container">
+            <div class="integrations-header">
+              <h2 class="integrations-title">Your Integrations</h2>
+              <p class="integrations-subtitle">Connect your health devices and apps to provide context for personalized health recommendations.</p>
+            </div>
+
+            <div class="integrations-category">
+              <h3 class="integrations-category-title">Health Devices</h3>
+              <div class="integrations-grid">
+                <div class="integration-card" data-integration="fitbit">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/fitbit.svg" alt="Fitbit" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%2300B0B9\'%3E%3Cpath d=\'M17.09 7.58h-1.32c-.2 0-.37.17-.37.37v8.04c0 .2.17.37.37.37h1.32c.2 0 .37-.17.37-.37V7.95c0-.2-.17-.37-.37-.37zm-3.14 2.46h-1.32c-.2 0-.37.17-.37.37v5.58c0 .2.17.37.37.37h1.32c.2 0 .37-.17.37-.37v-5.58c0-.2-.17-.37-.37-.37zm-3.14-4.92h-1.32c-.2 0-.37.17-.37.37v10.5c0 .2.17.37.37.37h1.32c.2 0 .37-.17.37-.37V5.49c0-.2-.17-.37-.37-.37zm-3.14 2.46H6.35c-.2 0-.37.17-.37.37v8.04c0 .2.17.37.37.37h1.32c.2 0 .37-.17.37-.37V7.58c0-.2-.17-.37-.37-.37z\'/%3E%3C/svg%3E';"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Fitbit</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Sync your Fitbit activity, heart rate, and sleep data to get personalized health insights.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="apple-watch">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg" alt="Apple Watch" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23000000\'%3E%3Cpath d=\'M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z\'/%3E%3C/svg%3E';"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Apple Watch</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Import your Apple Watch health metrics including heart rate, workouts, and activity data.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="garmin">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/garmin.svg" alt="Garmin" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23007CC3\'%3E%3Cpath d=\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z\'/%3E%3C/svg%3E';"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Garmin</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Connect your Garmin device to share activity, heart rate, and fitness tracking data.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="omron-bp">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='%23C8102E'%3EO%3C/text%3E%3C/svg%3E" alt="Omron"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Omron Blood Pressure Monitor</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Sync your Omron blood pressure readings to track your cardiovascular health over time.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="withings">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/withings.svg" alt="Withings" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23000000\'%3E%3Cpath d=\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z\'/%3E%3C/svg%3E';"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Withings Scale</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Connect your Withings smart scale to track weight, BMI, and body composition.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="kardia">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 20 L60 45 L85 45 L65 60 L75 85 L50 70 L25 85 L35 60 L15 45 L40 45 Z' fill='%23DC143C'/%3E%3C/svg%3E" alt="Kardia"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">KardiaMobile ECG</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Share your KardiaMobile ECG readings for personalized heart health monitoring.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="integrations-category">
+              <h3 class="integrations-category-title">Health Apps</h3>
+              <div class="integrations-grid">
+                <div class="integration-card" data-integration="myfitnesspal">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKugGZ_1ykaRh8VoiLIHIdS7Eo8pf-j5-39g&s" alt="MyFitnessPal"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">MyFitnessPal</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Import your nutrition and calorie tracking data to get personalized dietary recommendations.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="apple-health">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg" alt="Apple Health" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23000000\'%3E%3Cpath d=\'M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z\'/%3E%3C/svg%3E';"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Apple Health</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Connect Apple Health to access all your health data in one place for comprehensive insights.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="google-fit">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/googlefit.svg" alt="Google Fit" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%234285F4\'%3E%3Cpath d=\'M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z\' fill=\'%234285F4\'/%3E%3Cpath d=\'M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z\' fill=\'%2334A853\'/%3E%3Cpath d=\'M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z\' fill=\'%23FBBC05\'/%3E%3Cpath d=\'M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z\' fill=\'%23EA4335\'/%3E%3C/svg%3E';"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Google Fit</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Sync your Google Fit activity, steps, and health metrics for personalized recommendations.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="strava">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/strava.svg" alt="Strava" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23FC4C02\'%3E%3Cpath d=\'M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.599h4.172L10.463 0l-7.006 13.828h4.169\'/%3E%3C/svg%3E';"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Strava</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Import your Strava workouts and running data to track your cardiovascular fitness progress.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="glucose-monitor">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%23DC143C' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23DC143C'/%3E%3Cpath d='M50 15 L50 35 M50 65 L50 85' stroke='%23DC143C' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" alt="CGM"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Continuous Glucose Monitor</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Connect your CGM device to monitor blood sugar levels and get dietary recommendations.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
+
+                <div class="integration-card" data-integration="medisafe">
+                  <div class="integration-card-header">
+                    <div class="integration-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='20' y='30' width='60' height='40' rx='5' fill='%23DC143C'/%3E%3Cpath d='M35 45 L45 55 L65 35' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" alt="Medisafe"></div>
+                    <div class="integration-info">
+                      <h4 class="integration-name">Medisafe</h4>
+                      <p class="integration-status">Not connected</p>
+                    </div>
+                  </div>
+                  <p class="integration-description">Sync your medication schedule to ensure safe and effective medication management.</p>
+                  <button class="integration-connect-btn">Connect</button>
+                </div>
               </div>
             </div>
           </div>
@@ -2178,14 +2627,16 @@
         const storeView = document.getElementById("store-view");
         const supportGroupsView = document.getElementById("support-groups-view");
         const volunteerView = document.getElementById("volunteer-view");
-        const savedView = document.getElementById("saved-view");
+        const integrationsView = document.getElementById("integrations-view");
+        const conversationsView = document.getElementById("conversations-view");
         const donateView = document.getElementById("donate-view");
-        const allTabViews = [storeView, supportGroupsView, volunteerView, savedView, donateView];
+        const allTabViews = [storeView, supportGroupsView, volunteerView, integrationsView, conversationsView, donateView];
         const tabNavItems = document.querySelectorAll(".tab-nav-item");
         const donateButton = document.querySelector(".donate-button");
+        const searchConversationsButton = document.getElementById("search-conversations-button");
 
         // Function to show a specific tab
-        function showTab(action) {
+        async function showTab(action) {
           // Hide all tabs
           allTabViews.forEach(view => {
             if (view) view.classList.remove("active");
@@ -2203,8 +2654,11 @@
             case "volunteer":
               targetView = volunteerView;
               break;
-            case "saved":
-              targetView = savedView;
+            case "integrations":
+              targetView = integrationsView;
+              break;
+            case "conversations":
+              targetView = conversationsView;
               break;
             case "donate":
               targetView = donateView;
@@ -2225,7 +2679,26 @@
             }
           });
           
+          // Update search button active state
+          if (searchConversationsButton) {
+            if (action === "conversations") {
+              searchConversationsButton.classList.add("active");
+            } else {
+              searchConversationsButton.classList.remove("active");
+            }
+          }
+          
           // Donate button doesn't need active state styling
+
+          // Request fullscreen mode when tab is clicked
+          // TEMPORARILY DISABLED
+          // if (window.openai?.requestDisplayMode) {
+          //   try {
+          //     await window.openai.requestDisplayMode({ mode: "fullscreen" });
+          //   } catch (error) {
+          //     console.error("Failed to request fullscreen:", error);
+          //   }
+          // }
 
           // If showing store, trigger product render
           if (action === "store" && renderStoreProducts) {
@@ -2240,10 +2713,6 @@
           
           // Request fullscreen and notify height after content is rendered
           setTimeout(() => {
-            // The widget should automatically expand based on content height
-            // requestDisplayMode('fullscreen') was resolving to {mode: 'compact'},
-            // so we'll rely on height-based automatic expansion instead
-            
             // Force multiple reflows and notifications to ensure expansion
             // Notify height multiple times to catch all content as it loads
             const notifyHeightMultipleTimes = () => {
@@ -2284,6 +2753,15 @@
           setTimeout(() => {
             notifyHeight();
           }, 100);
+        }
+
+        // Handle search button click
+        if (searchConversationsButton) {
+          searchConversationsButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const action = searchConversationsButton.getAttribute("data-action");
+            showTab(action);
+          });
         }
 
         // Handle tab navigation clicks
@@ -2351,33 +2829,6 @@
             link: "https://amzn.to/4ilzm1q",
             featured: true
           },
-          {
-            id: 2,
-            name: "Blood Pressure Monitor",
-            category: "health-monitoring",
-            price: 39.99,
-            image: "https://m.media-amazon.com/images/I/71UZHsiy3jL._AC_SL1500_.jpg",
-            link: "https://amzn.to/4pDjw4q",
-            featured: true
-          },
-          {
-            id: 3,
-            name: "Smart Fitness Tracker",
-            category: "health-monitoring",
-            price: 79.99,
-            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SX466_.jpg",
-            link: "https://amzn.to/example2",
-            featured: false
-          },
-          {
-            id: 4,
-            name: "Heart Rate Monitor Chest Strap",
-            category: "health-monitoring",
-            price: 49.99,
-            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
-            link: "https://amzn.to/example3",
-            featured: false
-          },
           // Exercise Equipment
           {
             id: 5,
@@ -2393,7 +2844,7 @@
             name: "Resistance Bands Set",
             category: "exercise",
             price: 24.99,
-            image: "https://m.media-amazon.com/images/I/71+8m2oQ18L._AC_SL1500_.jpg",
+            image: "https://m.media-amazon.com/images/I/71S4-NjoTDL._AC_SL1500_.jpg",
             link: "https://amzn.to/example4",
             featured: false
           },
@@ -2402,7 +2853,7 @@
             name: "Yoga Mat Premium",
             category: "exercise",
             price: 34.99,
-            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            image: "https://m.media-amazon.com/images/I/61y+jPPhmEL._AC_SL1500_.jpg",
             link: "https://amzn.to/example5",
             featured: false
           },
@@ -2411,7 +2862,7 @@
             name: "Adjustable Dumbbells",
             category: "exercise",
             price: 129.99,
-            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            image: "https://m.media-amazon.com/images/I/81tyqz6n6jL._AC_SL1500_.jpg",
             link: "https://amzn.to/example6",
             featured: false
           },
@@ -2420,7 +2871,7 @@
             name: "Walking Treadmill Desk",
             category: "exercise",
             price: 299.99,
-            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            image: "https://m.media-amazon.com/images/I/51GwuiF1U-L._AC_SL1500_.jpg",
             link: "https://amzn.to/example7",
             featured: false
           },
@@ -3394,6 +3845,59 @@
             // TODO: Implement navigation to conversation when ready
             // This will redirect the user to that specific chat conversation
           });
+        });
+
+        // Integrations functionality
+        const integrationCards = document.querySelectorAll(".integration-card");
+        const integrationConnectBtns = document.querySelectorAll(".integration-connect-btn");
+
+        // Handle integration connect button clicks
+        integrationConnectBtns.forEach((btn, index) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const card = btn.closest(".integration-card");
+            const integrationId = card.getAttribute("data-integration");
+            
+            if (card.classList.contains("connected")) {
+              // Disconnect
+              card.classList.remove("connected");
+              const statusEl = card.querySelector(".integration-status");
+              const btnText = btn;
+              if (statusEl) statusEl.textContent = "Not connected";
+              btnText.textContent = "Connect";
+              
+              // Store disconnected state
+              localStorage.setItem(`integration-${integrationId}`, "disconnected");
+              console.log(`Disconnected ${integrationId}`);
+            } else {
+              // Connect
+              card.classList.add("connected");
+              const statusEl = card.querySelector(".integration-status");
+              const btnText = btn;
+              if (statusEl) statusEl.textContent = "Connected";
+              btnText.textContent = "Disconnect";
+              
+              // Store connected state
+              localStorage.setItem(`integration-${integrationId}`, "connected");
+              console.log(`Connected ${integrationId}`);
+              
+              // TODO: Implement actual integration API call here
+              // This would connect to the actual service and provide context for future queries
+            }
+          });
+        });
+
+        // Load saved integration states on page load
+        integrationCards.forEach(card => {
+          const integrationId = card.getAttribute("data-integration");
+          const savedState = localStorage.getItem(`integration-${integrationId}`);
+          if (savedState === "connected") {
+            card.classList.add("connected");
+            const statusEl = card.querySelector(".integration-status");
+            const btn = card.querySelector(".integration-connect-btn");
+            if (statusEl) statusEl.textContent = "Connected";
+            if (btn) btn.textContent = "Disconnect";
+          }
         });
       })();
     </script>
