@@ -13,28 +13,236 @@
 
         body {
             font-family: system-ui, -apple-system, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
+            background: radial-gradient(circle at top, #161b22 0, #05070a 55%, #020308 100%);
+            color: #e5e5e5;
+            padding: 24px;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .app-shell {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+            gap: 20px;
+        }
+
+        .sidebar {
+            background: linear-gradient(160deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.85));
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            padding: 18px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            box-shadow:
+                0 24px 60px rgba(15, 23, 42, 0.85),
+                0 0 0 1px rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(18px);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .org-pill {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 20%, #f97316, #dc2626 40%, #7f1d1d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fef2f2;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.1), 0 10px 25px rgba(248, 113, 113, 0.4);
+        }
+
+        .sidebar-title {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sidebar-title-main {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #e5e7eb;
+        }
+
+        .sidebar-title-sub {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .sidebar-section-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: #9ca3af;
+            margin-bottom: 6px;
+        }
+
+        .sidebar-group {
+            padding-top: 4px;
+            border-top: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-label {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px 32px 8px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95));
+            color: #e5e5e5;
+            font-size: 13px;
+            appearance: none;
+            outline: none;
+        }
+
+        .select-wrapper::after {
+            content: "▾";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 11px;
+            color: #9ca3af;
+            pointer-events: none;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .sidebar-nav button {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 7px 10px;
+            border-radius: 8px;
+            background: transparent;
+            border: 1px solid transparent;
+            color: #e5e7eb;
+            font-size: 13px;
+            gap: 8px;
+        }
+
+        .sidebar-nav button span.icon-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #4ade80;
+            box-shadow: 0 0 14px rgba(34, 197, 94, 0.8);
+        }
+
+        .sidebar-nav button span.icon-amber {
+            background: #facc15;
+            box-shadow: 0 0 14px rgba(234, 179, 8, 0.8);
+        }
+
+        .sidebar-nav button span.icon-rose {
+            background: #fb7185;
+            box-shadow: 0 0 14px rgba(244, 63, 94, 0.85);
+        }
+
+        .sidebar-nav button.active {
+            background: radial-gradient(circle at top left, rgba(248, 250, 252, 0.12), rgba(248, 250, 252, 0.03));
+            border-color: rgba(148, 163, 184, 0.8);
+        }
+
+        .sidebar-stat {
+            margin-top: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .sidebar-stat strong {
+            font-size: 13px;
+            color: #e5e7eb;
+        }
+
+        .sidebar-pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .sidebar-pill {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.55);
+            color: #cbd5f5;
+            background: rgba(15, 23, 42, 0.6);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .sidebar-footer span.dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            margin-right: 6px;
+            border-radius: 999px;
+            background: #22c55e;
+            box-shadow: 0 0 12px rgba(22, 163, 74, 0.8);
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
         .test-header {
-            max-width: 1200px;
-            margin: 0 auto 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.92));
+            padding: 18px 18px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            box-shadow:
+                0 16px 40px rgba(15, 23, 42, 0.85),
+                0 0 0 1px rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
         }
 
         h1 {
-            margin: 0 0 10px 0;
-            color: #333;
+            margin: 0 0 6px 0;
+            color: #f9fafb;
+            font-size: 18px;
+            font-weight: 600;
         }
 
         .info {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 15px;
+            color: #9ca3af;
+            font-size: 13px;
+            margin-bottom: 10px;
         }
 
         .controls {
@@ -44,56 +252,71 @@
         }
 
         button {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
+            padding: 7px 14px;
+            border-radius: 999px;
             cursor: pointer;
-            font-size: 14px;
-            transition: background 0.2s;
+            font-size: 13px;
+            transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: 1px solid transparent;
         }
 
         .btn-primary {
-            background: #007bff;
+            background: radial-gradient(circle at top left, #4f46e5, #2563eb);
             color: white;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.6);
+            border-color: rgba(59, 130, 246, 0.8);
         }
 
         .btn-primary:hover {
-            background: #0056b3;
+            background: radial-gradient(circle at top left, #6366f1, #2563eb);
+            transform: translateY(-0.5px);
+            box-shadow: 0 18px 40px rgba(37, 99, 235, 0.85);
         }
 
         .btn-secondary {
-            background: #6c757d;
-            color: white;
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.9));
+            color: #e5e7eb;
+            border-color: rgba(148, 163, 184, 0.8);
         }
 
         .btn-secondary:hover {
-            background: #545b62;
+            background: radial-gradient(circle at top left, rgba(31, 41, 55, 0.8), rgba(15, 23, 42, 0.95));
+            transform: translateY(-0.5px);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.9);
         }
 
         .status {
             margin-top: 10px;
             padding: 10px;
-            background: #e7f3ff;
-            border-left: 3px solid #007bff;
-            border-radius: 4px;
-            font-size: 13px;
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95));
+            border-left: 3px solid #4f46e5;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #9ca3af;
         }
 
         /* Widget container - simulates ChatGPT's widget area */
         .widget-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 100%;
+            margin: 0;
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+            border-radius: 18px;
+            box-shadow:
+                0 22px 60px rgba(15, 23, 42, 0.95),
+                0 0 0 1px rgba(15, 23, 42, 0.9);
             overflow: hidden;
             transition: all 0.3s ease;
+            border: 1px solid rgba(148, 163, 184, 0.45);
         }
 
         /* Compact mode (default) - simulates widget in chat */
         .widget-container.compact {
-            max-width: 800px;
-            border: 2px solid #ddd;
+            max-width: 100%;
+            border-width: 1px;
         }
 
         /* Fullscreen mode - simulates widget expanded in ChatGPT */
@@ -133,46 +356,591 @@
         }
 
         .btn-close {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 16px;
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.97));
+            color: #e5e7eb;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
             cursor: pointer;
-            border: none;
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
         }
 
         .btn-close:hover {
-            background: rgba(0, 0, 0, 0.9);
+            background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.95), rgba(15, 23, 42, 0.98));
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .metric-card {
+            padding: 10px;
+            border-radius: 12px;
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            box-shadow: 0 16px 35px rgba(15, 23, 42, 0.9);
+        }
+
+        .metric-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f9fafb;
+        }
+
+        .metric-sub {
+            font-size: 11px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .metric-trend {
+            margin-top: 6px;
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: rgba(22, 163, 74, 0.16);
+            color: #22c55e;
+        }
+
+        .metric-trend.negative {
+            background: rgba(248, 113, 113, 0.18);
+            color: #fb7171;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+        }
+
+        .tab {
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 999px 999px 0 0;
+            border: 1px solid transparent;
+            border-bottom: none;
+            background: transparent;
+            color: #9ca3af;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 1), rgba(15, 23, 42, 0.96));
+            color: #e5e7eb;
+            border-color: rgba(148, 163, 184, 0.7);
+        }
+
+        .tab-content {
+            margin-top: 10px;
+            padding-top: 8px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.4fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .panel {
+            border-radius: 12px;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            background: radial-gradient(circle at top left, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.96));
+            padding: 10px;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .panel-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: #e5e7eb;
+        }
+
+        .panel-tag {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            color: #9ca3af;
+        }
+
+        .panel-body {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .key-value-list {
+            list-style: none;
+            display: grid;
+            row-gap: 4px;
+        }
+
+        .key-value-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .key {
+            color: #6b7280;
+        }
+
+        .value {
+            color: #e5e7eb;
+        }
+
+        .sparkline {
+            margin-top: 6px;
+            height: 26px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(56, 189, 248, 0.16), rgba(56, 189, 248, 0.45));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sparkline::after {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.94));
+            box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.55);
+        }
+
+        .sparkline-line {
+            position: absolute;
+            inset: 6px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #22c55e, #eab308, #f97316, #ef4444);
+            box-shadow: 0 0 18px rgba(74, 222, 128, 0.7);
+        }
+
+        .list-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .list-pill {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            color: #cbd5f5;
+        }
+
+        .pill-warning {
+            border-color: rgba(234, 179, 8, 0.9);
+            color: #facc15;
+        }
+
+        .pill-error {
+            border-color: rgba(248, 113, 113, 0.9);
+            color: #fb7171;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .bullet-list {
+            margin-top: 4px;
+            padding-left: 16px;
+        }
+
+        .bullet-list li {
+            margin-bottom: 2px;
+        }
+
+        @media (max-width: 960px) {
+            .app-shell {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .sidebar {
+                order: -1;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .section-row {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 14px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .controls {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="test-header">
-        <h1>AHA Widget Test - ChatGPT Simulation</h1>
-        <div class="info">
-            This page simulates the ChatGPT environment with the <code>window.openai</code> API.
-            The widget can request fullscreen mode, which will expand it to fill the viewport.
-        </div>
-        <div class="controls">
-            <button class="btn-primary" onclick="reloadWidget()">Reload Widget</button>
-            <button class="btn-secondary" onclick="resetToCompact()">Reset to Compact</button>
-        </div>
-        <div class="status" id="status">
-            Status: Widget loaded in compact mode (simulating chat view)
-        </div>
-    </div>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="org-pill">A</div>
+                <div class="sidebar-title">
+                    <div class="sidebar-title-main">American Heart Association</div>
+                    <div class="sidebar-title-sub">AI Apps · Observability & Guardrails</div>
+                </div>
+            </div>
 
-    <div class="widget-container compact" id="widget-container">
-        <iframe 
-            id="widget-frame" 
-            class="widget-iframe"
-            src="public/aha-widget.html"
-            title="AHA Widget">
-        </iframe>
-        <div class="fullscreen-controls">
-            <button class="btn-close" id="exit-fullscreen-btn" onclick="exitFullscreen()">Exit Fullscreen</button>
-        </div>
+            <div class="sidebar-group">
+                <div class="sidebar-section-label">App</div>
+                <div class="select-wrapper">
+                    <select>
+                        <option>Patient Support Chat (Web)</option>
+                        <option>Volunteer Onboarding Assistant</option>
+                        <option>Fundraising Copilot</option>
+                        <option>Research Program Q&amp;A</option>
+                        <option>Internal Policy Assistant</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-group">
+                <div class="sidebar-section-label">Surfaces</div>
+                <div class="sidebar-nav">
+                    <button class="btn-secondary active">
+                        <span class="icon-dot"></span>
+                        <span>ChatGPT App (MCP)</span>
+                    </button>
+                    <button class="btn-secondary">
+                        <span class="icon-dot icon-amber"></span>
+                        <span>aha.org Widget</span>
+                    </button>
+                    <button class="btn-secondary">
+                        <span class="icon-dot icon-rose"></span>
+                        <span>Internal Tools</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-group">
+                <div class="sidebar-section-label">Today</div>
+                <div class="sidebar-stat">
+                    <span>Traffic</span>
+                    <strong>18,942 requests</strong>
+                </div>
+                <div class="sidebar-stat">
+                    <span>Tool success</span>
+                    <strong>97.4%</strong>
+                </div>
+                <div class="sidebar-pill-row">
+                    <span class="sidebar-pill">3 guardrails triggered</span>
+                    <span class="sidebar-pill">PII scrubbed: 642 records</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div><span class="dot"></span> Live MCP server healthy</div>
+                <div>Latency P95: 412 ms</div>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="test-header">
+                <h1>ChatGPT App Simulation · Admin View</h1>
+                <div class="info">
+                    This mirrors how the American Heart Association ChatGPT app widget behaves inside ChatGPT using the <code>window.openai</code> API.
+                    Admins can reload the experience, toggle compact/fullscreen, and review high‑level health across tools and guardrails.
+                </div>
+                <div class="controls">
+                    <button class="btn-primary" onclick="reloadWidget()">Reload widget</button>
+                    <button class="btn-secondary" onclick="resetToCompact()">Reset to compact</button>
+                </div>
+                <div class="status" id="status">
+                    Status: Widget loaded in compact mode (simulating chat view)
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">MCP server</div>
+                        <div class="metric-value">Healthy</div>
+                        <div class="metric-sub">Region: us-east-1 · 4 instances</div>
+                        <div class="metric-trend">
+                            ▲ 12% traffic
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Tool calls</div>
+                        <div class="metric-value">8.2k</div>
+                        <div class="metric-sub">Last 24 hours</div>
+                        <div class="metric-trend">
+                            ▲ 3.4% success
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Wrong tool confirmations</div>
+                        <div class="metric-value">2.1%</div>
+                        <div class="metric-sub">Spikes indicate metadata drift</div>
+                        <div class="metric-trend negative">
+                            ▼ −0.7 pts this week
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Guardrail blocks</div>
+                        <div class="metric-value">19</div>
+                        <div class="metric-sub">Health, finance, bookings</div>
+                        <div class="metric-trend negative">
+                            ▲ 4 new patterns
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widget-container compact" id="widget-container">
+                <iframe 
+                    id="widget-frame" 
+                    class="widget-iframe"
+                    src="/public/aha-widget.html"
+                    title="AHA Widget">
+                </iframe>
+                <div class="fullscreen-controls">
+                    <button class="btn-close" id="exit-fullscreen-btn" onclick="exitFullscreen()">Exit fullscreen</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="tabs">
+                    <button class="tab active" data-tab="infra">Infrastructure</button>
+                    <button class="tab" data-tab="analytics">Analytics</button>
+                    <button class="tab" data-tab="guardrails">Guardrails &amp; compliance</button>
+                    <button class="tab" data-tab="replay">Prompt replay &amp; testing</button>
+                </div>
+
+                <div class="tab-content active" id="tab-infra">
+                    <div class="section-row">
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">MCP server hosting</div>
+                                <span class="panel-tag">ChatGPT · GPT Apps</span>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="key-value-list">
+                                    <li>
+                                        <span class="key">Deployment</span>
+                                        <span class="value">HeartCare‑prod · v0.9.3</span>
+                                    </li>
+                                    <li>
+                                        <span class="key">Runtime</span>
+                                        <span class="value">Node 22 · 3 replicas · autoscale</span>
+                                    </li>
+                                    <li>
+                                        <span class="key">Error rate</span>
+                                        <span class="value">0.3% (tool errors only)</span>
+                                    </li>
+                                    <li>
+                                        <span class="key">Rollbacks</span>
+                                        <span class="value">0 in last 7 days</span>
+                                    </li>
+                                </ul>
+                                <div class="sparkline">
+                                    <div class="sparkline-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Tools &amp; health</div>
+                                <span class="panel-tag">Observability</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-pills">
+                                    <span class="list-pill">search_aha_resources · 99.1% success</span>
+                                    <span class="list-pill">open_store · 98.4% success</span>
+                                    <span class="list-pill pill-warning">aha_widget · 3.2% “wrong tool”</span>
+                                    <span class="list-pill">billing_portal (coming soon)</span>
+                                </div>
+                                <div class="metric-sub" style="margin-top:8px;">
+                                    Spikes in “wrong tool” confirmations usually indicate metadata drift or prompt regressions.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-analytics">
+                    <div class="section-row">
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">User journeys &amp; intent</div>
+                                <span class="panel-tag">Analytics</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="two-col">
+                                    <div>
+                                        <div class="metric-label">Top intents</div>
+                                        <ul class="bullet-list">
+                                            <li>“Am I at risk for a heart attack?”</li>
+                                            <li>“Help me interpret my test results.”</li>
+                                            <li>“How do I volunteer locally?”</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="metric-label">Experience</div>
+                                        <ul class="bullet-list">
+                                            <li>CSAT: 4.6 / 5</li>
+                                            <li>Avg. turns per session: 5.2</li>
+                                            <li>Fallback to human: 6.3%</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Metadata analysis</div>
+                                <span class="panel-tag">Tool catalog</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="metric-label">Flags</div>
+                                <ul class="bullet-list">
+                                    <li>2 tools with stale descriptions versus actual backend behavior.</li>
+                                    <li>“Research program Q&amp;A” tool missing safety disclaimer in metadata.</li>
+                                    <li>Detected new intent cluster around “financial assistance” not mapped to tools.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-guardrails">
+                    <div class="section-row">
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Guardrails</div>
+                                <span class="panel-tag">High‑stakes</span>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="key-value-list">
+                                    <li>
+                                        <span class="key">Clinical guidance</span>
+                                        <span class="value">Escalate to nurse line for red‑flag symptoms</span>
+                                    </li>
+                                    <li>
+                                        <span class="key">Financial</span>
+                                        <span class="value">Never request full SSN or payment over chat</span>
+                                    </li>
+                                    <li>
+                                        <span class="key">Bookings</span>
+                                        <span class="value">Confirm venue, date, &amp; contact before any action</span>
+                                    </li>
+                                </ul>
+                                <div class="list-pills" style="margin-top:8px;">
+                                    <span class="list-pill pill-warning">Real‑time policy checks</span>
+                                    <span class="list-pill pill-warning">Automatic human handoff rules</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Logging, auditing &amp; PII</div>
+                                <span class="panel-tag">Compliance</span>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="key-value-list">
+                                    <li>
+                                        <span class="key">PII scrubbed</span>
+                                        <span class="value">Names, emails, phone numbers, MRNs</span>
+                                    </li>
+                                    <li>
+                                        <span class="key">Retention</span>
+                                        <span class="value">30 days for raw logs · 1 year for aggregates</span>
+                                    </li>
+                                    <li>
+                                        <span class="key">Access</span>
+                                        <span class="value">Scoped by team &amp; project</span>
+                                    </li>
+                                </ul>
+                                <div class="metric-sub" style="margin-top:8px;">
+                                    Every tool call is traceable end‑to‑end without exposing sensitive patient detail.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-replay">
+                    <div class="section-row">
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Prompt replay &amp; regression testing</div>
+                                <span class="panel-tag">Change‑safe</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="metric-label">Recent runs</div>
+                                <ul class="bullet-list">
+                                    <li>128 golden conversations replayed against gpt‑4.1 → gpt‑4.1‑mini change.</li>
+                                    <li>13 behavioral regressions flagged (mostly around “wrong tool” selections).</li>
+                                    <li>4 prompts auto‑patched via suggestion workflow.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">RL‑style tool response optimization</div>
+                                <span class="panel-tag">Prospective</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="metric-label">Example</div>
+                                <ul class="bullet-list">
+                                    <li>User: “ChatGPT, book an Uber to the wedding.”</li>
+                                    <li>Uber GPT App: “Sure, since it's a formal event, would you like an Uber Exec?”</li>
+                                </ul>
+                                <div class="metric-sub" style="margin-top:6px;">
+                                    This console would surface suggested follow‑ups that increase completion rate and satisfaction while staying within AHA policy.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
@@ -310,6 +1078,29 @@
             }
         });
 
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = {
+                infra: document.getElementById('tab-infra'),
+                analytics: document.getElementById('tab-analytics'),
+                guardrails: document.getElementById('tab-guardrails'),
+                replay: document.getElementById('tab-replay'),
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+                    if (!target || !contents[target]) return;
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    Object.values(contents).forEach(c => c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    contents[target].classList.add('active');
+                });
+            });
+        }
+
         // Initialize
         setupOpenAIMock();
 
@@ -323,6 +1114,8 @@
                     exitFullscreen();
                 });
             }
+
+            setupTabs();
         });
 
         // Auto-reload on file changes (for development)
