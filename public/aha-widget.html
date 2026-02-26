@@ -2608,6 +2608,25 @@
           }, 50);
         }
 
+        // ChatGPT injects window.openai asynchronously; wait for it so the first notifyIntrinsicHeight
+        // is sent and the host stops showing "Loading widget".
+        function whenOpenAiReady(callback) {
+          if (typeof window.openai !== "undefined" && typeof window.openai.notifyIntrinsicHeight === "function") {
+            callback();
+            return;
+          }
+          const check = setInterval(function() {
+            if (typeof window.openai !== "undefined" && typeof window.openai.notifyIntrinsicHeight === "function") {
+              clearInterval(check);
+              callback();
+            }
+          }, 50);
+          setTimeout(function() {
+            clearInterval(check);
+            callback();
+          }, 5000);
+        }
+
         // Simple click handler
         if (hamburgerButton) {
           hamburgerButton.addEventListener("click", function(e) {
@@ -2807,10 +2826,13 @@
           });
         });
 
-        // Initial height notification
-        setTimeout(() => {
-          notifyHeight();
-        }, 100);
+        // Initial height notification — wait for ChatGPT to inject window.openai, then notify
+        // so the host stops showing "Loading widget".
+        whenOpenAiReady(() => {
+          notifyHeight(true);
+          setTimeout(() => notifyHeight(true), 200);
+          setTimeout(() => notifyHeight(true), 500);
+        });
 
         // Notify on window resize
         window.addEventListener("resize", () => {
