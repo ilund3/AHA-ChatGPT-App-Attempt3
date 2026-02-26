@@ -1103,6 +1103,83 @@
             font-size: 11px;
             cursor: pointer;
         }
+        .param-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .param-add-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+            color: #e5e7eb;
+            font-size: 16px;
+            line-height: 1;
+            padding: 0;
+        }
+        .param-add-btn:hover {
+            background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.35), rgba(15, 23, 42, 0.96));
+            border-color: rgba(59, 130, 246, 0.9);
+        }
+        .param-add-icon {
+            display: inline-block;
+            transform: translateY(-1px);
+        }
+        .param-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+        }
+        .param-modal-backdrop.open {
+            display: flex;
+        }
+        .param-modal {
+            max-width: 420px;
+            width: 100%;
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: radial-gradient(circle at top left, rgba(17, 24, 39, 0.98), rgba(15, 23, 42, 0.98));
+            padding: 18px 18px 14px;
+            box-shadow:
+                0 24px 60px rgba(15, 23, 42, 0.95),
+                0 0 0 1px rgba(15, 23, 42, 0.9);
+        }
+        .param-modal-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #f9fafb;
+            margin-bottom: 6px;
+        }
+        .param-modal-body {
+            font-size: 12px;
+            color: #e5e7eb;
+            margin-bottom: 8px;
+        }
+        .param-modal-body strong {
+            color: #f97373;
+            font-weight: 500;
+        }
+        .param-modal-email {
+            color: #7dd3fc;
+            text-decoration: none;
+        }
+        .param-modal-email:hover {
+            text-decoration: underline;
+        }
+        .param-modal-actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
         .risk-badge { font-size: 10px; padding: 2px 6px; border-radius: 999px; }
         .risk-low { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
         .risk-medium { background: rgba(234, 179, 8, 0.2); color: #facc15; }
@@ -1500,7 +1577,12 @@
                                         <span class="upload-text">Drop file here or click to upload</span>
                                     </div>
                                     <div class="param-list-box" style="margin-top:14px;">
-                                        <div class="metric-label">Parameters (from privacy policy)</div>
+                                        <div class="param-header-row">
+                                            <div class="metric-label">Parameters (from privacy policy)</div>
+                                            <button type="button" class="param-add-btn" id="param-add-btn" aria-label="Add parameter">
+                                                <span class="param-add-icon">+</span>
+                                            </button>
+                                        </div>
                                         <p class="metric-sub" style="margin-bottom:10px;">Set risk level per parameter. Red icon indicates location/tracking issues — hover for details.</p>
                                         <div class="param-bubbles">
                                             <div class="param-bubble">
@@ -1616,6 +1698,23 @@
                                                         <option value="high">High</option>
                                                     </select>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="param-modal-backdrop" id="param-modal-backdrop" aria-hidden="true">
+                                        <div class="param-modal" role="dialog" aria-modal="true" aria-labelledby="param-modal-title">
+                                            <div class="param-modal-title" id="param-modal-title">Add new parameter</div>
+                                            <p class="param-modal-body">
+                                                <strong>This parameter is not listed in your privacy policy.</strong> Before adding new user data fields, you must ensure your privacy policy is updated to cover this data.
+                                            </p>
+                                            <p class="param-modal-body">
+                                                Please email your legal team at
+                                                <a href="mailto:privacy-legal@yourcompany.com" class="param-modal-email">privacy-legal@yourcompany.com</a>
+                                                to review and approve this change before proceeding.
+                                            </p>
+                                            <div class="param-modal-actions">
+                                                <button type="button" class="btn-secondary" id="param-modal-cancel">Cancel</button>
+                                                <button type="button" class="btn-primary" id="param-modal-confirm">I understand</button>
                                             </div>
                                         </div>
                                     </div>
@@ -2225,6 +2324,53 @@
             });
         }
 
+        function openParamModal() {
+            const backdrop = document.getElementById('param-modal-backdrop');
+            if (!backdrop) return;
+            backdrop.classList.add('open');
+            backdrop.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeParamModal() {
+            const backdrop = document.getElementById('param-modal-backdrop');
+            if (!backdrop) return;
+            backdrop.classList.remove('open');
+            backdrop.setAttribute('aria-hidden', 'true');
+        }
+
+        function setupParamAddGuardrail() {
+            const addBtn = document.getElementById('param-add-btn');
+            const backdrop = document.getElementById('param-modal-backdrop');
+            const cancelBtn = document.getElementById('param-modal-cancel');
+            const confirmBtn = document.getElementById('param-modal-confirm');
+            if (!addBtn || !backdrop) return;
+
+            addBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openParamModal();
+            });
+
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeParamModal();
+                });
+            }
+
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeParamModal();
+                });
+            }
+
+            backdrop.addEventListener('click', (e) => {
+                if (e.target === backdrop) {
+                    closeParamModal();
+                }
+            });
+        }
+
         const TOOL_META = {
             'calendar.create_event': {
                 name: 'calendar.create_event',
@@ -2435,6 +2581,7 @@
             setupTabs();
             setupSubTabs();
             setupPrivacyUpload();
+            setupParamAddGuardrail();
             setupPermissionToggles();
             setupContextSelector();
             updateToolDetail();
