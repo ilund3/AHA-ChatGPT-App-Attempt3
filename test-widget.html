@@ -423,7 +423,7 @@
         .tabs {
             display: flex;
             gap: 8px;
-            margin-top: 12px;
+            margin-top: 8px;
             border-bottom: 1px solid rgba(31, 41, 55, 0.8);
         }
 
@@ -452,6 +452,46 @@
 
         .tab-content.active {
             display: block;
+        }
+        .tab-status-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            font-size: 10px;
+            margin-left: 6px;
+        }
+        .tab-status-icon.ok {
+            background: rgba(22, 163, 74, 0.16);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.7);
+        }
+        .tab-status-icon.error {
+            background: rgba(248, 113, 113, 0.18);
+            color: #fecaca;
+            border: 1px solid rgba(248, 113, 113, 0.85);
+        }
+        .merge-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: -2px;
+        }
+        .merge-status-pill-error {
+            background: rgba(127, 29, 29, 0.35);
+            border: 1px solid rgba(248, 113, 113, 0.9);
+            color: #fecaca;
+        }
+        .merge-status-pill.hidden {
+            display: none;
         }
 
         .section-row {
@@ -932,7 +972,8 @@
         .spreadsheet-legend { font-size: 11px; color: #9ca3af; margin: 0 0 10px 0; line-height: 1.4; }
         .spreadsheet-scroll-wrap {
             max-height: 320px;
-            overflow: auto;
+            overflow-y: auto;
+            overflow-x: auto;
             border: 1px solid rgba(148, 163, 184, 0.4);
             border-radius: 10px;
         }
@@ -958,6 +999,35 @@
         .golden-table tbody tr.highlight-row {
             background: rgba(56, 189, 248, 0.12);
             box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.4);
+        }
+        .golden-table .outcome-cell {
+            white-space: nowrap;
+            min-width: 180px;
+        }
+        .golden-table .outcome-cell .outcome-tool {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-right: 6px;
+        }
+        .golden-table .outcome-cell .outcome-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .golden-table .outcome-cell .outcome-icon.ok {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.6);
+        }
+        .golden-table .outcome-cell .outcome-icon.fail {
+            background: rgba(248, 113, 113, 0.2);
+            color: #fca5a5;
+            border: 1px solid rgba(248, 113, 113, 0.7);
         }
         .type-pill {
             display: inline-block;
@@ -1505,33 +1575,69 @@
                                     <th>Prompts</th>
                                     <th>Type of prompt</th>
                                     <th>Expected behavior</th>
+                                    <th class="outcome-col" id="golden-outcome-header" style="display:none;">Outcome</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr data-expected="search_aha_resources">
                                     <td>What’s my risk for heart disease?</td>
                                     <td><span class="type-pill direct">Direct</span></td>
                                     <td>Call search_aha_resources</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
                                 </tr>
-                                <tr>
+                                <tr data-expected="search_aha_resources">
                                     <td>I need something to help me understand my lab results.</td>
                                     <td><span class="type-pill indirect">Indirect</span></td>
                                     <td>Call search_aha_resources or suggest AHA resources</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
                                 </tr>
-                                <tr>
+                                <tr data-expected="none">
                                     <td>Set a reminder for my medication.</td>
                                     <td><span class="type-pill negative">Negative</span></td>
                                     <td>Do nothing / use built-in tools</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
                                 </tr>
-                                <tr>
+                                <tr data-expected="open_store">
                                     <td>Open the AHA store.</td>
                                     <td><span class="type-pill direct">Direct</span></td>
                                     <td>Call open_store</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
                                 </tr>
-                                <tr>
+                                <tr data-expected="aha_widget">
                                     <td>Show me the American Heart Association widget.</td>
                                     <td><span class="type-pill direct">Direct</span></td>
                                     <td>Call aha_widget</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
+                                </tr>
+                                <tr data-expected="search_aha_resources">
+                                    <td>What are the signs of a heart attack?</td>
+                                    <td><span class="type-pill direct">Direct</span></td>
+                                    <td>Call search_aha_resources</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
+                                </tr>
+                                <tr data-expected="search_aha_resources">
+                                    <td>How can I lower my blood pressure?</td>
+                                    <td><span class="type-pill direct">Direct</span></td>
+                                    <td>Call search_aha_resources</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
+                                </tr>
+                                <tr data-expected="open_store">
+                                    <td>I want to buy some workout gear from AHA.</td>
+                                    <td><span class="type-pill direct">Direct</span></td>
+                                    <td>Call open_store</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
+                                </tr>
+                                <tr data-expected="none">
+                                    <td>What’s the weather today?</td>
+                                    <td><span class="type-pill negative">Negative</span></td>
+                                    <td>Do nothing / use built-in tools</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
+                                </tr>
+                                <tr data-expected="aha_widget">
+                                    <td>Show me the AHA widget.</td>
+                                    <td><span class="type-pill direct">Direct</span></td>
+                                    <td>Call aha_widget</td>
+                                    <td class="outcome-cell" data-outcome=""></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1548,12 +1654,31 @@
             </div>
 
             <div class="panel">
+                <div class="merge-status-pill merge-status-pill-error" id="merge-status-pill">
+                    <span>●</span>
+                    <span>Not ready to merge</span>
+                </div>
                 <div class="tabs">
-                    <button class="tab active" data-tab="metadata">Metadata</button>
-                    <button class="tab" data-tab="analytics">Analytics</button>
-                    <button class="tab" data-tab="guardrails">Guardrails &amp; compliance</button>
-                    <button class="tab" data-tab="security">Security &amp; rate limits</button>
-                    <button class="tab" data-tab="replay">Prompt replay &amp; testing</button>
+                    <button class="tab active" data-tab="metadata">
+                        Metadata
+                        <span class="tab-status-icon" id="tab-status-metadata" title="Section status"></span>
+                    </button>
+                    <button class="tab" data-tab="analytics">
+                        Analytics
+                        <span class="tab-status-icon" id="tab-status-analytics" title="Section status"></span>
+                    </button>
+                    <button class="tab" data-tab="guardrails">
+                        Guardrails &amp; compliance
+                        <span class="tab-status-icon" id="tab-status-guardrails" title="Section status"></span>
+                    </button>
+                    <button class="tab" data-tab="security">
+                        Security &amp; rate limits
+                        <span class="tab-status-icon" id="tab-status-security" title="Section status"></span>
+                    </button>
+                    <button class="tab" data-tab="replay">
+                        Prompt replay &amp; testing
+                        <span class="tab-status-icon" id="tab-status-replay" title="Section status"></span>
+                    </button>
                 </div>
 
                 <div class="tab-content active" id="tab-metadata">
@@ -2324,6 +2449,49 @@
             });
         }
 
+        function computeTabErrors() {
+            const hasMetadataErrors =
+                !!document.querySelector('.param-risk-tooltip-icon:not(.hidden)') ||
+                !!document.querySelector('.perm-warning-icon:not(.hidden)');
+
+            // For now, treat non-metadata sections as healthy unless you later wire
+            // specific guardrails into those panels.
+            const hasAnalyticsErrors = false;
+            const hasGuardrailsErrors = false;
+            const hasSecurityErrors = false;
+            const hasReplayErrors = false;
+
+            return {
+                metadata: hasMetadataErrors,
+                analytics: hasAnalyticsErrors,
+                guardrails: hasGuardrailsErrors,
+                security: hasSecurityErrors,
+                replay: hasReplayErrors,
+            };
+        }
+
+        function updateTabStatus() {
+            const errors = computeTabErrors();
+            const anyError = Object.values(errors).some(Boolean);
+
+            const ids = ['metadata', 'analytics', 'guardrails', 'security', 'replay'];
+            ids.forEach(id => {
+                const el = document.getElementById('tab-status-' + id);
+                if (!el) return;
+                const isError = !!errors[id];
+                el.classList.toggle('error', isError);
+                el.classList.toggle('ok', !isError);
+                el.textContent = isError ? '!' : '✓';
+                el.title = isError ? 'Issues detected in this section' : 'All checks passed for this section';
+            });
+
+            const pill = document.getElementById('merge-status-pill');
+            if (pill) {
+                pill.classList.toggle('hidden', !anyError);
+                pill.classList.toggle('merge-status-pill-error', anyError);
+            }
+        }
+
         function openParamModal() {
             const backdrop = document.getElementById('param-modal-backdrop');
             if (!backdrop) return;
@@ -2460,6 +2628,8 @@
                 btnUntrust.classList.toggle('active', ctx === 'untrusted');
                 btnUntrust.classList.toggle('untrusted', true);
             }
+
+            updateTabStatus();
         }
 
         function setPermissionToggle(toggleId, on) {
@@ -2497,6 +2667,7 @@
                     meta[key] = !current;
                     setPermissionToggle(id, !current);
                     updatePermWarningIcons(meta);
+                    updateTabStatus();
                 });
             });
         }
@@ -2515,6 +2686,37 @@
             }
             btnPriv.addEventListener('click', () => setContext('privileged'));
             btnUntrust.addEventListener('click', () => setContext('untrusted'));
+        }
+
+        function fillOutcomeColumn(rows) {
+            const outcomeHeader = document.getElementById('golden-outcome-header');
+            if (outcomeHeader) outcomeHeader.style.display = '';
+
+            const mockActualTools = [
+                'search_aha_resources',
+                'aha_widget',
+                'none',
+                'open_store',
+                'search_aha_resources',
+                'search_aha_resources',
+                'calendar.create_event',
+                'open_store',
+                'none',
+                'aha_widget',
+            ];
+
+            rows.forEach((row, idx) => {
+                const expected = (row.getAttribute('data-expected') || '').trim();
+                const actual = mockActualTools[idx] !== undefined ? mockActualTools[idx] : expected;
+                const cell = row.querySelector('.outcome-cell');
+                if (!cell) return;
+
+                const isMatch = expected === actual || (expected === 'search_aha_resources' && actual === 'search_aha_resources');
+                const toolLabel = actual === 'none' ? 'No tool called' : actual;
+                const iconClass = isMatch ? 'ok' : 'fail';
+                const iconChar = isMatch ? '✓' : '✗';
+                cell.innerHTML = '<span class="outcome-tool">' + toolLabel + '</span><span class="outcome-icon ' + iconClass + '" title="' + (isMatch ? 'Matches expected behavior' : 'Does not match expected behavior') + '">' + iconChar + '</span>';
+            });
         }
 
         function runGoldenPromptSetTest() {
@@ -2550,6 +2752,7 @@
                     setTimeout(() => {
                         progressBlock.style.display = 'none';
                         rows.forEach(r => r.classList.remove('highlight-row'));
+                        fillOutcomeColumn(rows);
                         if (prGrid) {
                             prGrid.innerHTML = [
                                 { tool: 'search_aha_resources', precision: 94, recall: 88 },
@@ -2585,6 +2788,7 @@
             setupPermissionToggles();
             setupContextSelector();
             updateToolDetail();
+            updateTabStatus();
 
             const toolSelect = document.getElementById('tool-select');
             if (toolSelect) toolSelect.addEventListener('change', updateToolDetail);
