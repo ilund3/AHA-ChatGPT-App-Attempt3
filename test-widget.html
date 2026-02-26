@@ -48,18 +48,16 @@
             gap: 10px;
         }
 
-        .org-pill {
-            width: 28px;
-            height: 28px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #f97316, #dc2626 40%, #7f1d1d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fef2f2;
-            font-weight: 700;
-            font-size: 14px;
-            box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.1), 0 10px 25px rgba(248, 113, 113, 0.4);
+        .org-logo {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            object-fit: contain;
+            background: radial-gradient(circle at 30% 20%, #111827, #020617);
+            box-shadow:
+                0 0 0 1px rgba(248, 250, 252, 0.16),
+                0 10px 24px rgba(248, 113, 113, 0.4);
+            padding: 2px;
         }
 
         .sidebar-title {
@@ -585,6 +583,680 @@
             margin-bottom: 2px;
         }
 
+        .security-alert {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(248, 113, 113, 0.6);
+            background: radial-gradient(circle at top left, rgba(127, 29, 29, 0.4), rgba(69, 10, 10, 0.5));
+            margin-top: 8px;
+            box-shadow: 0 0 20px rgba(248, 113, 113, 0.3);
+        }
+
+        .security-alert-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .security-alert-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #fb7171;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .security-alert-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: rgba(248, 113, 113, 0.3);
+            border: 1px solid rgba(248, 113, 113, 0.6);
+            color: #fb7171;
+        }
+
+        .security-alert-body {
+            font-size: 11px;
+            color: #fca5a5;
+            line-height: 1.5;
+        }
+
+        .security-alert-list {
+            margin-top: 6px;
+            padding-left: 18px;
+            font-size: 11px;
+            color: #fca5a5;
+        }
+
+        .security-alert-list li {
+            margin-bottom: 3px;
+        }
+
+        .sensitive-data-alert {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(234, 179, 8, 0.2);
+            border: 1px solid rgba(234, 179, 8, 0.6);
+            color: #facc15;
+            font-size: 10px;
+            margin-left: 6px;
+        }
+
+        .rate-limit-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .rate-limit-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(55, 65, 81, 0.6);
+        }
+
+        .rate-limit-row:last-child {
+            border-bottom: none;
+        }
+
+        .rate-limit-label {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .rate-limit-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rate-limit-input {
+            width: 80px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+            font-size: 12px;
+        }
+
+        .rate-limit-toggle {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            border-radius: 999px;
+            background: rgba(55, 65, 81, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .rate-limit-toggle.active {
+            background: rgba(34, 197, 94, 0.4);
+            border-color: rgba(34, 197, 94, 0.8);
+        }
+
+        .rate-limit-toggle::after {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 999px;
+            background: #9ca3af;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s;
+        }
+
+        .rate-limit-toggle.active::after {
+            background: #22c55e;
+            transform: translateX(20px);
+        }
+
+        .experiment-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(56, 189, 248, 0.7);
+            background: rgba(8, 47, 73, 0.7);
+            color: #7dd3fc;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .experiment-variants {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .experiment-variant {
+            padding: 8px;
+            border-radius: 10px;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+        }
+
+        .experiment-variant-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #e5e7eb;
+        }
+
+        .experiment-variant-meta {
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 2px;
+        }
+
+        .experiment-bar {
+            margin-top: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(31, 41, 55, 0.9);
+            overflow: hidden;
+        }
+
+        .experiment-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #3b82f6);
+        }
+
+        .security-alert {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(248, 113, 113, 0.6);
+            background: radial-gradient(circle at top left, rgba(127, 29, 29, 0.4), rgba(69, 10, 10, 0.5));
+            margin-top: 8px;
+            box-shadow: 0 0 20px rgba(248, 113, 113, 0.3);
+        }
+
+        .security-alert-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .security-alert-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #fb7171;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .security-alert-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 999px;
+            background: rgba(248, 113, 113, 0.3);
+            border: 1px solid rgba(248, 113, 113, 0.6);
+            color: #fb7171;
+        }
+
+        .security-alert-body {
+            font-size: 11px;
+            color: #fca5a5;
+            line-height: 1.5;
+        }
+
+        .security-alert-list {
+            margin-top: 6px;
+            padding-left: 18px;
+            font-size: 11px;
+            color: #fca5a5;
+        }
+
+        .security-alert-list li {
+            margin-bottom: 3px;
+        }
+
+        .sensitive-data-alert {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(234, 179, 8, 0.2);
+            border: 1px solid rgba(234, 179, 8, 0.6);
+            color: #facc15;
+            font-size: 10px;
+            margin-left: 6px;
+        }
+
+        .rate-limit-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .rate-limit-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(55, 65, 81, 0.6);
+        }
+
+        .rate-limit-row:last-child {
+            border-bottom: none;
+        }
+
+        .rate-limit-label {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .rate-limit-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rate-limit-input {
+            width: 80px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: rgba(15, 23, 42, 0.9);
+            color: #e5e7eb;
+            font-size: 12px;
+        }
+
+        .rate-limit-toggle {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            border-radius: 999px;
+            background: rgba(55, 65, 81, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .rate-limit-toggle.active {
+            background: rgba(34, 197, 94, 0.4);
+            border-color: rgba(34, 197, 94, 0.8);
+        }
+
+        .rate-limit-toggle::after {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 999px;
+            background: #9ca3af;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s;
+        }
+
+        .rate-limit-toggle.active::after {
+            background: #22c55e;
+            transform: translateX(20px);
+        }
+
+        .main-preview-wrap { position: relative; }
+        .golden-spreadsheet-container {
+            display: none;
+            background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            padding: 16px;
+            margin-top: 0;
+        }
+        .golden-spreadsheet-container.visible {
+            display: block;
+        }
+        .widget-container.hidden-for-golden { display: none; }
+        .spreadsheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .spreadsheet-title { font-size: 15px; font-weight: 600; color: #e5e7eb; }
+        .btn-sm { padding: 5px 12px; font-size: 12px; }
+        .spreadsheet-legend { font-size: 11px; color: #9ca3af; margin: 0 0 10px 0; line-height: 1.4; }
+        .spreadsheet-scroll-wrap {
+            max-height: 320px;
+            overflow: auto;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            border-radius: 10px;
+        }
+        .golden-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .golden-table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: rgba(15, 23, 42, 0.98);
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+        }
+        .golden-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(55, 65, 81, 0.6);
+            color: #e5e7eb;
+        }
+        .golden-table tbody tr.highlight-row {
+            background: rgba(56, 189, 248, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.4);
+        }
+        .type-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .type-pill.direct { background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.5); color: #4ade80; }
+        .type-pill.indirect { background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.5); color: #7dd3fc; }
+        .type-pill.negative { background: rgba(148, 163, 184, 0.2); border: 1px solid rgba(148, 163, 184, 0.5); color: #94a3b8; }
+        .spreadsheet-progress {
+            margin-top: 12px;
+            padding: 10px;
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+        .progress-bar {
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(31, 41, 55, 0.9);
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #4f46e5, #2563eb);
+            transition: width 0.25s ease;
+        }
+        .progress-status { font-size: 12px; color: #9ca3af; }
+        .precision-recall-inline { margin-top: 14px; }
+        .pr-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .pr-card {
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .pr-card .tool-name { font-size: 11px; color: #9ca3af; margin-bottom: 4px; }
+        .pr-card .pr-value { font-size: 14px; font-weight: 600; color: #e5e7eb; }
+        .pr-card .pr-label { font-size: 10px; color: #6b7280; margin-top: 2px; }
+
+        .metadata-sub-tabs { margin-top: 0; }
+        .metadata-sub-nav {
+            display: flex;
+            gap: 0;
+            margin-bottom: 14px;
+            padding: 4px;
+            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            width: fit-content;
+        }
+        .metadata-sub-nav .sub-tab {
+            font-size: 11px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+        .metadata-sub-nav .sub-tab:hover { color: #e5e7eb; background: rgba(148, 163, 184, 0.12); }
+        .metadata-sub-nav .sub-tab.active {
+            background: rgba(148, 163, 184, 0.2);
+            color: #e5e7eb;
+        }
+
+        .upload-zone {
+            border: 2px dashed rgba(148, 163, 184, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 13px;
+            cursor: pointer;
+            background: rgba(15, 23, 42, 0.6);
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .upload-zone:hover { border-color: rgba(148, 163, 184, 0.8); background: rgba(15, 23, 42, 0.8); }
+        .param-sample-box,
+        .param-list-box {
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: rgba(15, 23, 42, 0.7);
+        }
+        .param-list-params {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 10px 0;
+        }
+        .param-list-params .param-row {
+            margin: 4px 0;
+        }
+        .param-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+        .param-row code { color: #e5e7eb; font-size: 13px; }
+        .param-bubbles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .param-bubble {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .param-bubble-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: #e5e7eb;
+        }
+        .param-bubble-risk {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 4px;
+        }
+        .param-risk-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #9ca3af;
+        }
+        .param-risk-select {
+            padding: 3px 6px;
+            border-radius: 6px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.95);
+            color: #e5e7eb;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .risk-badge { font-size: 10px; padding: 2px 6px; border-radius: 999px; }
+        .risk-low { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        .risk-medium { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+        .risk-high { background: rgba(248, 113, 113, 0.2); color: #fb7185; }
+        .location-warning {
+            margin-top: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(234, 179, 8, 0.5);
+            background: rgba(234, 179, 8, 0.1);
+            font-size: 12px;
+            color: #fde047;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+        .warning-icon { font-size: 14px; }
+        .learn-more-link {
+            color: #7dd3fc;
+            text-decoration: none;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .learn-more-link:hover { text-decoration: underline; }
+        .learn-more-icon { font-size: 10px; }
+
+        .tool-detail { margin-top: 8px; }
+        .tool-field { margin-bottom: 12px; }
+        .tool-field .key { font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 4px; }
+        .tool-field .value { font-size: 12px; color: #e5e7eb; }
+        .tool-desc { margin: 0; line-height: 1.45; }
+        .param-list { margin: 4px 0 0 16px; padding: 0; }
+        .param-list li { margin-bottom: 4px; }
+        .tool-field-param-docs { display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+        .tool-field-param-docs .key { margin-bottom: 0; }
+        .param-risk-tooltip-icon,
+        .perm-warning-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 11px;
+            cursor: help;
+            background: rgba(248, 113, 113, 0.5);
+            border: 1px solid #f87171;
+            color: #fecaca;
+            box-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+        }
+        .param-risk-tooltip-icon {
+            width: 18px;
+            height: 18px;
+        }
+        .param-risk-tooltip-icon.hidden,
+        .perm-warning-icon.hidden { display: none; }
+        .tool-permissions-section { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(55, 65, 81, 0.6); }
+        .tool-permissions-section .metric-label { margin-bottom: 10px; }
+        .permission-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(55, 65, 81, 0.4);
+        }
+        .permission-row:last-of-type { border-bottom: none; }
+        .permission-row .perm-label-wrap { display: inline-flex; align-items: center; gap: 6px; }
+        .permission-row .perm-label { font-size: 12px; color: #e5e7eb; }
+        .permission-row .perm-desc { font-size: 11px; color: #9ca3af; margin-top: 1px; }
+        .perm-warning-icon {
+            width: 16px;
+            height: 16px;
+        }
+        .perm-toggle {
+            position: relative;
+            width: 36px;
+            height: 20px;
+            border-radius: 999px;
+            background: rgba(55, 65, 81, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .perm-toggle.on { background: rgba(34, 197, 94, 0.4); border-color: rgba(34, 197, 94, 0.7); }
+        .perm-toggle::after {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #94a3b8;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s;
+        }
+        .perm-toggle.on::after { background: #4ade80; transform: translateX(16px); }
+        .context-badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .context-badge.privileged { background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.5); color: #7dd3fc; }
+        .context-badge.untrusted { background: rgba(251, 113, 133, 0.15); border: 1px solid rgba(251, 113, 133, 0.5); color: #fda4af; }
+        .context-selector {
+            display: inline-flex;
+            gap: 0;
+            padding: 3px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            margin-top: 6px;
+        }
+        .context-selector button {
+            padding: 5px 12px;
+            font-size: 11px;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+        .context-selector button:hover { color: #e5e7eb; }
+        .context-selector button.active { background: rgba(148, 163, 184, 0.25); color: #e5e7eb; }
+        .context-selector button.active.privileged { background: rgba(56, 189, 248, 0.25); color: #7dd3fc; }
+        .context-selector button.active.untrusted { background: rgba(251, 113, 133, 0.2); color: #fda4af; }
+        .tool-params-section, .context-categories { margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(55, 65, 81, 0.6); }
+        .params-warning, .permission-warning {
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        .params-warning.high-risk {
+            border: 1px solid rgba(248, 113, 113, 0.5);
+            background: rgba(127, 29, 29, 0.3);
+            color: #fca5a5;
+        }
+        .params-warning:not(.high-risk) { display: none; }
+        .permission-warning {
+            border: 1px solid rgba(234, 179, 8, 0.5);
+            background: rgba(120, 53, 15, 0.3);
+            color: #fde047;
+        }
+        .precision-recall-section .precision-recall-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 8px;
+            margin-top: 10px;
+        }
+
         @media (max-width: 960px) {
             .app-shell {
                 grid-template-columns: minmax(0, 1fr);
@@ -622,10 +1294,10 @@
     <div class="app-shell">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div class="org-pill">A</div>
+                <img src="/public/AHA Logo.jpg" alt="American Heart Association" class="org-logo" />
                 <div class="sidebar-title">
                     <div class="sidebar-title-main">American Heart Association</div>
-                    <div class="sidebar-title-sub">AI Apps · Observability & Guardrails</div>
+                    <div class="sidebar-title-sub">GPT Apps · Hosting, Observability, and Guardrails</div>
                 </div>
             </div>
 
@@ -670,10 +1342,6 @@
                     <span>Tool success</span>
                     <strong>97.4%</strong>
                 </div>
-                <div class="sidebar-pill-row">
-                    <span class="sidebar-pill">3 guardrails triggered</span>
-                    <span class="sidebar-pill">PII scrubbed: 642 records</span>
-                </div>
             </div>
 
             <div class="sidebar-footer">
@@ -684,7 +1352,7 @@
 
         <main class="main">
             <div class="test-header">
-                <h1>ChatGPT App Simulation · Admin View</h1>
+                <h1>GPT Apps, Inc. · ChatGPT App Simulation · Admin View</h1>
                 <div class="info">
                     This mirrors how the American Heart Association ChatGPT app widget behaves inside ChatGPT using the <code>window.openai</code> API.
                     Admins can reload the experience, toggle compact/fullscreen, and review high‑level health across tools and guardrails.
@@ -733,71 +1401,325 @@
                 </div>
             </div>
 
-            <div class="widget-container compact" id="widget-container">
-                <iframe 
-                    id="widget-frame" 
-                    class="widget-iframe"
-                    src="/public/aha-widget.html"
-                    title="AHA Widget">
-                </iframe>
-                <div class="fullscreen-controls">
-                    <button class="btn-close" id="exit-fullscreen-btn" onclick="exitFullscreen()">Exit fullscreen</button>
+            <div class="main-preview-wrap">
+                <div class="widget-container compact" id="widget-container">
+                    <iframe 
+                        id="widget-frame" 
+                        class="widget-iframe"
+                        src="/public/aha-widget.html"
+                        title="AHA Widget">
+                    </iframe>
+                    <div class="fullscreen-controls">
+                        <button class="btn-close" id="exit-fullscreen-btn" onclick="exitFullscreen()">Exit fullscreen</button>
+                    </div>
+                </div>
+                <div class="golden-spreadsheet-container" id="golden-spreadsheet-container" aria-hidden="true">
+                    <div class="spreadsheet-header">
+                        <span class="spreadsheet-title">Golden Prompt Set</span>
+                        <button type="button" class="btn-primary btn-sm" id="run-golden-test-inline">Run golden prompt set test</button>
+                    </div>
+                    <p class="spreadsheet-legend">
+                        <strong>Type of prompt:</strong> Direct = users explicitly name your product or data source. Indirect = users describe the outcome without naming your tool. Negative = built-in or other connectors should handle the request.
+                    </p>
+                    <div class="spreadsheet-scroll-wrap" id="spreadsheet-scroll-wrap">
+                        <table class="golden-table" id="golden-table">
+                            <thead>
+                                <tr>
+                                    <th>Prompts</th>
+                                    <th>Type of prompt</th>
+                                    <th>Expected behavior</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>What’s my risk for heart disease?</td>
+                                    <td><span class="type-pill direct">Direct</span></td>
+                                    <td>Call search_aha_resources</td>
+                                </tr>
+                                <tr>
+                                    <td>I need something to help me understand my lab results.</td>
+                                    <td><span class="type-pill indirect">Indirect</span></td>
+                                    <td>Call search_aha_resources or suggest AHA resources</td>
+                                </tr>
+                                <tr>
+                                    <td>Set a reminder for my medication.</td>
+                                    <td><span class="type-pill negative">Negative</span></td>
+                                    <td>Do nothing / use built-in tools</td>
+                                </tr>
+                                <tr>
+                                    <td>Open the AHA store.</td>
+                                    <td><span class="type-pill direct">Direct</span></td>
+                                    <td>Call open_store</td>
+                                </tr>
+                                <tr>
+                                    <td>Show me the American Heart Association widget.</td>
+                                    <td><span class="type-pill direct">Direct</span></td>
+                                    <td>Call aha_widget</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="spreadsheet-progress" id="spreadsheet-progress" style="display:none;">
+                        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                        <div class="progress-status" id="progress-status">Running test 1 of 5…</div>
+                    </div>
+                    <div class="precision-recall-inline" id="precision-recall-inline">
+                        <div class="metric-label">Per-tool precision &amp; recall</div>
+                        <div class="pr-grid" id="pr-grid"></div>
+                    </div>
                 </div>
             </div>
 
             <div class="panel">
                 <div class="tabs">
-                    <button class="tab active" data-tab="infra">Infrastructure</button>
+                    <button class="tab active" data-tab="metadata">Metadata</button>
                     <button class="tab" data-tab="analytics">Analytics</button>
                     <button class="tab" data-tab="guardrails">Guardrails &amp; compliance</button>
+                    <button class="tab" data-tab="security">Security &amp; rate limits</button>
                     <button class="tab" data-tab="replay">Prompt replay &amp; testing</button>
                 </div>
 
-                <div class="tab-content active" id="tab-infra">
-                    <div class="section-row">
-                        <div class="panel">
-                            <div class="panel-header">
-                                <div class="panel-title">MCP server hosting</div>
-                                <span class="panel-tag">ChatGPT · GPT Apps</span>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="key-value-list">
-                                    <li>
-                                        <span class="key">Deployment</span>
-                                        <span class="value">HeartCare‑prod · v0.9.3</span>
-                                    </li>
-                                    <li>
-                                        <span class="key">Runtime</span>
-                                        <span class="value">Node 22 · 3 replicas · autoscale</span>
-                                    </li>
-                                    <li>
-                                        <span class="key">Error rate</span>
-                                        <span class="value">0.3% (tool errors only)</span>
-                                    </li>
-                                    <li>
-                                        <span class="key">Rollbacks</span>
-                                        <span class="value">0 in last 7 days</span>
-                                    </li>
-                                </ul>
-                                <div class="sparkline">
-                                    <div class="sparkline-line"></div>
+                <div class="tab-content active" id="tab-metadata">
+                    <div class="metadata-sub-tabs">
+                        <div class="metadata-sub-nav" role="tablist">
+                            <button type="button" class="sub-tab active" data-subtab="parameters" role="tab">Parameters</button>
+                            <button type="button" class="sub-tab" data-subtab="tools" role="tab">Tools</button>
+                            <button type="button" class="sub-tab" data-subtab="golden" role="tab">Golden Prompt Set Evaluation</button>
+                        </div>
+                        <div class="tab-content sub-tab-content active" id="subtab-parameters">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <div class="panel-title">Privacy policy &amp; parameter risk</div>
+                                    <span class="panel-tag">Data guardrails</span>
+                                </div>
+                                <div class="panel-body">
+                                    <p class="metric-label">Upload your privacy policy</p>
+                                    <p class="metric-sub" style="margin-bottom:8px;">Upload so the app understands what data tools are allowed to glean, along with a rating of how risky those parameters are.</p>
+                                    <div class="upload-zone" id="privacy-upload">
+                                        <input type="file" id="privacy-file" accept=".txt,.pdf,.md" hidden>
+                                        <span class="upload-text">Drop file here or click to upload</span>
+                                    </div>
+                                    <div class="param-list-box" style="margin-top:14px;">
+                                        <div class="metric-label">Parameters (from privacy policy)</div>
+                                        <p class="metric-sub" style="margin-bottom:10px;">Set risk level per parameter. Red icon indicates location/tracking issues — hover for details.</p>
+                                        <div class="param-bubbles">
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">City</span>
+                                                <span class="param-risk-tooltip-icon" title="Avoid requesting raw location fields. OpenAI suggests using the client’s controlled side channel instead (e.g. environment metadata).">⚠</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low">Low</option>
+                                                        <option value="medium" selected>Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">lat_lng</span>
+                                                <span class="param-risk-tooltip-icon" title="Avoid requesting raw location fields. OpenAI suggests using the client’s controlled side channel instead (e.g. environment metadata).">⚠</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low">Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high" selected>High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">zip_code</span>
+                                                <span class="param-risk-tooltip-icon" title="Avoid requesting raw location fields. OpenAI suggests using the client’s controlled side channel instead (e.g. environment metadata).">⚠</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low">Low</option>
+                                                        <option value="medium" selected>Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">IP_address</span>
+                                                <span class="param-risk-tooltip-icon" title="Can be used for tracking. Prefer server-side or minimal retention.">⚠</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low">Low</option>
+                                                        <option value="medium" selected>Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">full_name</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">email</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">SSN</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low">Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high" selected>High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">date_of_birth</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low">Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high" selected>High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">phone_number</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low">Low</option>
+                                                        <option value="medium" selected>Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">payment_card_last4</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="panel">
-                            <div class="panel-header">
-                                <div class="panel-title">Tools &amp; health</div>
-                                <span class="panel-tag">Observability</span>
-                            </div>
-                            <div class="panel-body">
-                                <div class="list-pills">
-                                    <span class="list-pill">search_aha_resources · 99.1% success</span>
-                                    <span class="list-pill">open_store · 98.4% success</span>
-                                    <span class="list-pill pill-warning">aha_widget · 3.2% “wrong tool”</span>
-                                    <span class="list-pill">billing_portal (coming soon)</span>
+                        <div class="tab-content sub-tab-content" id="subtab-tools">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <div class="panel-title">Tool configuration</div>
+                                    <span class="panel-tag">Metadata</span>
                                 </div>
-                                <div class="metric-sub" style="margin-top:8px;">
-                                    Spikes in “wrong tool” confirmations usually indicate metadata drift or prompt regressions.
+                                <div class="panel-body">
+                                    <div class="select-wrapper" style="margin-bottom:14px;">
+                                        <label class="select-label">Select tool</label>
+                                        <select id="tool-select">
+                                            <option value="calendar.create_event">calendar.create_event</option>
+                                            <option value="search_aha_resources">search_aha_resources</option>
+                                            <option value="open_store">open_store</option>
+                                            <option value="aha_widget">aha_widget</option>
+                                            <option value="billing_portal">billing_portal</option>
+                                        </select>
+                                    </div>
+                                    <div id="tool-detail" class="tool-detail">
+                                        <div class="tool-field">
+                                            <span class="key">Name</span>
+                                            <span class="value" id="tool-name">calendar.create_event</span>
+                                        </div>
+                                        <div class="tool-field">
+                                            <span class="key">Description</span>
+                                            <p class="value tool-desc" id="tool-desc">Use this when… Do not use for…</p>
+                                        </div>
+                                        <div class="tool-field tool-field-param-docs">
+                                            <span class="key">Parameter docs</span>
+                                            <div class="value param-docs" id="tool-params" style="width:100%; margin-top:4px;">
+                                                <ul class="param-list">
+                                                    <li><code>title</code> (string, required) – Event title. Example: "Team standup"</li>
+                                                    <li><code>start_time</code> (string, required) – ISO datetime. Example: "2025-02-25T10:00:00Z"</li>
+                                                    <li><code>attendees</code> (array, optional) – Email addresses. Enum: max 50.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="tool-permissions-section">
+                                            <div class="metric-label">Tool permissions</div>
+                                            <div class="permission-row">
+                                                <div id="toggle-readonly" class="perm-toggle" data-hint="readOnly" role="button" aria-pressed="false" title="Toggle readOnlyHint"></div>
+                                                <div>
+                                                    <span class="perm-label-wrap">
+                                                        <span class="perm-label">readOnlyHint</span>
+                                                        <span id="perm-warning-readonly" class="perm-warning-icon hidden" title="readOnlyHint should be turned off — this tool performs write or external actions.">⚠</span>
+                                                    </span>
+                                                    <div class="perm-desc">Only retrieves or computes; never create, update, delete, or send data outside ChatGPT.</div>
+                                                </div>
+                                            </div>
+                                            <div class="permission-row">
+                                                <div id="toggle-destructive" class="perm-toggle" data-hint="destructive" role="button" aria-pressed="false" title="Toggle destructiveHint"></div>
+                                                <div>
+                                                    <span class="perm-label-wrap">
+                                                        <span class="perm-label">destructiveHint</span>
+                                                        <span id="perm-warning-destructive" class="perm-warning-icon hidden" title="destructiveHint should be updated — this tool may delete or overwrite data.">⚠</span>
+                                                    </span>
+                                                    <div class="perm-desc">Deletes or overwrites user data.</div>
+                                                </div>
+                                            </div>
+                                            <div class="permission-row">
+                                                <div id="toggle-openworld" class="perm-toggle" data-hint="openWorld" role="button" aria-pressed="false" title="Toggle openWorldHint"></div>
+                                                <div>
+                                                    <span class="perm-label-wrap">
+                                                        <span class="perm-label">openWorldHint</span>
+                                                        <span id="perm-warning-openworld" class="perm-warning-icon hidden" title="openWorldHint should be turned on — this tool publishes or reaches outside the account.">⚠</span>
+                                                    </span>
+                                                    <div class="perm-desc">Publishes content or reaches outside the user's account.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="context-categories">
+                                            <div class="metric-label">Context</div>
+                                            <p class="metric-sub">Whether this tool runs in privileged or untrusted context (e.g. untrusted = reading from a discussion post; runs in separate instances).</p>
+                                            <div class="context-selector" role="group" aria-label="Context">
+                                                <button type="button" id="context-privileged" class="active privileged">Privileged</button>
+                                                <button type="button" id="context-untrusted" class="untrusted">Untrusted</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content sub-tab-content" id="subtab-golden">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <div class="panel-title">Golden Prompt Set Evaluation</div>
+                                    <span class="panel-tag">Regression testing</span>
+                                </div>
+                                <div class="panel-body">
+                                    <p class="metric-sub">When this tab is active, the app preview above is replaced by the spreadsheet view. Use the table to define prompts, type, and expected behavior, then run the golden prompt set test.</p>
+                                    <button type="button" class="btn-primary" id="run-golden-test">Run golden prompt set test</button>
+                                    <div class="precision-recall-section" style="margin-top:14px;">
+                                        <div class="metric-label">Per-tool metrics</div>
+                                        <ul class="key-value-list">
+                                            <li><span class="key">Precision</span><span class="value">Of the times the model called the tool, how many were correct? Low precision → tool descriptions are too broad.</span></li>
+                                            <li><span class="key">Recall</span><span class="value">Of the times the tool should have been called, how many did it happen? Low recall → tool descriptions are too narrow or vague.</span></li>
+                                        </ul>
+                                        <div class="precision-recall-cards" id="precision-recall-cards"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -844,6 +1766,37 @@
                                     <li>“Research program Q&amp;A” tool missing safety disclaimer in metadata.</li>
                                     <li>Detected new intent cluster around “financial assistance” not mapped to tools.</li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">A/B testing · UX &amp; UI variants</div>
+                                <span class="panel-tag">Experiments</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="experiment-badge">
+                                    <span>Active experiment</span>
+                                    <span>HeartCare widget layout v2</span>
+                                </div>
+                                <div class="experiment-variants">
+                                    <div class="experiment-variant">
+                                        <div class="experiment-variant-name">Variant A · Classic chat</div>
+                                        <div class="experiment-variant-meta">Traffic: 60% · Conversion: 14.2% · CSAT: 4.5</div>
+                                        <div class="experiment-bar">
+                                            <div class="experiment-bar-fill" style="width: 60%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="experiment-variant">
+                                        <div class="experiment-variant-name">Variant B · Guided flows</div>
+                                        <div class="experiment-variant-meta">Traffic: 40% · Conversion: 19.8% · CSAT: 4.7</div>
+                                        <div class="experiment-bar">
+                                            <div class="experiment-bar-fill" style="width: 40%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-sub" style="margin-top:8px;">
+                                    This section represents how you could monitor and compare different UX/UI versions of the AHA ChatGPT app before rolling out changes globally.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -899,6 +1852,117 @@
                                 </ul>
                                 <div class="metric-sub" style="margin-top:8px;">
                                     Every tool call is traceable end‑to‑end without exposing sensitive patient detail.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-security">
+                    <div class="section-row">
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Security &amp; vulnerability risks</div>
+                                <span class="panel-tag">Real-time monitoring</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="security-alert">
+                                    <div class="security-alert-header">
+                                        <span class="security-alert-title">🔒 Prompt injection risks</span>
+                                        <span class="security-alert-badge">3 active</span>
+                                    </div>
+                                    <div class="security-alert-body">
+                                        Detected potential prompt injection attempts in the last 24 hours:
+                                    </div>
+                                    <ul class="security-alert-list">
+                                        <li><strong>High risk:</strong> User attempted to override system instructions via "Ignore previous instructions" pattern (2 occurrences)</li>
+                                        <li><strong>Medium risk:</strong> Suspicious encoding detected in tool call parameters (1 occurrence)</li>
+                                        <li><strong>Low risk:</strong> Unusual prompt structure in search_aha_resources query (pattern analysis ongoing)</li>
+                                    </ul>
+                                </div>
+                                <div style="margin-top:10px;">
+                                    <div class="metric-label">Mitigation status</div>
+                                    <ul class="key-value-list" style="margin-top:4px;">
+                                        <li>
+                                            <span class="key">Input sanitization</span>
+                                            <span class="value">Active · 98.2% blocked</span>
+                                        </li>
+                                        <li>
+                                            <span class="key">Instruction injection detection</span>
+                                            <span class="value">Active · ML-based</span>
+                                        </li>
+                                        <li>
+                                            <span class="key">Tool call validation</span>
+                                            <span class="value">Active · Schema enforcement</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-header">
+                                <div class="panel-title">Rate limiting</div>
+                                <span class="panel-tag">Traffic control</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="rate-limit-controls">
+                                    <div class="rate-limit-row">
+                                        <div>
+                                            <div class="rate-limit-label">Global rate limit</div>
+                                            <div class="metric-sub" style="margin-top:2px;">Requests per minute per user</div>
+                                        </div>
+                                        <div class="rate-limit-input-group">
+                                            <input type="number" class="rate-limit-input" value="60" min="1" max="1000">
+                                            <div class="rate-limit-toggle active" onclick="toggleRateLimit(this)"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rate-limit-row">
+                                        <div>
+                                            <div class="rate-limit-label">Tool call rate limit</div>
+                                            <div class="metric-sub" style="margin-top:2px;">Tool calls per minute per session</div>
+                                        </div>
+                                        <div class="rate-limit-input-group">
+                                            <input type="number" class="rate-limit-input" value="30" min="1" max="500">
+                                            <div class="rate-limit-toggle active" onclick="toggleRateLimit(this)"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rate-limit-row">
+                                        <div>
+                                            <div class="rate-limit-label">Concurrent sessions</div>
+                                            <div class="metric-sub" style="margin-top:2px;">Max active sessions per user</div>
+                                        </div>
+                                        <div class="rate-limit-input-group">
+                                            <input type="number" class="rate-limit-input" value="5" min="1" max="50">
+                                            <div class="rate-limit-toggle active" onclick="toggleRateLimit(this)"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rate-limit-row">
+                                        <div>
+                                            <div class="rate-limit-label">IP-based throttling</div>
+                                            <div class="metric-sub" style="margin-top:2px;">Requests per IP per hour</div>
+                                        </div>
+                                        <div class="rate-limit-input-group">
+                                            <input type="number" class="rate-limit-input" value="1000" min="100" max="10000">
+                                            <div class="rate-limit-toggle active" onclick="toggleRateLimit(this)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top:10px; padding-top:8px; border-top:1px solid rgba(55, 65, 81, 0.6);">
+                                    <div class="metric-label">Current status</div>
+                                    <ul class="key-value-list" style="margin-top:4px;">
+                                        <li>
+                                            <span class="key">Rate limits active</span>
+                                            <span class="value">4 / 4 enabled</span>
+                                        </li>
+                                        <li>
+                                            <span class="key">Blocks today</span>
+                                            <span class="value">127 requests throttled</span>
+                                        </li>
+                                        <li>
+                                            <span class="key">Peak usage</span>
+                                            <span class="value">78% of global limit (12:34 PM)</span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -1079,11 +2143,12 @@
         });
 
         function setupTabs() {
-            const tabs = document.querySelectorAll('.tab');
+            const tabs = document.querySelectorAll('.tab:not(.sub-tab)');
             const contents = {
-                infra: document.getElementById('tab-infra'),
+                metadata: document.getElementById('tab-metadata'),
                 analytics: document.getElementById('tab-analytics'),
                 guardrails: document.getElementById('tab-guardrails'),
+                security: document.getElementById('tab-security'),
                 replay: document.getElementById('tab-replay'),
             };
 
@@ -1093,12 +2158,264 @@
                     if (!target || !contents[target]) return;
 
                     tabs.forEach(t => t.classList.remove('active'));
-                    Object.values(contents).forEach(c => c.classList.remove('active'));
+                    Object.values(contents).forEach(c => c && c.classList.remove('active'));
 
                     tab.classList.add('active');
                     contents[target].classList.add('active');
+
+                    if (target !== 'metadata') setGoldenPreviewVisible(false);
                 });
             });
+        }
+
+        function setGoldenPreviewVisible(visible) {
+            const widget = document.getElementById('widget-container');
+            const spreadsheet = document.getElementById('golden-spreadsheet-container');
+            if (!widget || !spreadsheet) return;
+            if (visible) {
+                widget.classList.add('hidden-for-golden');
+                spreadsheet.classList.add('visible');
+                spreadsheet.setAttribute('aria-hidden', 'false');
+            } else {
+                widget.classList.remove('hidden-for-golden');
+                spreadsheet.classList.remove('visible');
+                spreadsheet.setAttribute('aria-hidden', 'true');
+            }
+        }
+
+        function setupSubTabs() {
+            const subTabs = document.querySelectorAll('.sub-tab');
+            const subContents = {
+                parameters: document.getElementById('subtab-parameters'),
+                tools: document.getElementById('subtab-tools'),
+                golden: document.getElementById('subtab-golden'),
+            };
+
+            subTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-subtab');
+                    if (!target || !subContents[target]) return;
+
+                    subTabs.forEach(t => t.classList.remove('active'));
+                    Object.values(subContents).forEach(c => c && c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    subContents[target].classList.add('active');
+
+                    setGoldenPreviewVisible(target === 'golden');
+                });
+            });
+        }
+
+        function setupPrivacyUpload() {
+            const zone = document.getElementById('privacy-upload');
+            const input = document.getElementById('privacy-file');
+            if (!zone || !input) return;
+            zone.addEventListener('click', () => input.click());
+            zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('dragover'); });
+            zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('dragover');
+                const file = e.dataTransfer && e.dataTransfer.files[0];
+                if (file) { input.files = e.dataTransfer.files; zone.querySelector('.upload-text').textContent = file.name; }
+            });
+            input.addEventListener('change', () => {
+                if (input.files && input.files[0]) zone.querySelector('.upload-text').textContent = input.files[0].name;
+            });
+        }
+
+        const TOOL_META = {
+            'calendar.create_event': {
+                name: 'calendar.create_event',
+                description: 'Use this when the user wants to create a calendar event. Do not use for reminders.',
+                params: '<ul class="param-list"><li><code>title</code> (string, required) – Event title. Example: "Team standup"</li><li><code>start_time</code> (string, required) – ISO datetime.</li><li><code>attendees</code> (array, optional) – Email addresses. Enum: max 50.</li></ul>',
+                readOnly: false,
+                destructive: false,
+                openWorld: false,
+                highRiskParams: true,
+                permissionWarning: 'This appears to be posting data outside the app. Consider marking as write action or setting openWorldHint appropriately.',
+                permWarnings: { readOnly: true, openWorld: true },
+                context: 'privileged',
+            },
+            'search_aha_resources': {
+                name: 'search_aha_resources',
+                description: 'Use this when the user asks for heart health information, symptoms, conditions, or AHA resources. Do not use for medical emergencies or to replace a doctor.',
+                params: '<ul class="param-list"><li><code>query</code> (string, required) – User question. Example: "What are signs of high blood pressure?"</li></ul>',
+                readOnly: true,
+                destructive: false,
+                openWorld: false,
+                highRiskParams: false,
+                permWarnings: {},
+                context: 'privileged',
+            },
+            'open_store': {
+                name: 'open_store',
+                description: 'Use this when the user wants to open or browse the AHA store. Do not use for donations or external shopping.',
+                params: '<ul class="param-list"><li><code>category</code> (string, optional) – e.g. "workout gear", "clothing".</li></ul>',
+                readOnly: false,
+                destructive: false,
+                openWorld: true,
+                highRiskParams: false,
+                permissionWarning: 'This appears to be posting data outside the app (opening store). Ensure openWorldHint is set correctly.',
+                permWarnings: { openWorld: true },
+                context: 'privileged',
+            },
+            'aha_widget': {
+                name: 'aha_widget',
+                description: 'Use this when the user asks to see the AHA widget or general branding. Do not use for store or specific health searches.',
+                params: '<ul class="param-list"><li><code>query</code> (string, optional) – User request.</li></ul>',
+                readOnly: true,
+                destructive: false,
+                openWorld: false,
+                highRiskParams: false,
+                permWarnings: {},
+                context: 'privileged',
+            },
+            'billing_portal': {
+                name: 'billing_portal',
+                description: 'Use this when the user explicitly requests billing or payment portal. Do not use for general account questions.',
+                params: '<ul class="param-list"><li><code>action</code> (enum: "view" | "update_card") – Billing action.</li><li><code>return_url</code> (string, optional) – Callback URL.</li></ul>',
+                readOnly: false,
+                destructive: false,
+                openWorld: false,
+                highRiskParams: true,
+                permissionWarning: 'This tool requests sensitive payment data. Strong warning: ensure it is not labeled as read-only.',
+                permWarnings: { readOnly: true },
+                context: 'untrusted',
+            },
+        };
+
+        function updateToolDetail() {
+            const sel = document.getElementById('tool-select');
+            const id = sel && sel.value;
+            const meta = id && TOOL_META[id];
+            if (!meta) return;
+
+            const set = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+            set('tool-name', meta.name);
+            set('tool-desc', meta.description);
+            set('tool-params', meta.params);
+
+            setPermissionToggle('toggle-readonly', meta.readOnly);
+            setPermissionToggle('toggle-destructive', meta.destructive);
+            setPermissionToggle('toggle-openworld', meta.openWorld);
+
+            updatePermWarningIcons(meta);
+
+            const btnPriv = document.getElementById('context-privileged');
+            const btnUntrust = document.getElementById('context-untrusted');
+            const ctx = meta.context || 'privileged';
+            if (btnPriv) {
+                btnPriv.classList.toggle('active', ctx === 'privileged');
+                btnPriv.classList.toggle('privileged', true);
+            }
+            if (btnUntrust) {
+                btnUntrust.classList.toggle('active', ctx === 'untrusted');
+                btnUntrust.classList.toggle('untrusted', true);
+            }
+        }
+
+        function setPermissionToggle(toggleId, on) {
+            const t = document.getElementById(toggleId);
+            if (!t) return;
+            if (on) t.classList.add('on'); else t.classList.remove('on');
+            t.setAttribute('aria-pressed', !!on);
+        }
+
+        function updatePermWarningIcons(meta) {
+            const pw = meta.permWarnings || {};
+            const showReadonly = pw.readOnly && meta.readOnly;
+            const showDestructive = pw.destructive && meta.destructive;
+            const showOpenworld = pw.openWorld && !meta.openWorld;
+            const ro = document.getElementById('perm-warning-readonly');
+            const dest = document.getElementById('perm-warning-destructive');
+            const ow = document.getElementById('perm-warning-openworld');
+            if (ro) ro.classList.toggle('hidden', !showReadonly);
+            if (dest) dest.classList.toggle('hidden', !showDestructive);
+            if (ow) ow.classList.toggle('hidden', !showOpenworld);
+        }
+
+        function setupPermissionToggles() {
+            const toggleIds = ['toggle-readonly', 'toggle-destructive', 'toggle-openworld'];
+            const hintKeys = { 'toggle-readonly': 'readOnly', 'toggle-destructive': 'destructive', 'toggle-openworld': 'openWorld' };
+            toggleIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.addEventListener('click', () => {
+                    const sel = document.getElementById('tool-select');
+                    const meta = sel && TOOL_META[sel.value];
+                    if (!meta) return;
+                    const key = hintKeys[id];
+                    const current = meta[key];
+                    meta[key] = !current;
+                    setPermissionToggle(id, !current);
+                    updatePermWarningIcons(meta);
+                });
+            });
+        }
+
+        function setupContextSelector() {
+            const sel = document.getElementById('tool-select');
+            const btnPriv = document.getElementById('context-privileged');
+            const btnUntrust = document.getElementById('context-untrusted');
+            if (!sel || !btnPriv || !btnUntrust) return;
+            function setContext(value) {
+                const meta = TOOL_META[sel.value];
+                if (!meta) return;
+                meta.context = value;
+                btnPriv.classList.toggle('active', value === 'privileged');
+                btnUntrust.classList.toggle('active', value === 'untrusted');
+            }
+            btnPriv.addEventListener('click', () => setContext('privileged'));
+            btnUntrust.addEventListener('click', () => setContext('untrusted'));
+        }
+
+        function runGoldenPromptSetTest() {
+            const wrap = document.getElementById('spreadsheet-scroll-wrap');
+            const table = document.getElementById('golden-table');
+            const progress = document.getElementById('progress-fill');
+            const status = document.getElementById('progress-status');
+            const progressBlock = document.getElementById('spreadsheet-progress');
+            const rows = table && table.querySelectorAll('tbody tr');
+            const prGrid = document.getElementById('pr-grid');
+
+            if (!rows || !rows.length) return;
+
+            progressBlock.style.display = 'block';
+            if (progress) progress.style.width = '0%';
+
+            const total = rows.length;
+            let i = 0;
+
+            rows.forEach(r => r.classList.remove('highlight-row'));
+
+            function next() {
+                if (i > 0) rows[i - 1].classList.remove('highlight-row');
+                if (i < total) {
+                    rows[i].classList.add('highlight-row');
+                    if (wrap) wrap.scrollTop = rows[i].offsetTop - wrap.offsetTop + rows[i].offsetHeight - wrap.clientHeight / 2;
+                    if (status) status.textContent = 'Running test ' + (i + 1) + ' of ' + total + '…';
+                    if (progress) progress.style.width = ((i + 1) / total * 100) + '%';
+                    i++;
+                    setTimeout(next, 600);
+                } else {
+                    if (status) status.textContent = 'Done.';
+                    setTimeout(() => {
+                        progressBlock.style.display = 'none';
+                        rows.forEach(r => r.classList.remove('highlight-row'));
+                        if (prGrid) {
+                            prGrid.innerHTML = [
+                                { tool: 'search_aha_resources', precision: 94, recall: 88 },
+                                { tool: 'open_store', precision: 97, recall: 91 },
+                                { tool: 'aha_widget', precision: 89, recall: 85 },
+                                { tool: 'calendar.create_event', precision: 91, recall: 82 },
+                            ].map(t => '<div class="pr-card"><div class="tool-name">' + t.tool + '</div><div class="pr-value">' + t.precision + '%</div><div class="pr-label">Precision</div><div class="pr-value">' + t.recall + '%</div><div class="pr-label">Recall</div></div>').join('');
+                        }
+                    }, 400);
+                }
+            }
+            next();
         }
 
         // Initialize
@@ -1116,7 +2433,28 @@
             }
 
             setupTabs();
+            setupSubTabs();
+            setupPrivacyUpload();
+            setupPermissionToggles();
+            setupContextSelector();
+            updateToolDetail();
+
+            const toolSelect = document.getElementById('tool-select');
+            if (toolSelect) toolSelect.addEventListener('change', updateToolDetail);
+
+            const runBtn = document.getElementById('run-golden-test');
+            const runBtnInline = document.getElementById('run-golden-test-inline');
+            if (runBtn) runBtn.addEventListener('click', runGoldenPromptSetTest);
+            if (runBtnInline) runBtnInline.addEventListener('click', runGoldenPromptSetTest);
         });
+
+        function toggleRateLimit(element) {
+            element.classList.toggle('active');
+            const input = element.previousElementSibling;
+            if (input && input.classList.contains('rate-limit-input')) {
+                input.disabled = !element.classList.contains('active');
+            }
+        }
 
         // Auto-reload on file changes (for development)
         // Uncomment for auto-reload during development
