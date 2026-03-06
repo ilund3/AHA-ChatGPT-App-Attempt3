@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Walk Registration – Hydrocephalus Association</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 280px;
+      }
+
+      .modal-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 640px;
+        padding: 40px 48px 44px;
+        background: #ffffff;
+        border-radius: 4px;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #888;
+        font-size: 18px;
+        line-height: 1;
+        padding: 4px 6px;
+        border-radius: 4px;
+        transition: color 0.15s, background 0.15s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .close-btn:hover {
+        color: #333;
+        background: #f2f2f2;
+      }
+
+      .modal__title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #222;
+        text-align: center;
+        margin-bottom: 6px;
+        letter-spacing: -0.2px;
+      }
+
+      .modal__subtitle {
+        font-size: 13px;
+        font-weight: 500;
+        color: #36c0e7;
+        text-align: center;
+        margin-bottom: 32px;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+      }
+
+      .entity-switch-modal__container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 40px;
+      }
+
+      .entity-switch-modal__button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #555;
+        border: none;
+        background: none;
+        padding: 4px 8px 8px;
+        border-radius: 8px;
+        transition: background 0.18s;
+        outline: none;
+      }
+
+      .entity-switch-modal__button:hover,
+      .entity-switch-modal__button:focus {
+        background: #f5fcfe;
+      }
+
+      .entity-switch-modal__button:hover .icon-circle {
+        box-shadow: 0 2px 12px rgba(54, 192, 231, 0.25);
+        transform: translateY(-2px);
+      }
+
+      .icon-circle {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        overflow: hidden;
+        transition: box-shadow 0.18s, transform 0.18s;
+        flex-shrink: 0;
+      }
+
+      .icon-circle img,
+      .icon-circle svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .entity-switch-modal__message {
+        font-size: 13px;
+        font-weight: 500;
+        color: #555;
+        text-align: center;
+        line-height: 1.35;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="modal-wrapper">
+      <button class="close-btn" aria-label="Close" onclick="this.closest('.modal-wrapper').style.display='none'">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <h2 class="modal__title">How would you like to register?</h2>
+      <p class="modal__subtitle" id="walk-location-label">WALK to End Hydrocephalus</p>
+
+      <div class="entity-switch-modal__container">
+        <!-- As an individual -->
+        <a class="entity-switch-modal__button" role="button" href="https://www.hydroassoc.org/walk-to-end-hydrocephalus/" target="_blank" tabindex="0">
+          <div class="icon-circle">
+            <!-- user-outline.svg inlined -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <defs>
+                <style>.uo-1{fill:#f1efef}.uo-2{fill:#666766}</style>
+              </defs>
+              <circle class="uo-1" cx="49.96" cy="49.84" r="44.96"/>
+              <path class="uo-2" d="M49.96,45.7c-6.83,0-12.38-5.55-12.38-12.38s5.55-12.38,12.38-12.38,12.38,5.55,12.38,12.38-5.55,12.38-12.38,12.38ZM49.96,22.74c-5.83,0-10.58,4.75-10.58,10.58s4.75,10.58,10.58,10.58,10.58-4.75,10.58-10.58-4.75-10.58-10.58-10.58Z"/>
+              <path class="uo-1" d="M70.88,74.48s-7.98,3.37-20.92,3.37-20.92-3.37-20.92-3.37v-10.62c0-8.04,6.52-14.56,14.56-14.56h12.72c8.04,0,14.56,6.52,14.56,14.56v10.62Z"/>
+              <path class="uo-2" d="M49.96,78.74c-12.97,0-20.94-3.3-21.27-3.44-.33-.14-.55-.47-.55-.83v-10.62c0-8.52,6.93-15.46,15.46-15.46h12.72c8.52,0,15.46,6.93,15.46,15.46v10.62c0,.36-.22.69-.55.83-.33.14-8.29,3.44-21.27,3.44ZM29.94,73.86c2,.73,9.32,3.09,20.02,3.09s18.02-2.36,20.02-3.09v-10c0-7.53-6.13-13.66-13.66-13.66h-12.72c-7.53,0-13.66,6.13-13.66,13.66v10Z"/>
+            </svg>
+          </div>
+          <span class="entity-switch-modal__message">As an individual</span>
+        </a>
+
+        <!-- Join a team -->
+        <a class="entity-switch-modal__button" role="button" href="https://www.hydroassoc.org/walk-to-end-hydrocephalus/" target="_blank" tabindex="0">
+          <div class="icon-circle">
+            <!-- join-team.svg inlined -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <defs>
+                <style>.jt-1{fill:#f1efef}.jt-2{fill:#f2efef}.jt-3{fill:#666766}</style>
+              </defs>
+              <circle class="jt-1" cx="49.92" cy="50.01" r="44.96"/>
+              <path class="jt-3" d="M28.24,48.19c-4.44,0-8.06-3.62-8.06-8.06s3.62-8.06,8.06-8.06,8.06,3.62,8.06,8.06-3.62,8.06-8.06,8.06ZM28.24,33.9c-3.43,0-6.23,2.79-6.23,6.23s2.79,6.23,6.23,6.23,6.23-2.79,6.23-6.23-2.79-6.23-6.23-6.23Z"/>
+              <path class="jt-3" d="M28.3,68.76c-8.15,0-13.17-2.08-13.38-2.17-.34-.14-.56-.47-.56-.84v-6.61c0-5.5,4.47-9.97,9.97-9.97h7.92c5.5,0,9.97,4.47,9.97,9.97v6.61c0,.37-.22.7-.56.84-.21.09-5.23,2.17-13.38,2.17ZM16.19,65.11c1.49.52,5.86,1.82,12.1,1.82s10.62-1.3,12.1-1.82v-5.97c0-4.49-3.65-8.15-8.15-8.15h-7.92c-4.49,0-8.15,3.65-8.15,8.15v5.97Z"/>
+              <circle class="jt-3" cx="71.49" cy="40.13" r="7.14"/>
+              <path class="jt-3" d="M71.49,48.19c-4.44,0-8.06-3.62-8.06-8.06s3.62-8.06,8.06-8.06,8.06,3.62,8.06,8.06-3.62,8.06-8.06,8.06ZM71.49,33.9c-3.43,0-6.23,2.79-6.23,6.23s2.79,6.23,6.23,6.23,6.23-2.79,6.23-6.23-2.79-6.23-6.23-6.23Z"/>
+              <path class="jt-3" d="M84.57,65.75s-4.96,2.1-13.02,2.1-13.02-2.1-13.02-2.1v-6.61c0-5,4.06-9.06,9.06-9.06h7.92c5,0,9.06,4.06,9.06,9.06v6.61Z"/>
+              <path class="jt-3" d="M71.55,68.76c-8.15,0-13.17-2.08-13.38-2.17-.34-.14-.56-.47-.56-.84v-6.61c0-5.5,4.47-9.97,9.97-9.97h7.92c5.5,0,9.97,4.47,9.97,9.97v6.61c0,.37-.22.7-.56.84-.21.09-5.23,2.17-13.38,2.17ZM59.45,65.11c1.49.52,5.86,1.82,12.1,1.82s10.62-1.3,12.1-1.82v-5.97c0-4.49-3.65-8.15-8.14-8.15h-7.92c-4.49,0-8.14,3.65-8.14,8.15v5.97Z"/>
+              <path class="jt-3" d="M49.61,47.01c-5.42,0-9.83-4.41-9.83-9.83s4.41-9.83,9.83-9.83,9.83,4.41,9.83,9.83-4.41,9.83-9.83,9.83ZM49.61,29.17c-4.41,0-8,3.59-8,8s3.59,8,8,8,8-3.59,8-8-3.59-8-8-8Z"/>
+              <path class="jt-2" d="M65.93,69.15s-6.2,2.62-16.25,2.62-16.25-2.62-16.25-2.62v-8.25c0-6.25,5.06-11.31,11.31-11.31h9.89c6.25,0,11.31,5.06,11.31,11.31v8.25Z"/>
+              <path class="jt-3" d="M49.68,72.68c-10.12,0-16.35-2.58-16.61-2.69-.34-.14-.56-.47-.56-.84v-8.25c0-6.74,5.48-12.22,12.22-12.22h9.89c6.74,0,12.22,5.48,12.22,12.22v8.25c0,.37-.22.7-.56.84-.26.11-6.48,2.69-16.61,2.69ZM34.35,68.51c1.72.61,7.29,2.33,15.34,2.33s13.62-1.72,15.34-2.33v-7.62c0-5.73-4.66-10.39-10.39-10.39h-9.89c-5.73,0-10.39,4.66-10.39,10.39v7.62Z"/>
+            </svg>
+          </div>
+          <span class="entity-switch-modal__message">Join a team</span>
+        </a>
+
+        <!-- Create a team -->
+        <a class="entity-switch-modal__button" role="button" href="https://www.hydroassoc.org/walk-to-end-hydrocephalus/" target="_blank" tabindex="0">
+          <div class="icon-circle">
+            <!-- create-team.svg inlined -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+              <defs>
+                <style>.ct-1{fill:#f1efef}.ct-2{fill:#f2efef}.ct-3{fill:#666766}.ct-4{fill:none;stroke:#f1efef;stroke-linecap:round;stroke-miterlimit:10;stroke-width:1.75px}</style>
+              </defs>
+              <circle class="ct-1" cx="49.96" cy="50" r="44.96"/>
+              <path class="ct-3" d="M28.27,48.18c-4.44,0-8.06-3.62-8.06-8.06s3.62-8.06,8.06-8.06,8.06,3.62,8.06,8.06-3.62,8.06-8.06,8.06ZM28.27,33.89c-3.43,0-6.23,2.79-6.23,6.23s2.79,6.23,6.23,6.23,6.23-2.79,6.23-6.23-2.79-6.23-6.23-6.23Z"/>
+              <path class="ct-3" d="M28.33,68.75c-8.15,0-13.17-2.08-13.38-2.17-.34-.14-.56-.47-.56-.84v-6.61c0-5.5,4.47-9.97,9.97-9.97h7.92c5.5,0,9.97,4.47,9.97,9.97v6.61c0,.37-.22.7-.56.84-.21.09-5.23,2.17-13.38,2.17ZM16.22,65.1c1.49.52,5.86,1.82,12.1,1.82s10.62-1.3,12.1-1.82v-5.97c0-4.49-3.65-8.15-8.15-8.15h-7.92c-4.49,0-8.15,3.65-8.15,8.15v5.97Z"/>
+              <path class="ct-3" d="M71.53,48.18c-4.44,0-8.06-3.62-8.06-8.06s3.62-8.06,8.06-8.06,8.06,3.62,8.06,8.06-3.62,8.06-8.06,8.06ZM71.53,33.89c-3.43,0-6.23,2.79-6.23,6.23s2.79,6.23,6.23,6.23,6.23-2.79,6.23-6.23-2.79-6.23-6.23-6.23Z"/>
+              <path class="ct-3" d="M71.58,68.75c-8.15,0-13.17-2.08-13.38-2.17-.34-.14-.56-.47-.56-.84v-6.61c0-5.5,4.47-9.97,9.97-9.97h7.92c5.5,0,9.97,4.47,9.97,9.97v6.61c0,.37-.22.7-.56.84-.21.09-5.23,2.17-13.38,2.17ZM59.48,65.1c1.49.52,5.86,1.82,12.1,1.82s10.62-1.3,12.1-1.82v-5.97c0-4.49-3.65-8.15-8.15-8.15h-7.92c-4.49,0-8.15,3.65-8.15,8.15v5.97Z"/>
+              <path class="ct-3" d="M49.65,47c-5.42,0-9.83-4.41-9.83-9.83s4.41-9.83,9.83-9.83,9.83,4.41,9.83,9.83-4.41,9.83-9.83,9.83ZM49.65,29.16c-4.41,0-8,3.59-8,8s3.59,8,8,8,8-3.59,8-8-3.59-8-8-8Z"/>
+              <path class="ct-2" d="M65.97,69.14s-6.2,2.62-16.25,2.62-16.25-2.62-16.25-2.62v-8.25c0-6.25,5.06-11.31,11.31-11.31h9.89c6.25,0,11.31,5.06,11.31,11.31v8.25Z"/>
+              <path class="ct-3" d="M49.72,72.67c-10.12,0-16.35-2.58-16.61-2.69-.34-.14-.56-.47-.56-.84v-8.25c0-6.74,5.48-12.22,12.22-12.22h9.89c6.74,0,12.22,5.48,12.22,12.22v8.25c0,.37-.22.7-.56.84-.26.11-6.48,2.69-16.61,2.69ZM34.38,68.5c1.72.61,7.29,2.33,15.34,2.33s13.62-1.72,15.34-2.33v-7.62c0-5.73-4.66-10.39-10.39-10.39h-9.89c-5.73,0-10.39,4.66-10.39,10.39v7.62Z"/>
+              <circle class="ct-3" cx="88.22" cy="69.96" r="10.74"/>
+              <line class="ct-4" x1="88.22" y1="64.72" x2="88.22" y2="75.21"/>
+              <line class="ct-4" x1="93.47" y1="69.96" x2="82.97" y2="69.96"/>
+            </svg>
+          </div>
+          <span class="entity-switch-modal__message">Create a team</span>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      // Inject walk location from server-rendered template variable
+      const walkLocation = "{{WALK_LOCATION}}";
+      const labelEl = document.getElementById("walk-location-label");
+      if (walkLocation && walkLocation !== "{{WALK_LOCATION}}") {
+        labelEl.textContent = walkLocation + " · WALK to End Hydrocephalus";
+      }
+    </script>
+  </body>
+</html>

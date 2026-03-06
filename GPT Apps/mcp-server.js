@@ -25,14 +25,24 @@ const appDirRaw = resolve(join(__dirname, APP_SLUG));
 const appDir = existsSync(appDirRaw) ? realpathSync(appDirRaw) : appDirRaw;
 const widgetPath = join(appDir, "public", "widget.html");
 const resourcesPath = join(appDir, "resources", `${APP_SLUG}-resources.json`);
+const walkRegistrationPath = join(appDir, "public", "walk-registration.html");
+const hasWalkRegistration = existsSync(walkRegistrationPath);
 
 if (!existsSync(widgetPath) || !existsSync(resourcesPath)) {
   console.error(`Missing app files for ${APP_SLUG} (widget or resources).`);
   process.exit(1);
 }
 
+// Server-side state for the current walk registration location (per process/org)
+let currentWalkLocation = "";
+
 function getWidgetHtml() {
   return readFileSync(widgetPath, "utf8");
+}
+
+function getWalkRegistrationHtml() {
+  const template = readFileSync(walkRegistrationPath, "utf8");
+  return template.replace("{{WALK_LOCATION}}", currentWalkLocation || "");
 }
 
 const resources = JSON.parse(readFileSync(resourcesPath, "utf8"));
@@ -85,6 +95,28 @@ function createMcpServer() {
       ],
     })
   );
+
+  const walkRegistrationUri = "ui://widget/walk-registration.html";
+  if (hasWalkRegistration) {
+    server.registerResource(
+      "walk-registration-widget",
+      walkRegistrationUri,
+      {},
+      async () => ({
+        contents: [
+          {
+            uri: walkRegistrationUri,
+            mimeType: "text/html+skybridge",
+            text: getWalkRegistrationHtml(),
+            _meta: {
+              "openai/widgetPrefersBorder": true,
+              "openai/widgetDomain": "https://chatgpt.com",
+            },
+          },
+        ],
+      })
+    );
+  }
 
   server.registerTool(
     "show_widget",
@@ -146,6 +178,52 @@ function createMcpServer() {
       };
     }
   );
+
+  if (hasWalkRegistration) {
+    server.registerTool(
+      "register_for_walk",
+      {
+        title: `Register for the ${orgName} Walk`,
+        description: `Call this tool when the user wants to sign up or register for a walk event (e.g. "sign me up for the walk in Dallas", "I want to register for the Chicago walk"). Shows the walk registration options modal. Accepts a location and optional state.`,
+        inputSchema: {
+          location: z
+            .string()
+            .describe(
+              "City, region, or location of the walk event the user wants to register for (e.g. 'Dallas', 'Chicago, IL', 'New York')"
+            ),
+          state: z
+            .string()
+            .optional()
+            .describe("US state abbreviation or full state name, if provided separately (e.g. 'TX', 'Illinois')"),
+        },
+        _meta: {
+          "openai/outputTemplate": walkRegistrationUri,
+          "openai/toolInvocation/invoking": `Loading walk registration...`,
+          "openai/toolInvocation/invoked": `Walk registration ready`,
+        },
+      },
+      async (args) => {
+        const city = args?.location || "";
+        const state = args?.state || "";
+        currentWalkLocation = state ? `${city}, ${state}` : city;
+
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Here's how you can register for the ${currentWalkLocation ? currentWalkLocation + " " : ""}WALK to End Hydrocephalus. Choose whether you'd like to register as an individual, join an existing team, or create your own team.`,
+            },
+          ],
+          structuredContent: {
+            organization: orgName,
+            location: currentWalkLocation,
+            registrationOptions: ["individual", "join-team", "create-team"],
+          },
+          _meta: {},
+        };
+      }
+    );
+  }
 
   return server;
 }
