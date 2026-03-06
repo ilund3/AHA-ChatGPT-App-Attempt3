@@ -1,0 +1,10 @@
+{
+  "name": "pcos_challenge",
+  "version": "0.1.0",
+  "description": "PCOS Challenge ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

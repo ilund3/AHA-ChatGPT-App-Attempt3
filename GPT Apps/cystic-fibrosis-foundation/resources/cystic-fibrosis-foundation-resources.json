@@ -1,0 +1,58 @@
+{
+  "organization": "Cystic Fibrosis Foundation",
+  "themeColor": "#1c385b",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Insurance, Finances, and Legal Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Compass Program",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Contact Us",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "New to CF?",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "Care Centers",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "Find a Local Chapter",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Events and Conferences",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Community Voice",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Advocacy",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Impact Grants",
+      "category": "Get Involved"
+    }
+  ]
+}

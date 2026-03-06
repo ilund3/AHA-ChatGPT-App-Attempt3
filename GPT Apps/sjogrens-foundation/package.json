@@ -1,0 +1,10 @@
+{
+  "name": "sjogrens_foundation",
+  "version": "0.1.0",
+  "description": "Sjögren's Foundation ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

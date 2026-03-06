@@ -1,0 +1,10 @@
+{
+  "name": "american_cancer_society",
+  "version": "0.1.0",
+  "description": "American Cancer Society ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

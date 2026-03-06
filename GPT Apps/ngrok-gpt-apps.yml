@@ -1,0 +1,54 @@
+# ngrok v3 config: 15 endpoints only (one per GPT App, ports 8787–8801).
+# Use the start script so your existing authtoken is used:
+#   ./start-ngrok-all.sh
+# Or merge configs manually (macOS):
+#   ngrok start --all --config "$HOME/Library/Application Support/ngrok/ngrok.yml,ngrok-gpt-apps.yml"
+
+version: "3"
+
+endpoints:
+  - name: sjogrens-foundation
+    upstream:
+      url: 8787
+  - name: spina-bifida-association
+    upstream:
+      url: 8788
+  - name: national-psoriasis-foundation
+    upstream:
+      url: 8789
+  - name: cerebral-palsy-foundation
+    upstream:
+      url: 8790
+  - name: cystic-fibrosis-foundation
+    upstream:
+      url: 8791
+  - name: parkinsons-foundation
+    upstream:
+      url: 8792
+  - name: alzheimers-association
+    upstream:
+      url: 8793
+  - name: fare
+    upstream:
+      url: 8794
+  - name: arthritis-foundation
+    upstream:
+      url: 8795
+  - name: hydrocephalus-association
+    upstream:
+      url: 8796
+  - name: blood-cancer-united
+    upstream:
+      url: 8797
+  - name: afsp
+    upstream:
+      url: 8798
+  - name: american-cancer-society
+    upstream:
+      url: 8799
+  - name: pcos-challenge
+    upstream:
+      url: 8800
+  - name: national-ms-society
+    upstream:
+      url: 8801

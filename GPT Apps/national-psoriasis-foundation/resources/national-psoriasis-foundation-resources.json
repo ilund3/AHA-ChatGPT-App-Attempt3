@@ -1,0 +1,43 @@
+{
+  "organization": "National Psoriasis Foundation",
+  "themeColor": "#0f2074",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Our Spot for Youth and Parents",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Events in Your Area",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Advocacy",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Support Research",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Become a Partner",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Take ACTION",
+      "category": "Get Involved"
+    }
+  ]
+}

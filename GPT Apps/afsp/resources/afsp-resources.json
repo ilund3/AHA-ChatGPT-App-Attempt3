@@ -1,0 +1,78 @@
+{
+  "organization": "American Foundation for Suicide Prevention",
+  "themeColor": "#003cea",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Support for People Having Thoughts of Suicide",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Support After a Suicide Attempt",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Support for Suicide Loss Survivors",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "Support When Someone Is at Risk",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "Supporting a Loved One After an Attempt",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "Finding Treatment",
+      "category": "Services"
+    },
+    {
+      "id": "service-7",
+      "title": "Suicide Loss Support Groups",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Join a Local Chapter",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Advocate for Suicide Prevention",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Participate in Community Programs",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Apply for a Research Grant",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-6",
+      "title": "Careers at AFSP",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-7",
+      "title": "Participate in Research",
+      "category": "Get Involved"
+    }
+  ]
+}

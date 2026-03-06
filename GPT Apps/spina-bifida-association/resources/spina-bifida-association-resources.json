@@ -1,0 +1,68 @@
+{
+  "organization": "Spina Bifida Association",
+  "themeColor": "#02838f",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Expectant Families Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Children with Spina Bifida Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Adolescents and Transition Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "Adults with Spina Bifida Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "SB-YOU",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "Find a Provider",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Advocate",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Join Your Local Chapter",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Participate in an Event",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Give",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-6",
+      "title": "Participate in Research",
+      "category": "Get Involved"
+    }
+  ]
+}

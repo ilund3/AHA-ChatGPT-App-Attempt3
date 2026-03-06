@@ -1,0 +1,113 @@
+{
+  "organization": "Food Allergy Research & Education (FARE)",
+  "themeColor": "#014e95",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Education Programs & Training",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "FARE Food Allergy Academy",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "FARECheck",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "FARE Food Allergy College Search",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "FARE Webinars",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "Eat Early Eat Often",
+      "category": "Services"
+    },
+    {
+      "id": "service-7",
+      "title": "FARE Neighborhoods Initiative",
+      "category": "Services"
+    },
+    {
+      "id": "service-8",
+      "title": "Awareness Campaigns",
+      "category": "Services"
+    },
+    {
+      "id": "service-9",
+      "title": "Ready to Act",
+      "category": "Services"
+    },
+    {
+      "id": "service-10",
+      "title": "Empower",
+      "category": "Services"
+    },
+    {
+      "id": "service-11",
+      "title": "A World Unaware",
+      "category": "Services"
+    },
+    {
+      "id": "service-12",
+      "title": "Back-to-School Resource Hub",
+      "category": "Services"
+    },
+    {
+      "id": "service-13",
+      "title": "FARE 33",
+      "category": "Services"
+    },
+    {
+      "id": "service-14",
+      "title": "Living Teal",
+      "category": "Services"
+    },
+    {
+      "id": "service-15",
+      "title": "Teal Pumpkin Project",
+      "category": "Services"
+    },
+    {
+      "id": "service-16",
+      "title": "Food Allergy Awareness Week",
+      "category": "Services"
+    },
+    {
+      "id": "service-17",
+      "title": "Youth Programs",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Hometown Heroes Community Walk",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "FARE Food Allergy Summit",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Fundraise",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Attend an Event",
+      "category": "Get Involved"
+    }
+  ]
+}

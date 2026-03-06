@@ -1,0 +1,10 @@
+{
+  "name": "fare",
+  "version": "0.1.0",
+  "description": "Food Allergy Research & Education (FARE) ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

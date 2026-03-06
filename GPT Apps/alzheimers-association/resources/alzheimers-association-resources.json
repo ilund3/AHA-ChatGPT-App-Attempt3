@@ -1,0 +1,78 @@
+{
+  "organization": "Alzheimer's Association",
+  "themeColor": "#490d66",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "I Have Alzheimer's Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Caregiving Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Brain Health Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "Find Community Support",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "24/7 Helpline",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Participate in an Event",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Make a Donation",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Become an Advocate",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Planned Giving",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-6",
+      "title": "Tribute Pages",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-7",
+      "title": "Other Ways to Give",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-8",
+      "title": "Shop for the Cause",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-9",
+      "title": "Partners & Sponsors",
+      "category": "Get Involved"
+    }
+  ]
+}

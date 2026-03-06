@@ -1,0 +1,98 @@
+{
+  "organization": "Parkinson's Foundation",
+  "themeColor": "#07bfdb",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Helpline",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "In Your Area",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "PD Library",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "Hospital Safety Guide",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "Online Education",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "Events",
+      "category": "Services"
+    },
+    {
+      "id": "service-7",
+      "title": "Community Grants",
+      "category": "Services"
+    },
+    {
+      "id": "service-8",
+      "title": "For Care Partners",
+      "category": "Services"
+    },
+    {
+      "id": "service-9",
+      "title": "For Professionals",
+      "category": "Services"
+    },
+    {
+      "id": "service-10",
+      "title": "Find Your Chapter",
+      "category": "Services"
+    },
+    {
+      "id": "service-11",
+      "title": "Blog",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Corporate Sponsors",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Planned Giving",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "More Ways to Give",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Policy & Advocacy",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-6",
+      "title": "Fundraise",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-7",
+      "title": "Make a Tribute Gift",
+      "category": "Get Involved"
+    }
+  ]
+}

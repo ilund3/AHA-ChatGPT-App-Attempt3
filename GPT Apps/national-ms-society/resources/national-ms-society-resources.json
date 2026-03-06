@@ -1,0 +1,48 @@
+{
+  "organization": "National MS Society",
+  "themeColor": "#ee7521",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Get Support",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Get Connected",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Financial Planning",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Advocate",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Raise Awareness",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Fundraising Events",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Research Studies",
+      "category": "Get Involved"
+    }
+  ]
+}

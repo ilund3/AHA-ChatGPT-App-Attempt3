@@ -1,0 +1,10 @@
+{
+  "name": "cerebral_palsy_foundation",
+  "version": "0.1.0",
+  "description": "Cerebral Palsy Foundation ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

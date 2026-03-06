@@ -1,0 +1,38 @@
+{
+  "organization": "Cerebral Palsy Foundation",
+  "themeColor": "#2d4359",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Town Halls",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "CPF Live",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Podcasts",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Advocate",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Fundraise",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Participate in Research",
+      "category": "Get Involved"
+    }
+  ]
+}

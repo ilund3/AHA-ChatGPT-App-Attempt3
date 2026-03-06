@@ -1,0 +1,33 @@
+{
+  "organization": "PCOS Challenge",
+  "themeColor": "#408587",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Clinical Trials",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Join PCOS Challenge",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "PCOS Challenge Family Building Grant Application",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "PCOS Confidence Grant Application",
+      "category": "Get Involved"
+    }
+  ]
+}

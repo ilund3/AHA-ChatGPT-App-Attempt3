@@ -1,0 +1,10 @@
+{
+  "name": "afsp",
+  "version": "0.1.0",
+  "description": "American Foundation for Suicide Prevention ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

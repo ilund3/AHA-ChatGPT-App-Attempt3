@@ -1,0 +1,113 @@
+{
+  "organization": "Hydrocephalus Association",
+  "themeColor": "#36c0e7",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Helpline",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Peer Support: HydrocephalusCONNECT",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Support Groups",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "Pen Pal Program (Ages 7–12)",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "Webinars",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "National Conference: HA CONNECT",
+      "category": "Services"
+    },
+    {
+      "id": "service-7",
+      "title": "Local Educational Events",
+      "category": "Services"
+    },
+    {
+      "id": "service-8",
+      "title": "RAISE Resilience Program",
+      "category": "Services"
+    },
+    {
+      "id": "service-9",
+      "title": "Summer Camp",
+      "category": "Services"
+    },
+    {
+      "id": "service-10",
+      "title": "Scholarship Programs",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Fundraise",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "WALK to End Hydrocephalus",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Endurance Program",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Games4Brains Program",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Become a Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-6",
+      "title": "Help Raise Awareness",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-7",
+      "title": "Find a Local Event",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-8",
+      "title": "Advocate",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-9",
+      "title": "Advocacy Toolkit",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-10",
+      "title": "Advocacy Action Center",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-11",
+      "title": "Congressional Hydrocephalus Caucus",
+      "category": "Get Involved"
+    }
+  ]
+}

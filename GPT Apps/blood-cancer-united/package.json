@@ -1,0 +1,10 @@
+{
+  "name": "blood_cancer_united",
+  "version": "0.1.0",
+  "description": "Blood Cancer United ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

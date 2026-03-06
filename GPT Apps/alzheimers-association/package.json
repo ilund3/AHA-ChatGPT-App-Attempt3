@@ -1,0 +1,10 @@
+{
+  "name": "alzheimers_association",
+  "version": "0.1.0",
+  "description": "Alzheimer's Association ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

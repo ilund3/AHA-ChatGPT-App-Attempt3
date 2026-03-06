@@ -18,6 +18,8 @@ npm start
 
 The server will start on `http://localhost:8787/mcp`
 
+**If Cursor or ChatGPT shows "Unsafe URL"** when you use `http://localhost:8787/mcp`: those clients require **HTTPS**. Use ngrok (step 4) to get an `https://` URL and use that instead.
+
 ### 3. Test with MCP Inspector (Optional)
 
 You can test your server locally using the MCP Inspector:

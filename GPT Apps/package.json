@@ -1,0 +1,15 @@
+{
+  "name": "gpt-apps",
+  "version": "0.1.0",
+  "description": "GPT Apps – one MCP server per organization",
+  "type": "module",
+  "scripts": {
+    "start": "node mcp-server.js",
+    "start:all": "node run-all-mcp.js",
+    "start:all:ports": "node run-all-mcp.js 15 8787"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.2",
+    "zod": "^3.25.76"
+  }
+}

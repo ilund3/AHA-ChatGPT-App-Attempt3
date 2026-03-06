@@ -1,0 +1,10 @@
+{
+  "name": "national_psoriasis_foundation",
+  "version": "0.1.0",
+  "description": "National Psoriasis Foundation ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

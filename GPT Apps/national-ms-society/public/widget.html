@@ -1,0 +1,3614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>National MS Society</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+
+      #bar-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 0;
+        background: #ffffff;
+        border-bottom: none;
+        transition: height 0.3s ease;
+        overflow: visible;
+        max-height: none;
+      }
+
+      #bar-container.expanded {
+        overflow: visible;
+        max-height: none;
+      }
+
+      #top-bar {
+        display: none;
+      }
+
+      #hamburger-button {
+        display: none;
+      }
+
+      #emergency-text {
+        display: none;
+      }
+
+      #menu-items {
+        display: none;
+      }
+
+      #search-conversations-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      #search-conversations-button:hover {
+        background: #fff5f5;
+      }
+
+      #search-conversations-button svg {
+        width: 24px;
+        height: 24px;
+        fill: #ee7521;
+      }
+
+      /* Conversations Modal Styles */
+      .conversations-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .conversations-modal.active {
+        display: flex;
+      }
+
+      .conversations-modal-content {
+        background: #ffffff;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 900px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .conversations-modal-header {
+        padding: 24px;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .conversations-modal-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0;
+      }
+
+      .conversations-modal-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 28px;
+        color: #6c757d;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      .conversations-modal-close:hover {
+        background: #f3f4f6;
+        color: #1f2937;
+      }
+
+      .conversations-modal-body {
+        padding: 24px;
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      /* Integrations Tab Styles */
+      .integrations-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .integrations-header {
+        margin-bottom: 30px;
+      }
+
+      .integrations-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0 0 10px 0;
+      }
+
+      .integrations-subtitle {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #6c757d;
+        margin: 0;
+      }
+
+      .integrations-category {
+        margin-bottom: 40px;
+      }
+
+      .integrations-category-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0 0 20px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e5e7eb;
+      }
+
+      .integrations-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .integration-card {
+        background: #ffffff;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .integration-card:hover {
+        border-color: #ee7521;
+        box-shadow: 0 4px 12px rgba(220, 20, 60, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .integration-card.connected {
+        border-color: #10b981;
+        background: #f0fdf4;
+      }
+
+      .integration-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .integration-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: #f3f4f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+
+      .integration-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 6px;
+      }
+
+      .integration-card.connected .integration-icon {
+        background: #d1fae5;
+      }
+
+      .integration-info {
+        flex: 1;
+      }
+
+      .integration-name {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0 0 4px 0;
+      }
+
+      .integration-status {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        color: #6c757d;
+        margin: 0;
+      }
+
+      .integration-card.connected .integration-status {
+        color: #10b981;
+        font-weight: 500;
+      }
+
+      .integration-description {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #495057;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .integration-connect-btn {
+        margin-top: auto;
+        padding: 10px 20px;
+        border: 2px solid #ee7521;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #ee7521;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .integration-connect-btn:hover {
+        background: #ee7521;
+        color: #ffffff;
+      }
+
+      .integration-card.connected .integration-connect-btn {
+        border-color: #10b981;
+        color: #10b981;
+        background: #ffffff;
+      }
+
+      .integration-card.connected .integration-connect-btn:hover {
+        background: #10b981;
+        color: #ffffff;
+      }
+
+      #hamburger-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px 8px 8px 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 40px;
+        height: 30px;
+        position: relative;
+        overflow: visible;
+        margin-left: 0;
+      }
+
+      #hamburger-button span {
+        width: 100%;
+        height: 3px;
+        background-color: #ee7521;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+
+      #hamburger-button.active span:nth-child(1) {
+        width: 60%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        margin-left: 3px;
+      }
+
+      #hamburger-button.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      #hamburger-button.active span:nth-child(3) {
+        width: 60%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        margin-left: 3px;
+      }
+
+      #emergency-text {
+        flex: 1;
+        text-align: right;
+        padding-left: 20px;
+      }
+      
+      #menu-items {
+        display: none;
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        margin-left: 20px;
+      }
+
+      #menu-items.active {
+        display: flex;
+      }
+      
+      #bar-container.expanded #emergency-text {
+        display: none !important;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 16px;
+        color: #495057;
+        text-decoration: none;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        position: relative;
+        transition: color 0.2s ease;
+      }
+
+      .menu-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 16px;
+        right: 16px;
+        height: 2px;
+        background-color: #ee7521;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .menu-item:hover {
+        color: #495057;
+      }
+
+      .menu-item:hover::after {
+        opacity: 1;
+      }
+
+      .menu-item.active {
+        color: #495057;
+      }
+
+      .menu-item.active::after {
+        opacity: 1;
+      }
+
+      #emergency-text {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #ee7521;
+        font-weight: 500;
+        text-align: right;
+        padding-left: 20px;
+        transition: opacity 0.3s ease, max-width 0.3s ease;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      #bar-container.expanded #emergency-text {
+        display: none !important;
+      }
+
+      #emergency-text strong {
+        font-weight: 600;
+      }
+
+      .tab-view {
+        display: none;
+        width: 100%;
+        padding: 0;
+        background: #ffffff;
+        align-self: flex-start;
+        max-height: 700px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .tab-view.active {
+        display: block;
+      }
+
+      /* Always show search button, even when tabs are active */
+      #bar-container.has-active-tab #top-bar {
+        display: flex;
+      }
+      
+      /* Always show search button */
+      #search-conversations-button {
+        display: flex !important;
+      }
+      
+      /* Always show tab navigation */
+      .tab-nav {
+        display: flex;
+      }
+
+      .tab-content {
+        margin-top: 20px;
+        padding: 0 20px 40px 20px;
+      }
+
+      .tab-content p {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #495057;
+        line-height: 1.6;
+      }
+
+      .support-network-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      #support-search-container {
+        transition: all 0.3s ease;
+      }
+
+      .support-location-fields {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 0;
+        margin-bottom: 0;
+        transition: max-height 0.3s ease, padding 0.3s ease, margin-bottom 0.3s ease, opacity 0.3s ease;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        display: block;
+      }
+
+      .support-location-fields.visible {
+        max-height: 400px;
+        padding: 30px;
+        margin-bottom: 20px;
+        opacity: 1;
+      }
+
+      .support-location-fields .location-search-row {
+        margin-bottom: 0;
+      }
+
+      #support-map-container {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        #support-map {
+          height: 400px !important;
+        }
+
+        #support-results-list {
+          max-height: 400px !important;
+        }
+      }
+
+      #support-map {
+        border: 2px solid #e5e7eb;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      #support-results-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-right: 10px;
+      }
+
+      #support-results-list::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      #support-results-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      #support-results-list::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+
+      #support-results-list::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+
+      .support-group-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .support-group-card:hover {
+        border-color: #ee7521;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .support-group-card.highlighted {
+        border: 3px solid #ee7521;
+        background: #ffffff;
+        box-shadow: 0 4px 12px rgba(220, 20, 60, 0.2);
+      }
+
+      .support-group-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 15px;
+      }
+
+      .support-group-checkbox {
+        margin-top: 4px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+
+      .support-group-title-section {
+        flex: 1;
+      }
+
+      .support-group-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0 0 5px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .support-group-verified {
+        color: #10b981;
+        font-size: 18px;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        background: #d1fae5;
+        border-radius: 50%;
+        margin-left: 4px;
+      }
+
+      .support-group-provider {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+        margin: 0 0 5px 0;
+      }
+
+      .support-group-review-date {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        color: #9ca3af;
+      }
+
+      .support-group-description {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .support-group-services {
+        margin-bottom: 15px;
+      }
+
+      .support-group-services-label {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 8px;
+      }
+
+      .support-group-services-list {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 13px;
+        color: #495057;
+        line-height: 1.8;
+        margin-left: 20px;
+      }
+
+      .support-group-services-list li {
+        margin-bottom: 4px;
+      }
+
+      .support-group-serving {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 15px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 13px;
+        color: #495057;
+      }
+
+      .support-group-serving-icon {
+        margin-top: 2px;
+      }
+
+      .support-group-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .support-group-more-info-btn {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        padding: 8px 16px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #495057;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .support-group-more-info-btn:hover {
+        border-color: #ee7521;
+        color: #ee7521;
+      }
+
+      .support-group-action-icons {
+        display: flex;
+        gap: 12px;
+      }
+
+      .support-group-icon-btn {
+        background: none;
+        border: none;
+        color: #9ca3af;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 4px;
+        transition: color 0.2s ease;
+      }
+
+      .support-group-icon-btn:hover {
+        color: #ee7521;
+      }
+
+      .support-group-next-steps {
+        background: #f9fafb;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 15px;
+      }
+
+      .support-group-next-steps-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 10px;
+      }
+
+      .support-group-next-steps-text {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 13px;
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+
+      .support-group-location-info {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 13px;
+        color: #495057;
+        margin-bottom: 5px;
+      }
+
+      .support-group-address {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 13px;
+        color: #495057;
+        margin-bottom: 8px;
+      }
+
+      .support-group-hours {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+
+      .support-group-hours.open {
+        color: #10b981;
+      }
+
+      .support-group-hours.closed {
+        color: #ee7521;
+      }
+
+      .support-group-apply-btn {
+        background: #10b981;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: background-color 0.2s ease;
+      }
+
+      .support-group-apply-btn:hover {
+        background: #059669;
+      }
+
+      .support-group-apply-btn.secondary {
+        background: #ee7521;
+      }
+
+      .support-group-apply-btn.secondary:hover {
+        background: #ee7521;
+      }
+
+      /* Volunteer Opportunities Styles */
+      .volunteer-opportunities-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .volunteer-opportunities-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 30px;
+        text-align: left;
+      }
+
+      .volunteer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .volunteer-link {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #ee7521;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .volunteer-link:hover {
+        color: #ee7521;
+        text-decoration: underline;
+      }
+
+      .volunteer-help-text {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+
+      .volunteer-help-text a {
+        color: #ee7521;
+        text-decoration: none;
+      }
+
+      .volunteer-help-text a:hover {
+        text-decoration: underline;
+      }
+
+      .youth-toggle-container {
+        background: #f9fafb;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .youth-toggle-label {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: #1f2937;
+      }
+
+      .youth-toggle-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 26px;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #4b5563;
+        transition: 0.3s;
+        border-radius: 26px;
+      }
+
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+        border-radius: 50%;
+      }
+
+      .toggle-switch input:checked + .toggle-slider {
+        background-color: #ee7521;
+      }
+
+      .toggle-switch input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+      }
+
+      .toggle-label-text {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #1f2937;
+        font-weight: 500;
+      }
+
+      .youth-toggle-description {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        color: #6c757d;
+        margin-top: 5px;
+      }
+
+      .volunteer-opportunities-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-bottom: 40px;
+        align-items: start;
+      }
+
+      .volunteer-opportunities-grid.youth-mode {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .volunteer-opportunity-card {
+        background: #ffffff;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 280px;
+        position: relative;
+      }
+
+      .volunteer-opportunity-card:hover {
+        border-color: #ee7521;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .volunteer-opportunity-card:hover .opportunity-image-wrapper,
+      .volunteer-opportunity-card:hover .opportunity-title {
+        display: none;
+      }
+
+      .volunteer-opportunity-card:hover .opportunity-description {
+        display: flex;
+      }
+
+      .volunteer-opportunity-card.selected {
+        border-color: #ee7521;
+        border-width: 3px;
+        background: #ffffff;
+      }
+
+      .opportunity-description {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        justify-content: space-between;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 12px;
+      }
+
+      .opportunity-description p {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #1f2937;
+        line-height: 1.6;
+        margin: 0 0 20px 0;
+        flex: 1;
+      }
+
+      .opportunity-select-btn {
+        background: #ee7521;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        width: 100%;
+        margin-top: auto;
+      }
+
+      .opportunity-select-btn:hover {
+        background: #ee7521;
+      }
+
+      .opportunity-image-wrapper {
+        width: 100%;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        overflow: hidden;
+      }
+
+      .opportunity-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .opportunity-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+        line-height: 1.4;
+      }
+
+      .volunteer-next-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+      .volunteer-next-button {
+        background: #ee7521;
+        color: #ffffff;
+        border: none;
+        border-radius: 25px;
+        padding: 14px 40px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+      }
+
+      .volunteer-next-button:hover {
+        background: #ee7521;
+        transform: translateY(-1px);
+      }
+
+      .volunteer-next-button:active {
+        background: #a01026;
+        transform: translateY(0);
+      }
+
+
+      .support-network-description {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      /* Past Conversations Styles */
+      .past-conversations-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .conversations-search-box {
+        margin-bottom: 25px;
+        position: relative;
+      }
+
+      .conversations-search-input {
+        width: 100%;
+        padding: 12px 45px 12px 15px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        transition: border-color 0.2s ease;
+      }
+
+      .conversations-search-input:focus {
+        outline: none;
+        border-color: #ee7521;
+      }
+
+      .conversations-search-box::after {
+        content: "🔍";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 18px;
+      }
+
+      .conversations-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .conversation-item {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .conversation-item:hover {
+        border-color: #ee7521;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .conversation-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+      }
+
+      .conversation-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+      }
+
+      .conversation-date {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+        white-space: nowrap;
+        margin-left: 15px;
+      }
+
+      .conversation-preview {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 15px;
+        color: #495057;
+        line-height: 1.6;
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .support-network-description p {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 18px;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+
+      .support-network-tagline {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #ee7521;
+        margin-top: 20px !important;
+      }
+
+      .support-type-selector {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .support-type-label {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: #495057;
+      }
+
+      .support-type-options {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .support-type-btn {
+        padding: 12px 32px;
+        border: 2px solid #ee7521;
+        border-radius: 25px;
+        background: #ffffff;
+        color: #ee7521;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        min-width: 120px;
+      }
+
+      .support-type-btn:hover {
+        background: #fff5f5;
+        transform: translateY(-1px);
+      }
+
+      .support-type-btn.active {
+        background: #ee7521;
+        color: #ffffff;
+      }
+
+      .support-type-btn.active:hover {
+        background: #ee7521;
+      }
+
+      .location-search-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 30px;
+        margin: 20px auto;
+        max-width: 600px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .location-search-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 20px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .location-input-group {
+        flex: 1;
+        min-width: 150px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .location-input-group label {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #495057;
+        margin-bottom: 8px;
+      }
+
+      .location-input-group input,
+      .location-input-group select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #495057;
+        background: #ffffff;
+        transition: border-color 0.2s ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+
+      .location-input-group input:focus,
+      .location-input-group select:focus {
+        outline: none;
+        border-color: #60a5fa;
+      }
+
+      .location-input-group input::placeholder {
+        color: #9ca3af;
+      }
+
+      .location-input-group select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000000' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 12px;
+        padding-right: 40px;
+      }
+
+      .location-input-group select option {
+        padding: 10px;
+      }
+
+      .location-or {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: #6c757d;
+        padding-bottom: 8px;
+        white-space: nowrap;
+      }
+
+      .location-search-button {
+        width: 100%;
+        padding: 14px 20px;
+        background: #4b5563;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      .location-search-button:hover {
+        background: #374151;
+      }
+
+      .location-search-button:active {
+        background: #1f2937;
+      }
+
+      #store-view {
+        display: none;
+        width: 100%;
+        padding: 0;
+        background: #ffffff;
+      }
+
+      #store-view.active {
+        display: block;
+      }
+
+      .tab-nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+        padding: 20px 20px 12px 20px;
+        margin: 0;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        background: #ffffff;
+        z-index: 10;
+        flex-shrink: 0;
+      }
+
+      .tab-nav-search-button {
+        margin-right: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      .tab-nav-search-button:hover {
+        background: #fff5f5;
+      }
+
+      .tab-nav-search-button svg {
+        width: 24px;
+        height: 24px;
+        fill: #ee7521;
+      }
+
+      .tab-nav-search-button.active {
+        background: #fff5f5;
+      }
+
+      .tab-nav-search-button.active svg {
+        fill: #ee7521;
+      }
+
+      .tab-nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 16px;
+        color: #495057;
+        text-decoration: none;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        position: relative;
+        transition: color 0.2s ease;
+      }
+
+      .tab-nav-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 16px;
+        right: 16px;
+        height: 2px;
+        background-color: #ee7521;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .tab-nav-item:hover {
+        color: #495057;
+      }
+
+      .tab-nav-item:hover::after {
+        opacity: 1;
+      }
+
+      .tab-nav-item.active {
+        color: #495057;
+      }
+
+      .tab-nav-item.active::after {
+        opacity: 1;
+      }
+
+      .donate-button {
+        padding: 12px 24px;
+        background: #ee7521;
+        color: #ffffff;
+        border: none;
+        border-radius: 25px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        white-space: nowrap;
+      }
+
+      .donate-button:hover {
+        background: #ee7521;
+        transform: translateY(-1px);
+      }
+
+      .donate-button:active {
+        background: #a01026;
+        transform: translateY(0);
+      }
+
+      .donate-form-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px 20px;
+        min-height: 200px;
+      }
+
+      .donate-form {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 30px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .donate-header {
+        margin-bottom: 25px;
+      }
+
+      .secure-donation-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #1f2937;
+      }
+
+      .secure-icon-wrapper {
+        width: 24px;
+        height: 24px;
+        background: #10b981;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .secure-icon {
+        font-size: 14px;
+        color: #ffffff;
+      }
+
+      .donation-frequency {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+
+      .frequency-btn {
+        flex: 1;
+        padding: 12px 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #1f2937;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .frequency-btn:hover {
+        border-color: #ee7521;
+      }
+
+      .frequency-btn.active {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #ffffff;
+      }
+
+      .heart-icon {
+        font-size: 12px;
+        color: #ee7521;
+      }
+
+      .donation-amounts {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+
+      .amount-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .amount-btn {
+        flex: 1;
+        padding: 14px 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #1f2937;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .amount-btn:hover {
+        border-color: #ee7521;
+      }
+
+      .amount-btn.active {
+        background: #2563eb;
+        border-color: #2563eb;
+        color: #ffffff;
+      }
+
+      .custom-amount-container {
+        margin-bottom: 25px;
+      }
+
+      .custom-amount-input-wrapper {
+        display: flex;
+        align-items: center;
+        border: 2px solid #2563eb;
+        border-radius: 8px;
+        padding: 0;
+        background: #ffffff;
+        position: relative;
+      }
+
+      .currency-symbol {
+        padding: 0 15px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      .custom-amount-input {
+        flex: 1;
+        border: none;
+        padding: 14px 0;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: #1f2937;
+        outline: none;
+        background: transparent;
+      }
+
+      .custom-amount-input::placeholder {
+        color: #9ca3af;
+      }
+
+      .currency-select {
+        border: none;
+        border-left: 1px solid #e5e7eb;
+        padding: 14px 15px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: #1f2937;
+        background: #ffffff;
+        cursor: pointer;
+        outline: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231f2937' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 12px;
+        padding-right: 35px;
+      }
+
+      .donation-dedicate {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+
+      .dedicate-checkbox {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: #2563eb;
+      }
+
+      .dedicate-label {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #1f2937;
+        cursor: pointer;
+      }
+
+      .donate-submit-btn {
+        width: 100%;
+        padding: 16px 20px;
+        background: #2563eb;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      .donate-submit-btn:hover {
+        background: #1d4ed8;
+      }
+
+      .donate-submit-btn:active {
+        background: #1e40af;
+      }
+
+
+      #store-content {
+        padding: 20px;
+      }
+
+      .store-header {
+        margin-bottom: 30px;
+      }
+
+      .store-header h1 {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: #ee7521;
+        margin-bottom: 10px;
+      }
+
+      .store-header p {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        color: #6c757d;
+      }
+
+      .store-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 30px;
+        align-items: center;
+      }
+
+      .search-box {
+        flex: 1;
+        min-width: 250px;
+        position: relative;
+      }
+
+      .search-box input {
+        width: 100%;
+        padding: 12px 45px 12px 15px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 16px;
+        transition: border-color 0.2s ease;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: #ee7521;
+      }
+
+      .search-box::after {
+        content: "🔍";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .filter-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .filter-select {
+        padding: 12px 15px;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        background: #ffffff;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+        min-width: 150px;
+      }
+
+      .filter-select:focus {
+        outline: none;
+        border-color: #ee7521;
+      }
+
+      .category-filters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e5e7eb;
+      }
+
+      .category-filter-btn {
+        padding: 10px 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 25px;
+        background: #ffffff;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #495057;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .category-filter-btn:hover {
+        border-color: #ee7521;
+        color: #ee7521;
+      }
+
+      .category-filter-btn.active {
+        background: #ee7521;
+        border-color: #ee7521;
+        color: #ffffff;
+      }
+
+      .store-results {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .store-results-count {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #6c757d;
+      }
+
+      #store-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .store-item {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .store-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-color: #ee7521;
+      }
+
+      .store-item-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        background: #f9fafb;
+      }
+
+      .store-item-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ee7521;
+        color: #ffffff;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .store-item-image-wrapper {
+        position: relative;
+      }
+
+      .store-item-content {
+        padding: 20px;
+      }
+
+      .store-item-category {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+      }
+
+      .store-item-title {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+
+      .store-item-price {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #ee7521;
+        margin-bottom: 10px;
+      }
+
+      .store-item-link {
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        font-size: 14px;
+        color: #ee7521;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .store-item-link:hover {
+        text-decoration: underline;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+        color: #6c757d;
+      }
+
+      .no-results h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #495057;
+      }
+
+      .org-resource-list { list-style: none; padding: 0; margin: 20px 0 0 0; }
+      .org-resource-item { padding: 12px 0; border-bottom: 1px solid #e5e7eb; font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; font-size: 16px; color: #1f2937; }
+      .org-resource-item:last-child { border-bottom: none; }
+  
+    </style>
+  </head>
+  <body>
+    <div id="bar-container">
+      <div class="tab-nav">
+        <button id="search-conversations-button" class="tab-nav-search-button" aria-label="Search conversations" title="Search conversations" data-action="conversations">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </button>
+        <a href="#" class="tab-nav-item" data-action="support-groups">Get Involved</a>
+        <a href="#" class="tab-nav-item" data-action="volunteer">Support Network</a>
+        <a href="#" class="tab-nav-item" data-action="integrations">Services</a>
+        <a href="#" class="tab-nav-item" data-action="store">Store</a>
+        <button type="button" class="donate-button" data-action="donate">Donate</button>
+      </div>
+      <div id="store-view" class="tab-view">
+        <div id="store-content">
+          <div class="store-controls">
+            <div class="search-box">
+              <input type="text" id="store-search" placeholder="Search products...">
+            </div>
+            <div class="filter-group">
+              <select class="filter-select" id="sort-select">
+                <option value="featured">Sort: Featured</option>
+                <option value="price-low">Sort: Price Low to High</option>
+                <option value="price-high">Sort: Price High to Low</option>
+                <option value="name-asc">Sort: Name A-Z</option>
+                <option value="name-desc">Sort: Name Z-A</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="category-filters">
+            <button class="category-filter-btn active" data-category="all">All Products</button>
+            <button class="category-filter-btn" data-category="health-monitoring">Health Monitoring</button>
+            <button class="category-filter-btn" data-category="exercise">Exercise Equipment</button>
+            <button class="category-filter-btn" data-category="cookbooks">Cookbooks</button>
+            <button class="category-filter-btn" data-category="aha-merch">AHA Merchandise</button>
+            <button class="category-filter-btn" data-category="nutrition">Nutrition & Supplements</button>
+            <button class="category-filter-btn" data-category="wellness">Wellness & Lifestyle</button>
+          </div>
+
+          <div class="store-results">
+            <div class="store-results-count" id="results-count">Loading products...</div>
+          </div>
+
+          <div id="store-items"></div>
+          <div id="no-results" class="no-results" style="display: none;">
+            <h3>No products found</h3>
+            <p>Try adjusting your search or filters</p>
+          </div>
+        </div>
+      </div>
+      <div id
+      <div id="support-groups-view" class="tab-view">
+        <div class="tab-content">
+          <div class="integrations-container">
+            <div class="integrations-header">
+              <h2 class="integrations-title">Get Involved</h2>
+              <p class="integrations-subtitle">Ways to get involved with National MS Society.</p>
+            </div>
+            <ul class="org-resource-list">
+                <li class="org-resource-item"><span>Volunteer</span></li>
+                <li class="org-resource-item"><span>Advocate</span></li>
+                <li class="org-resource-item"><span>Raise Awareness</span></li>
+                <li class="org-resource-item"><span>Fundraising Events</span></li>
+                <li class="org-resource-item"><span>Research Studies</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      ="volunteer-view" class="tab-view">
+        <div class="tab-content">
+          <div class="support-network-content">
+            <div class="support-network-description">
+              <p>Welcome to where patients, survivors, and caregivers connect, share, and heal together.</p>
+              <p class="support-network-tagline">Real People. Real Stories. Real Strength.</p>
+            </div>
+            <div class="support-type-selector">
+              <label class="support-type-label">Select Support Type (choose one or both):</label>
+              <div class="support-type-options">
+                <button type="button" class="support-type-btn active" data-type="online">Online</button>
+                <button type="button" class="support-type-btn" data-type="in-person">In-Person</button>
+              </div>
+            </div>
+            <div id="support-search-container" style="display: block; max-width: 600px; margin: 30px auto 0;">
+              <div id="support-location-fields" class="support-location-fields">
+                <div class="location-search-row">
+                  <div class="location-input-group">
+                    <label for="support-zip-code-input">Zip Code</label>
+                    <input type="text" id="support-zip-code-input" placeholder="Zip Code" maxlength="5">
+                  </div>
+                  <div class="location-or">OR</div>
+                  <div class="location-input-group">
+                    <label for="support-state-select">State</label>
+                    <select id="support-state-select">
+                      <option value="">State</option>
+                      <option value="AL">Alabama</option>
+                      <option value="AK">Alaska</option>
+                      <option value="AZ">Arizona</option>
+                      <option value="AR">Arkansas</option>
+                      <option value="CA">California</option>
+                      <option value="CO">Colorado</option>
+                      <option value="CT">Connecticut</option>
+                      <option value="DE">Delaware</option>
+                      <option value="FL">Florida</option>
+                      <option value="GA">Georgia</option>
+                      <option value="HI">Hawaii</option>
+                      <option value="ID">Idaho</option>
+                      <option value="IL">Illinois</option>
+                      <option value="IN">Indiana</option>
+                      <option value="IA">Iowa</option>
+                      <option value="KS">Kansas</option>
+                      <option value="KY">Kentucky</option>
+                      <option value="LA">Louisiana</option>
+                      <option value="ME">Maine</option>
+                      <option value="MD">Maryland</option>
+                      <option value="MA">Massachusetts</option>
+                      <option value="MI">Michigan</option>
+                      <option value="MN">Minnesota</option>
+                      <option value="MS">Mississippi</option>
+                      <option value="MO">Missouri</option>
+                      <option value="MT">Montana</option>
+                      <option value="NE">Nebraska</option>
+                      <option value="NV">Nevada</option>
+                      <option value="NH">New Hampshire</option>
+                      <option value="NJ">New Jersey</option>
+                      <option value="NM">New Mexico</option>
+                      <option value="NY">New York</option>
+                      <option value="NC">North Carolina</option>
+                      <option value="ND">North Dakota</option>
+                      <option value="OH">Ohio</option>
+                      <option value="OK">Oklahoma</option>
+                      <option value="OR">Oregon</option>
+                      <option value="PA">Pennsylvania</option>
+                      <option value="RI">Rhode Island</option>
+                      <option value="SC">South Carolina</option>
+                      <option value="SD">South Dakota</option>
+                      <option value="TN">Tennessee</option>
+                      <option value="TX">Texas</option>
+                      <option value="UT">Utah</option>
+                      <option value="VT">Vermont</option>
+                      <option value="VA">Virginia</option>
+                      <option value="WA">Washington</option>
+                      <option value="WV">West Virginia</option>
+                      <option value="WI">Wisconsin</option>
+                      <option value="WY">Wyoming</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div style="text-align: center; margin-top: 20px;">
+                <button type="button" id="support-search-btn" class="location-search-button">Search</button>
+              </div>
+              <div id="support-map-container" style="display: none; margin-top: 30px;">
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                  <div id="support-map" style="width: 100%; height: 500px; border-radius: 12px; overflow: hidden;"></div>
+                  <div id="support-results-list" style="width: 100%; max-height: 500px; overflow-y: auto;">
+                    <!-- Support group cards will be inserted here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Conversations View -->
+      <div id="conversations-view" class="tab-view">
+        <div class="tab-content">
+          <div class="past-conversations-container">
+            <div class="conversations-search-box">
+              <input type="text" id="conversations-search" placeholder="Search conversations..." class="conversations-search-input">
+            </div>
+            <div class="conversations-list">
+              <div class="conversation-item" data-conversation-id="1">
+                <div class="conversation-header">
+                  <h3 class="conversation-title">Heart Health Questions</h3>
+                  <span class="conversation-date">2 days ago</span>
+                </div>
+                <p class="conversation-preview">"What are some heart-healthy foods I should include in my diet?"</p>
+              </div>
+              
+              <div class="conversation-item" data-conversation-id="2">
+                <div class="conversation-header">
+                  <h3 class="conversation-title">Exercise Recommendations</h3>
+                  <span class="conversation-date">5 days ago</span>
+                </div>
+                <p class="conversation-preview">"I'm looking for beginner-friendly exercises to improve my cardiovascular health..."</p>
+              </div>
+              
+              <div class="conversation-item" data-conversation-id="3">
+                <div class="conversation-header">
+                  <h3 class="conversation-title">Support Group Information</h3>
+                  <span class="conversation-date">1 week ago</span>
+                </div>
+                <p class="conversation-preview">"Can you help me find support groups near me for heart disease patients?"</p>
+              </div>
+              
+              <div class="conversation-item" data-conversation-id="4">
+                <div class="conversation-header">
+                  <h3 class="conversation-title">Blood Pressure Monitoring</h3>
+                  <span class="conversation-date">2 weeks ago</span>
+                </div>
+                <p class="conversation-preview">"What's the best way to monitor my blood pressure at home?"</p>
+              </div>
+              
+              <div class="conversation-item" data-conversation-id="5">
+                <div class="conversation-header">
+                  <h3 class="conversation-title">Medication Questions</h3>
+                  <span class="conversation-date">3 weeks ago</span>
+                </div>
+                <p class="conversation-preview">"I have questions about my cholesterol medication and potential side effects..."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div id="integrations-view" class="tab-view">
+        <div class="tab-content">
+          <div class="integrations-container">
+            <div class="integrations-header">
+              <h2 class="integrations-title">Services</h2>
+              <p class="integrations-subtitle">Programs and resources from National MS Society.</p>
+            </div>
+            <ul class="org-resource-list">
+                <li class="org-resource-item"><span>Get Support</span></li>
+                <li class="org-resource-item"><span>Get Connected</span></li>
+                <li class="org-resource-item"><span>Financial Planning</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="donate-view" class="tab-view">
+        <div class="tab-content">
+          <div class="donate-form-container">
+            <div class="donate-form">
+              <div class="donate-header">
+                <div class="secure-donation-header">
+                  <div class="secure-icon-wrapper">
+                    <span class="secure-icon">🔒</span>
+                  </div>
+                  <span class="secure-text">Secure donation</span>
+                </div>
+              </div>
+              
+              <div class="donation-frequency">
+                <button type="button" class="frequency-btn active" data-frequency="once">Give once</button>
+                <button type="button" class="frequency-btn" data-frequency="monthly">
+                  <span class="heart-icon">❤️</span> Monthly
+                </button>
+              </div>
+              
+              <div class="donation-amounts">
+                <div class="amount-row">
+                  <button type="button" class="amount-btn" data-amount="1000">$1,000</button>
+                  <button type="button" class="amount-btn" data-amount="500">$500</button>
+                  <button type="button" class="amount-btn" data-amount="300">$300</button>
+                </div>
+                <div class="amount-row">
+                  <button type="button" class="amount-btn active" data-amount="120">$120</button>
+                  <button type="button" class="amount-btn" data-amount="65">$65</button>
+                  <button type="button" class="amount-btn" data-amount="40">$40</button>
+                </div>
+              </div>
+              
+              <div class="custom-amount-container">
+                <div class="custom-amount-input-wrapper">
+                  <span class="currency-symbol">$</span>
+                  <input type="text" id="custom-amount" class="custom-amount-input" value="120" placeholder="0">
+                  <select id="currency-select" class="currency-select">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="CAD">CAD</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="donation-dedicate">
+                <input type="checkbox" id="dedicate-donation" class="dedicate-checkbox">
+                <label for="dedicate-donation" class="dedicate-label">Dedicate this donation</label>
+              </div>
+              
+              <button type="button" class="donate-submit-btn">Donate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        const hamburgerButton = document.getElementById("hamburger-button");
+        const menuItems = document.getElementById("menu-items");
+        const barContainer = document.getElementById("bar-container");
+        const menuItemLinks = document.querySelectorAll(".menu-item");
+
+        // Function to notify ChatGPT of the widget's current height
+        let heightNotifyTimeout = null;
+        let lastNotifiedHeight = 0;
+        function notifyHeight(force = false) {
+          if (heightNotifyTimeout) {
+            clearTimeout(heightNotifyTimeout);
+          }
+          
+          heightNotifyTimeout = setTimeout(() => {
+            if (window.openai?.notifyIntrinsicHeight && barContainer) {
+              void barContainer.offsetHeight;
+              const height = barContainer.scrollHeight;
+              
+              // Notify if height changed or if forced (e.g., when tab is clicked)
+              if (force || Math.abs(height - lastNotifiedHeight) > 1) {
+                lastNotifiedHeight = height;
+                // Use actual height - the widget should expand automatically when content is large enough
+                window.openai.notifyIntrinsicHeight(height);
+                console.log("Widget notified height:", height);
+              }
+            }
+          }, 50);
+        }
+
+        // ChatGPT injects window.openai asynchronously; wait for it so the first notifyIntrinsicHeight
+        // is sent and the host stops showing "Loading widget".
+        function whenOpenAiReady(callback) {
+          if (typeof window.openai !== "undefined" && typeof window.openai.notifyIntrinsicHeight === "function") {
+            callback();
+            return;
+          }
+          const check = setInterval(function() {
+            if (typeof window.openai !== "undefined" && typeof window.openai.notifyIntrinsicHeight === "function") {
+              clearInterval(check);
+              callback();
+            }
+          }, 50);
+          setTimeout(function() {
+            clearInterval(check);
+            callback();
+          }, 5000);
+        }
+
+        // Simple click handler
+        if (hamburgerButton) {
+          hamburgerButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            hamburgerButton.classList.toggle("active");
+            menuItems.classList.toggle("active");
+            barContainer.classList.toggle("expanded");
+            
+            setTimeout(() => {
+              notifyHeight();
+            }, 300);
+          });
+        }
+
+        const storeView = document.getElementById("store-view");
+        const supportGroupsView = document.getElementById("support-groups-view");
+        const volunteerView = document.getElementById("volunteer-view");
+        const integrationsView = document.getElementById("integrations-view");
+        const conversationsView = document.getElementById("conversations-view");
+        const donateView = document.getElementById("donate-view");
+        const allTabViews = [storeView, supportGroupsView, volunteerView, integrationsView, conversationsView, donateView];
+        const tabNavItems = document.querySelectorAll(".tab-nav-item");
+        const donateButton = document.querySelector(".donate-button");
+        const searchConversationsButton = document.getElementById("search-conversations-button");
+
+        // Function to show a specific tab
+        async function showTab(action) {
+          // Hide all tabs
+          allTabViews.forEach(view => {
+            if (view) view.classList.remove("active");
+          });
+
+          // Show the selected tab
+          let targetView = null;
+          switch(action) {
+            case "store":
+              targetView = storeView;
+              break;
+            case "support-groups":
+              targetView = supportGroupsView;
+              break;
+            case "volunteer":
+              targetView = volunteerView;
+              break;
+            case "integrations":
+              targetView = integrationsView;
+              break;
+            case "conversations":
+              targetView = conversationsView;
+              break;
+            case "donate":
+              targetView = donateView;
+              break;
+          }
+
+          if (targetView) {
+            targetView.classList.add("active");
+            // Add expanded class to enable fullscreen
+            barContainer.classList.add("expanded");
+          }
+
+          // Update active states in all tab navs
+          tabNavItems.forEach(item => {
+            item.classList.remove("active");
+            if (item.getAttribute("data-action") === action) {
+              item.classList.add("active");
+            }
+          });
+          
+          // Update search button active state
+          if (searchConversationsButton) {
+            if (action === "conversations") {
+              searchConversationsButton.classList.add("active");
+            } else {
+              searchConversationsButton.classList.remove("active");
+            }
+          }
+          
+          // Donate button doesn't need active state styling
+
+          // Request fullscreen mode when tab is clicked
+          // TEMPORARILY DISABLED
+          // if (window.openai?.requestDisplayMode) {
+          //   try {
+          //     await window.openai.requestDisplayMode({ mode: "fullscreen" });
+          //   } catch (error) {
+          //     console.error("Failed to request fullscreen:", error);
+          //   }
+          // }
+
+          // If showing store, trigger product render
+          if (action === "store" && renderStoreProducts) {
+            setTimeout(() => {
+              renderStoreProducts();
+            }, 100);
+          }
+
+          // Force height notification to trigger fullscreen expansion
+          // Reset lastNotifiedHeight to force notification even if height is similar
+          lastNotifiedHeight = 0;
+          
+          // Request fullscreen and notify height after content is rendered
+          setTimeout(() => {
+            // Force multiple reflows and notifications to ensure expansion
+            // Notify height multiple times to catch all content as it loads
+            const notifyHeightMultipleTimes = () => {
+              void barContainer.offsetHeight; // Force reflow
+              notifyHeight(true);
+              
+              setTimeout(() => {
+                void barContainer.offsetHeight;
+                notifyHeight(true);
+              }, 200);
+              
+              setTimeout(() => {
+                void barContainer.offsetHeight;
+                notifyHeight(true);
+              }, 500);
+              
+              // One more after a longer delay for any async content
+              setTimeout(() => {
+                void barContainer.offsetHeight;
+                notifyHeight(true);
+              }, 1000);
+            };
+            
+            notifyHeightMultipleTimes();
+          }, 100);
+        }
+
+        // Store render function (will be defined later)
+        let renderStoreProducts = null;
+
+        // Function to hide all tabs
+        function hideAllTabs() {
+          allTabViews.forEach(view => {
+            if (view) view.classList.remove("active");
+          });
+          // Remove expanded class when hiding tabs
+          barContainer.classList.remove("expanded");
+          setTimeout(() => {
+            notifyHeight();
+          }, 100);
+        }
+
+        // Handle search button click
+        if (searchConversationsButton) {
+          searchConversationsButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const action = searchConversationsButton.getAttribute("data-action");
+            showTab(action);
+          });
+        }
+
+        // Handle tab navigation clicks
+        tabNavItems.forEach(item => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            const action = item.getAttribute("data-action");
+            showTab(action);
+          });
+        });
+
+        // Handle donate button click in navigation
+        if (donateButton) {
+          donateButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            showTab("donate");
+          });
+        }
+
+        // Handle large donate button click
+        const donateButtonLarge = document.querySelector(".donate-button-large");
+        if (donateButtonLarge) {
+          donateButtonLarge.addEventListener("click", () => {
+            // TODO: Implement actual donation functionality
+            console.log("Donate button clicked");
+            // You can redirect to a donation page or open a donation modal here
+            // window.open("https://www.heart.org/en/get-involved/ways-to-give", "_blank");
+          });
+        }
+
+        // Handle menu item clicks (if menu items are still accessible somehow)
+        menuItemLinks.forEach((item) => {
+          item.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const action = item.getAttribute("data-action");
+            
+            // Show the selected tab
+            showTab(action);
+            
+            setTimeout(() => {
+              notifyHeight();
+            }, 300);
+          });
+        });
+
+        // Initial height notification — wait for ChatGPT to inject window.openai, then notify
+        // so the host stops showing "Loading widget".
+        whenOpenAiReady(() => {
+          notifyHeight(true);
+          setTimeout(() => notifyHeight(true), 200);
+          setTimeout(() => notifyHeight(true), 500);
+        });
+
+        // Notify on window resize
+        window.addEventListener("resize", () => {
+          notifyHeight();
+        });
+
+        // Store functionality
+        const storeProducts = [
+          // Health Monitoring
+          {
+            id: 1,
+            name: "Digital Kitchen Scale",
+            category: "health-monitoring",
+            price: 24.99,
+            image: "https://m.media-amazon.com/images/I/91YrLTBnMcL._SL1500_.jpg",
+            link: "https://amzn.to/4ilzm1q",
+            featured: true
+          },
+          // Exercise Equipment
+          {
+            id: 5,
+            name: "High Density Foam Roller",
+            category: "exercise",
+            price: 19.99,
+            image: "https://m.media-amazon.com/images/I/719fCtAm+hL._AC_SL1500_.jpg",
+            link: "https://amzn.to/48gx8Md",
+            featured: true
+          },
+          {
+            id: 6,
+            name: "Resistance Bands Set",
+            category: "exercise",
+            price: 24.99,
+            image: "https://m.media-amazon.com/images/I/71S4-NjoTDL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example4",
+            featured: false
+          },
+          {
+            id: 7,
+            name: "Yoga Mat Premium",
+            category: "exercise",
+            price: 34.99,
+            image: "https://m.media-amazon.com/images/I/61y+jPPhmEL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example5",
+            featured: false
+          },
+          {
+            id: 8,
+            name: "Adjustable Dumbbells",
+            category: "exercise",
+            price: 129.99,
+            image: "https://m.media-amazon.com/images/I/81tyqz6n6jL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example6",
+            featured: false
+          },
+          {
+            id: 9,
+            name: "Walking Treadmill Desk",
+            category: "exercise",
+            price: 299.99,
+            image: "https://m.media-amazon.com/images/I/51GwuiF1U-L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example7",
+            featured: false
+          },
+          // Cookbooks
+          {
+            id: 10,
+            name: "Heart Healthy Cookbook",
+            category: "cookbooks",
+            price: 18.99,
+            image: "https://m.media-amazon.com/images/I/71nujH4E9BL._SL1293_.jpg",
+            link: "https://amzn.to/4oiSvlQ",
+            featured: true
+          },
+          {
+            id: 11,
+            name: "Mediterranean Diet Cookbook",
+            category: "cookbooks",
+            price: 16.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example8",
+            featured: false
+          },
+          {
+            id: 12,
+            name: "Low Sodium Recipe Collection",
+            category: "cookbooks",
+            price: 19.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example9",
+            featured: false
+          },
+          {
+            id: 13,
+            name: "Plant-Based Heart Health Guide",
+            category: "cookbooks",
+            price: 22.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example10",
+            featured: false
+          },
+          // AHA Merchandise
+          {
+            id: 14,
+            name: "AHA Red Heart T-Shirt",
+            category: "aha-merch",
+            price: 24.99,
+            image: "https://www.shopheart.org/cdn/shop/products/DynamicImageHandler_1800x1800.jpg?v=1672852743",
+            link: "https://amzn.to/example11",
+            featured: true,
+            badge: "Official"
+          },
+          {
+            id: 15,
+            name: "AHA Awareness Wristband",
+            category: "aha-merch",
+            price: 4.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example12",
+            featured: false,
+            badge: "Official"
+          },
+          {
+            id: 16,
+            name: "AHA Logo Water Bottle",
+            category: "aha-merch",
+            price: 19.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example13",
+            featured: false,
+            badge: "Official"
+          },
+          {
+            id: 17,
+            name: "AHA Heart Health Hoodie",
+            category: "aha-merch",
+            price: 44.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example14",
+            featured: false,
+            badge: "Official"
+          },
+          // Nutrition & Supplements
+          {
+            id: 18,
+            name: "Omega-3 Fish Oil Supplements",
+            category: "nutrition",
+            price: 29.99,
+            image: "https://m.media-amazon.com/images/I/71+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example15",
+            featured: false
+          },
+          {
+            id: 19,
+            name: "CoQ10 Heart Health Supplement",
+            category: "nutrition",
+            price: 34.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example16",
+            featured: false
+          },
+          {
+            id: 20,
+            name: "Magnesium Citrate Capsules",
+            category: "nutrition",
+            price: 19.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example17",
+            featured: false
+          },
+          {
+            id: 21,
+            name: "Low Sodium Sea Salt Alternative",
+            category: "nutrition",
+            price: 12.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example18",
+            featured: false
+          },
+          // Wellness & Lifestyle
+          {
+            id: 22,
+            name: "Stress Relief Essential Oil Diffuser",
+            category: "wellness",
+            price: 39.99,
+            image: "https://m.media-amazon.com/images/I/71+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example19",
+            featured: false
+          },
+          {
+            id: 23,
+            name: "Meditation Cushion Set",
+            category: "wellness",
+            price: 49.99,
+            image: "https://m.media-amazon.com/images/I/71Swqqe7XAL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example20",
+            featured: false
+          },
+          {
+            id: 24,
+            name: "Sleep Quality Tracker",
+            category: "wellness",
+            price: 89.99,
+            image: "https://m.media-amazon.com/images/I/71qJ8YVqFjL._AC_SL1500_.jpg",
+            link: "https://amzn.to/example21",
+            featured: false
+          },
+          {
+            id: 25,
+            name: "Aromatherapy Stress Relief Kit",
+            category: "wellness",
+            price: 24.99,
+            image: "https://m.media-amazon.com/images/I/61+8m2oQ18L._AC_SL1500_.jpg",
+            link: "https://amzn.to/example22",
+            featured: false
+          }
+        ];
+
+        let filteredProducts = [...storeProducts];
+        let currentCategory = "all";
+        let currentSort = "featured";
+        let currentSearch = "";
+
+        const storeItemsContainer = document.getElementById("store-items");
+        const storeSearch = document.getElementById("store-search");
+        const sortSelect = document.getElementById("sort-select");
+        const categoryFilterBtns = document.querySelectorAll(".category-filter-btn");
+        const resultsCount = document.getElementById("results-count");
+        const noResults = document.getElementById("no-results");
+
+        function renderProducts() {
+          // Filter by category
+          let products = currentCategory === "all" 
+            ? [...storeProducts] 
+            : storeProducts.filter(p => p.category === currentCategory);
+
+          // Filter by search
+          if (currentSearch.trim()) {
+            const searchLower = currentSearch.toLowerCase();
+            products = products.filter(p => 
+              p.name.toLowerCase().includes(searchLower)
+            );
+          }
+
+          // Sort products
+          products.sort((a, b) => {
+            switch(currentSort) {
+              case "price-low":
+                return a.price - b.price;
+              case "price-high":
+                return b.price - a.price;
+              case "name-asc":
+                return a.name.localeCompare(b.name);
+              case "name-desc":
+                return b.name.localeCompare(a.name);
+              case "featured":
+              default:
+                return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+            }
+          });
+
+          filteredProducts = products;
+
+          // Update results count
+          const count = products.length;
+          resultsCount.textContent = `${count} product${count !== 1 ? 's' : ''} found`;
+
+          // Show/hide no results
+          if (products.length === 0) {
+            storeItemsContainer.style.display = "none";
+            noResults.style.display = "block";
+          } else {
+            storeItemsContainer.style.display = "grid";
+            noResults.style.display = "none";
+          }
+
+          // Render products
+          storeItemsContainer.innerHTML = products.map(product => {
+            const categoryNames = {
+              "health-monitoring": "Health Monitoring",
+              "exercise": "Exercise Equipment",
+              "cookbooks": "Cookbooks",
+              "aha-merch": "AHA Merchandise",
+              "nutrition": "Nutrition & Supplements",
+              "wellness": "Wellness & Lifestyle"
+            };
+
+            return `
+              <a href="${product.link}" target="_blank" class="store-item" rel="noopener noreferrer" data-product-id="${product.id}">
+                <div class="store-item-image-wrapper">
+                  <img src="${product.image}" alt="${product.name}" class="store-item-image">
+                  ${product.badge ? `<div class="store-item-badge">${product.badge}</div>` : ''}
+                </div>
+                <div class="store-item-content">
+                  <div class="store-item-category">${categoryNames[product.category] || product.category}</div>
+                  <div class="store-item-title">${product.name}</div>
+                  <div class="store-item-price">$${product.price.toFixed(2)}</div>
+                  <div class="store-item-link">View on Amazon →</div>
+                </div>
+              </a>
+            `;
+          }).join('');
+
+          // Notify height after images have a chance to load
+          setTimeout(() => {
+            notifyHeight();
+          }, 300);
+        }
+
+        // Search functionality
+        if (storeSearch) {
+          storeSearch.addEventListener("input", (e) => {
+            currentSearch = e.target.value;
+            renderProducts();
+          });
+        }
+
+        // Sort functionality
+        if (sortSelect) {
+          sortSelect.addEventListener("change", (e) => {
+            currentSort = e.target.value;
+            renderProducts();
+          });
+        }
+
+        // Category filter functionality
+        categoryFilterBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            categoryFilterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            currentCategory = btn.getAttribute("data-category");
+            renderProducts();
+          });
+        });
+
+        // Initial render
+        renderProducts();
+
+        // Store the render function for use in showTab
+        renderStoreProducts = renderProducts;
+
+        // Location search functionality
+        const zipCodeInput = document.getElementById("zip-code-input");
+        const stateSelect = document.getElementById("state-select");
+        const locationSearchBtn = document.getElementById("location-search-btn");
+
+        // Clear state when zip code is entered
+        if (zipCodeInput) {
+          zipCodeInput.addEventListener("input", () => {
+            if (zipCodeInput.value.trim() && stateSelect) {
+              stateSelect.value = "";
+            }
+          });
+        }
+
+        // Clear zip code when state is selected
+        if (stateSelect) {
+          stateSelect.addEventListener("change", () => {
+            if (stateSelect.value && zipCodeInput) {
+              zipCodeInput.value = "";
+            }
+          });
+        }
+
+        if (locationSearchBtn) {
+          locationSearchBtn.addEventListener("click", () => {
+            const zipCode = zipCodeInput?.value.trim();
+            const state = stateSelect?.value;
+
+            if (!zipCode && !state) {
+              alert("Please enter a zip code or select a state");
+              return;
+            }
+
+            // Handle the search - you can implement the actual search logic here
+            console.log("Searching for:", { zipCode, state });
+            // TODO: Implement actual search functionality
+          });
+        }
+
+        // Allow Enter key to trigger search
+        if (zipCodeInput) {
+          zipCodeInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+              locationSearchBtn?.click();
+            }
+          });
+        }
+
+        // Support Network type selector (allows multiple selections)
+        const supportTypeBtns = document.querySelectorAll(".support-type-btn");
+        const supportSearchContainer = document.getElementById("support-search-container");
+        const supportLocationFields = document.getElementById("support-location-fields");
+        
+        function updateSupportNetworkUI() {
+          const onlineBtn = Array.from(supportTypeBtns).find(b => b.getAttribute("data-type") === "online");
+          const inPersonBtn = Array.from(supportTypeBtns).find(b => b.getAttribute("data-type") === "in-person");
+          const isOnlineSelected = onlineBtn && onlineBtn.classList.contains("active");
+          const isInPersonSelected = inPersonBtn && inPersonBtn.classList.contains("active");
+          const hasAnySelection = isOnlineSelected || isInPersonSelected;
+          
+          // Show Search container if any option is selected
+          if (supportSearchContainer) {
+            supportSearchContainer.style.display = hasAnySelection ? "block" : "none";
+          }
+          
+          // Show location fields only if In-Person is selected (smooth transition)
+          if (supportLocationFields) {
+            if (isInPersonSelected) {
+              // Ensure it's displayed first
+              supportLocationFields.style.display = "block";
+              // Force a reflow, then add visible class for transition
+              void supportLocationFields.offsetHeight;
+              supportLocationFields.classList.add("visible");
+            } else {
+              supportLocationFields.classList.remove("visible");
+              // Wait for transition to complete before potentially hiding
+              setTimeout(() => {
+                if (!supportLocationFields.classList.contains("visible")) {
+                  // Keep it in DOM but collapsed
+                  supportLocationFields.style.display = "block";
+                }
+              }, 300);
+            }
+          }
+          
+          if (hasAnySelection) {
+            setTimeout(() => {
+              notifyHeight();
+            }, 300);
+          }
+        }
+        
+        supportTypeBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            // Toggle active class on clicked button
+            btn.classList.toggle("active");
+            
+            // Get all active support types
+            const activeTypes = Array.from(supportTypeBtns)
+              .filter(b => b.classList.contains("active"))
+              .map(b => b.getAttribute("data-type"));
+            
+            // Update UI visibility
+            updateSupportNetworkUI();
+            
+            console.log("Selected support types:", activeTypes);
+            // TODO: Implement functionality based on selected types (online and/or in-person)
+          });
+        });
+        
+        // Support Network location search functionality
+        const supportZipCodeInput = document.getElementById("support-zip-code-input");
+        const supportStateSelect = document.getElementById("support-state-select");
+        const supportSearchBtn = document.getElementById("support-search-btn");
+
+        // Clear state when zip code is entered
+        if (supportZipCodeInput) {
+          supportZipCodeInput.addEventListener("input", () => {
+            if (supportZipCodeInput.value.trim() && supportStateSelect) {
+              supportStateSelect.value = "";
+            }
+          });
+        }
+
+        // Clear zip code when state is selected
+        if (supportStateSelect) {
+          supportStateSelect.addEventListener("change", () => {
+            if (supportStateSelect.value && supportZipCodeInput) {
+              supportZipCodeInput.value = "";
+            }
+          });
+        }
+
+        // Map initialization
+        let supportMap = null;
+        let supportMapMarkers = [];
+
+        // Sample support group data
+        const sampleSupportGroups = [
+          {
+            title: "Individual & Sibling Support",
+            provider: "by AKALAKA",
+            reviewDate: "11/21/2025",
+            description: "AKALAKA.org provides a network of support and resources for individuals with intellectual and developmental disabilities and their siblings to confidently handle life together. This program offers comprehensive support services.",
+            mainServices: ["counseling", "navigating the system", "support network", "peer support", "support groups", "virtual support", "more education", "skills & training"],
+            otherServices: ["financial assistance", "insurance", "community support services", "recreation", "in-home support", "mentoring", "one-on-one support", "skills & training", "understand government programs"],
+            serving: ["anyone in need", "adults 18+", "developmental disability", "intellectual disability", "individuals", "families", "benefit recipients", "caregivers"],
+            nextSteps: "Go to the program's website or email hi@akalaka.org to get more info.",
+            availability: "Serves your state",
+            hours: "Open Now: Open 24 Hours",
+            hoursStatus: "open",
+            buttonText: "APPLY HERE",
+            buttonType: "primary"
+          },
+          {
+            title: "Emotions Anonymous Support Groups",
+            provider: "by Emotions Anonymous International (EAI)",
+            reviewDate: "11/11/2025",
+            description: "Emotions Anonymous (EA) is a support group provider offering access to in-person and virtual groups. Originally based off of the Alcoholics Anonymous (AA) 12-Step Program, these groups are adapted for emotional wellness.",
+            mainServices: ["12-step", "support network", "peer support", "support groups", "virtual support"],
+            otherServices: [],
+            serving: ["anyone in need", "adults", "young adults", "teens", "seniors", "limited english", "depression", "anxiety", "all mental health"],
+            nextSteps: "Go to the program's website.",
+            availability: "Serves your state",
+            hours: "Closed Today See open hours",
+            hoursStatus: "closed",
+            buttonText: "→ SEE NEXT STEPS",
+            buttonType: "secondary"
+          },
+          {
+            title: "Women's Peer Counseling",
+            provider: "by The Center for Women's Ministries, Inc. (CWM)",
+            reviewDate: "11/23/2025",
+            description: "CWM's Women's Peer Counseling program provides peer support and spiritual aid for women in need. The ministry is designed to create an environment where non-judgmental listening, sharing, and support can flourish.",
+            mainServices: ["counseling", "support network", "peer support", "spiritual support", "support groups"],
+            otherServices: [],
+            serving: ["adults 18+", "female", "depression", "all mental health"],
+            nextSteps: "Call 919-943-0789 (your nearest location).",
+            distance: "4.89 miles (serves your local area)",
+            address: "3700 Lyckan Parkway, Durham, NC 27707",
+            hours: "Closed Today See open hours",
+            hoursStatus: "closed",
+            buttonText: "→ SEE NEXT STEPS",
+            buttonType: "secondary"
+          },
+          {
+            title: "Family Support Group",
+            provider: "by NAMI North Carolina",
+            reviewDate: "11/20/2025",
+            description: "NAMI Family Support Group is a peer-led support group for any adult with a loved one who has experienced symptoms of a mental health condition. Gain insight from the challenges and successes of others facing similar circumstances.",
+            mainServices: ["understand mental health", "peer support", "support groups", "virtual support"],
+            otherServices: [],
+            serving: ["anyone in need", "adults", "young adults", "teens", "seniors", "families", "caregivers", "all mental health"],
+            nextSteps: "Apply on their website or call 919-969-8820 (your nearest location).",
+            distance: "11.62 miles (serves your local area)",
+            address: "800 Market Street, Chapel Hill, NC 27516",
+            hours: "Closed Today See open hours",
+            hoursStatus: "closed",
+            buttonText: "APPLY ON THEIR SITE",
+            buttonType: "primary"
+          }
+        ];
+
+        function renderSupportGroupCards() {
+          const resultsList = document.getElementById("support-results-list");
+          if (!resultsList) return;
+
+          resultsList.innerHTML = sampleSupportGroups.map((group, index) => {
+            const cardId = `support-card-${index}`;
+            const mainServicesList = group.mainServices.map(s => `<li>${s}</li>`).join('');
+            const otherServicesList = group.otherServices.length > 0 
+              ? `<div class="support-group-services-label">Other Services:</div><ul class="support-group-services-list">${group.otherServices.map(s => `<li>${s}</li>`).join('')}</ul>`
+              : '';
+            const servingList = group.serving.join(', ');
+            const locationInfo = group.distance 
+              ? `<div class="support-group-location-info">📍 ${group.distance}</div>${group.address ? `<div class="support-group-address">${group.address}</div>` : ''}`
+              : '';
+
+            return `
+              <div class="support-group-card" id="${cardId}" data-card-index="${index}">
+                <div class="support-group-header">
+                  <input type="checkbox" class="support-group-checkbox" id="support-checkbox-${index}">
+                  <div class="support-group-title-section">
+                    <h3 class="support-group-title">
+                      ${group.title}
+                      <span class="support-group-verified">✓</span>
+                    </h3>
+                    <p class="support-group-provider">${group.provider}</p>
+                    <p class="support-group-review-date">Reviewed on: ${group.reviewDate}</p>
+                  </div>
+                </div>
+                <p class="support-group-description">${group.description}</p>
+                <div class="support-group-services">
+                  <div class="support-group-services-label">Main Services:</div>
+                  <ul class="support-group-services-list">${mainServicesList}</ul>
+                  ${otherServicesList}
+                </div>
+                <div class="support-group-serving">
+                  <span class="support-group-serving-icon">👤</span>
+                  <span><strong>Serving:</strong> ${servingList}</span>
+                </div>
+                <div class="support-group-actions">
+                  <button class="support-group-more-info-btn">
+                    MORE INFO
+                    <span>▼</span>
+                  </button>
+                  <div class="support-group-action-icons">
+                    <button class="support-group-icon-btn" title="SAVE">★</button>
+                    <button class="support-group-icon-btn" title="SHARE">➤</button>
+                    <button class="support-group-icon-btn" title="NOTES">☰</button>
+                    <button class="support-group-icon-btn" title="SUGGEST">✎</button>
+                  </div>
+                </div>
+                <div class="support-group-next-steps">
+                  <div class="support-group-next-steps-title">Next Steps:</div>
+                  <p class="support-group-next-steps-text">${group.nextSteps}</p>
+                  ${group.availability ? `<p class="support-group-next-steps-text">${group.availability}</p>` : ''}
+                  ${locationInfo}
+                  <div class="support-group-hours ${group.hoursStatus}">${group.hours}</div>
+                  <button class="support-group-apply-btn ${group.buttonType === 'secondary' ? 'secondary' : ''}">
+                    ${group.buttonText}
+                    ${group.buttonText.includes('SEE NEXT STEPS') || group.buttonText.includes('APPLY ON') ? '→' : '📄'}
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        function initializeSupportMap(zipCode, state) {
+          const mapContainer = document.getElementById("support-map-container");
+          const mapDiv = document.getElementById("support-map");
+          
+          if (!mapContainer || !mapDiv) return;
+
+          // Show map container
+          mapContainer.style.display = "block";
+
+          // Destroy existing map if it exists
+          if (supportMap) {
+            supportMap.remove();
+            supportMap = null;
+            supportMapMarkers = [];
+          }
+
+          // Default coordinates (US center, will be updated based on location)
+          let centerLat = 39.8283;
+          let centerLng = -98.5795;
+          let zoom = 4;
+
+          // Sample coordinates based on state (you can expand this)
+          const stateCoordinates = {
+            "CA": { lat: 36.7783, lng: -119.4179, zoom: 6 },
+            "NY": { lat: 40.7128, lng: -74.0060, zoom: 6 },
+            "TX": { lat: 31.9686, lng: -99.9018, zoom: 6 },
+            "FL": { lat: 27.7663, lng: -81.6868, zoom: 6 },
+            "IL": { lat: 40.3495, lng: -88.9861, zoom: 6 },
+            "PA": { lat: 40.5908, lng: -77.2098, zoom: 6 },
+            "OH": { lat: 40.3888, lng: -82.7649, zoom: 6 },
+            "GA": { lat: 32.1656, lng: -82.9001, zoom: 6 },
+            "NC": { lat: 35.2271, lng: -80.8431, zoom: 6 },
+            "MI": { lat: 43.3266, lng: -84.5361, zoom: 6 }
+          };
+
+          if (state && stateCoordinates[state]) {
+            centerLat = stateCoordinates[state].lat;
+            centerLng = stateCoordinates[state].lng;
+            zoom = stateCoordinates[state].zoom;
+          } else if (zipCode) {
+            // For zip codes, use a simple approximation
+            // In production, you'd use a geocoding service
+            centerLat = 39.8283;
+            centerLng = -98.5795;
+            zoom = 10;
+          }
+
+          // Initialize map
+          supportMap = L.map('support-map').setView([centerLat, centerLng], zoom);
+
+          // Add OpenStreetMap tiles
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+          }).addTo(supportMap);
+
+          // Add markers for each support group (one per card)
+          sampleSupportGroups.forEach((group, index) => {
+            // Calculate offset positions for markers around the center
+            const offsets = [
+              { lat: 0.1, lng: 0.1 },
+              { lat: -0.1, lng: 0.15 },
+              { lat: 0.15, lng: -0.1 },
+              { lat: -0.05, lng: -0.12 }
+            ];
+            const offset = offsets[index % offsets.length];
+            
+            const marker = L.marker([centerLat + offset.lat, centerLng + offset.lng])
+              .addTo(supportMap)
+              .bindPopup(`
+                <div style="font-family: 'Montserrat', sans-serif;">
+                  <strong style="color: #ee7521;">${group.title}</strong><br>
+                  ${group.provider}<br>
+                  <a href="#" class="marker-view-details" data-card-index="${index}" style="color: #ee7521; text-decoration: none;">View Details →</a>
+                </div>
+              `);
+            
+            // Add click handler to highlight corresponding card
+            marker.on('click', function() {
+              highlightSupportCard(index);
+            });
+            
+            // Handle popup link clicks
+            marker.on('popupopen', function() {
+              const popup = marker.getPopup();
+              const popupElement = popup.getElement();
+              if (popupElement) {
+                const viewDetailsLink = popupElement.querySelector('.marker-view-details');
+                if (viewDetailsLink) {
+                  viewDetailsLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    highlightSupportCard(index);
+                  });
+                }
+              }
+            });
+            
+            supportMapMarkers.push(marker);
+          });
+
+          // Render support group cards
+          renderSupportGroupCards();
+
+          // Add click handlers to cards to highlight markers
+          setTimeout(() => {
+            sampleSupportGroups.forEach((group, index) => {
+              const card = document.getElementById(`support-card-${index}`);
+              if (card) {
+                card.addEventListener('click', (e) => {
+                  // Don't trigger if clicking on interactive elements
+                  if (e.target.tagName === 'BUTTON' || 
+                      e.target.tagName === 'INPUT' || 
+                      e.target.closest('button') || 
+                      e.target.closest('input')) {
+                    return;
+                  }
+                  highlightSupportCard(index);
+                });
+              }
+            });
+          }, 100);
+
+          // Update height after map loads
+          setTimeout(() => {
+            supportMap.invalidateSize();
+            notifyHeight();
+          }, 300);
+        }
+
+        // Function to highlight a support card and corresponding marker
+        function highlightSupportCard(cardIndex) {
+          // Remove highlight from all cards
+          const allCards = document.querySelectorAll('.support-group-card');
+          allCards.forEach(card => {
+            card.classList.remove('highlighted');
+          });
+
+          // Highlight the selected card
+          const card = document.getElementById(`support-card-${cardIndex}`);
+          if (card) {
+            card.classList.add('highlighted');
+            // Scroll to the card
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Remove highlight after 3 seconds
+            setTimeout(() => {
+              card.classList.remove('highlighted');
+            }, 3000);
+          }
+
+          // Highlight corresponding marker
+          if (supportMapMarkers[cardIndex]) {
+            const marker = supportMapMarkers[cardIndex];
+            marker.openPopup();
+            
+            // Pan map to marker
+            supportMap.setView(marker.getLatLng(), supportMap.getZoom(), {
+              animate: true,
+              duration: 0.5
+            });
+          }
+        }
+
+        if (supportSearchBtn) {
+          supportSearchBtn.addEventListener("click", () => {
+            const onlineBtn = Array.from(supportTypeBtns).find(b => b.getAttribute("data-type") === "online");
+            const inPersonBtn = Array.from(supportTypeBtns).find(b => b.getAttribute("data-type") === "in-person");
+            const isOnlineSelected = onlineBtn && onlineBtn.classList.contains("active");
+            const isInPersonSelected = inPersonBtn && inPersonBtn.classList.contains("active");
+            
+            // If In-Person is selected, require location
+            if (isInPersonSelected) {
+              const zipCode = supportZipCodeInput?.value.trim();
+              const state = supportStateSelect?.value;
+
+              if (!zipCode && !state) {
+                alert("Please enter a zip code or select a state for in-person support");
+                return;
+              }
+
+              // Initialize map with location
+              initializeSupportMap(zipCode, state);
+            } else {
+              // Hide map if only online is selected
+              const mapContainer = document.getElementById("support-map-container");
+              const resultsList = document.getElementById("support-results-list");
+              if (mapContainer) {
+                mapContainer.style.display = "none";
+              }
+              if (resultsList) {
+                resultsList.innerHTML = "";
+              }
+            }
+            
+            // Get selected types
+            const activeTypes = Array.from(supportTypeBtns)
+              .filter(b => b.classList.contains("active"))
+              .map(b => b.getAttribute("data-type"));
+            
+            const zipCode = supportZipCodeInput?.value.trim();
+            const state = supportStateSelect?.value;
+
+            // Handle the search - you can implement the actual search logic here
+            console.log("Searching for support groups:", { 
+              types: activeTypes, 
+              zipCode: isInPersonSelected ? zipCode : null, 
+              state: isInPersonSelected ? state : null 
+            });
+            // TODO: Implement actual search functionality with real location data
+          });
+        }
+
+        // Allow Enter key to trigger search
+        if (supportZipCodeInput) {
+          supportZipCodeInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+              supportSearchBtn?.click();
+            }
+          });
+        }
+
+        // Initialize UI state on page load (Online is selected by default)
+        updateSupportNetworkUI();
+
+        // Volunteer Opportunities functionality
+        const youthToggle = document.getElementById("youth-toggle");
+        const toggleLabel = document.getElementById("toggle-label");
+        const opportunityCards = document.querySelectorAll(".volunteer-opportunity-card");
+        const volunteerNextButton = document.querySelector(".volunteer-next-button");
+
+        // Function to filter opportunities based on youth toggle
+        function filterOpportunities(isYouth) {
+          const grid = document.getElementById("volunteer-opportunities-grid");
+          const allCards = document.querySelectorAll(".volunteer-opportunity-card");
+          
+          allCards.forEach(card => {
+            const isYouthCard = card.getAttribute("data-youth") === "true";
+            if (isYouth) {
+              // Show youth opportunities, hide regular
+              card.style.display = isYouthCard ? "flex" : "none";
+            } else {
+              // Show regular opportunities, hide youth
+              card.style.display = isYouthCard ? "none" : "flex";
+            }
+          });
+          
+          // Add/remove class for styling
+          if (grid) {
+            if (isYouth) {
+              grid.classList.add("youth-mode");
+            } else {
+              grid.classList.remove("youth-mode");
+            }
+          }
+          
+          // Update height notification after filtering
+          setTimeout(() => {
+            notifyHeight();
+          }, 100);
+        }
+
+        // Youth toggle functionality
+        if (youthToggle && toggleLabel) {
+          youthToggle.addEventListener("change", (e) => {
+            const isYouth = e.target.checked;
+            toggleLabel.textContent = isYouth ? "Yes" : "No";
+            filterOpportunities(isYouth);
+            console.log("Youth opportunities:", isYouth);
+          });
+        }
+
+        // Function to update button text based on selection state
+        function updateButtonText(card) {
+          const selectBtn = card.querySelector(".opportunity-select-btn");
+          if (selectBtn) {
+            selectBtn.textContent = card.classList.contains("selected") ? "DESELECT" : "SELECT";
+          }
+        }
+
+        // Opportunity card selection
+        opportunityCards.forEach(card => {
+          const selectBtn = card.querySelector(".opportunity-select-btn");
+          
+          // Update button text on hover
+          card.addEventListener("mouseenter", () => {
+            updateButtonText(card);
+          });
+          
+          // Handle clicking the SELECT button
+          if (selectBtn) {
+            selectBtn.addEventListener("click", (e) => {
+              e.stopPropagation(); // Prevent card click
+              card.classList.toggle("selected");
+              updateButtonText(card);
+              const opportunity = card.getAttribute("data-opportunity");
+              console.log("Opportunity selected:", opportunity, card.classList.contains("selected"));
+              // TODO: Track selected opportunities
+            });
+          }
+          
+          // Handle clicking the card itself (but not the button)
+          card.addEventListener("click", (e) => {
+            // Don't toggle if clicking the button
+            if (e.target.classList.contains("opportunity-select-btn")) {
+              return;
+            }
+            card.classList.toggle("selected");
+            updateButtonText(card);
+            const opportunity = card.getAttribute("data-opportunity");
+            console.log("Opportunity selected:", opportunity, card.classList.contains("selected"));
+            // TODO: Track selected opportunities
+          });
+        });
+
+        // Next button functionality
+        if (volunteerNextButton) {
+          volunteerNextButton.addEventListener("click", () => {
+            const selectedOpportunities = Array.from(opportunityCards)
+              .filter(card => card.classList.contains("selected"))
+              .map(card => card.getAttribute("data-opportunity"));
+            
+            console.log("Selected opportunities:", selectedOpportunities);
+            // TODO: Navigate to next step or submit form
+          });
+        }
+
+        // Donation form functionality
+        const frequencyBtns = document.querySelectorAll(".frequency-btn");
+        const amountBtns = document.querySelectorAll(".amount-btn");
+        const customAmountInput = document.getElementById("custom-amount");
+        const currencySelect = document.getElementById("currency-select");
+        const donateSubmitBtn = document.querySelector(".donate-submit-btn");
+        let selectedAmount = 120;
+        let selectedFrequency = "once";
+
+        // Frequency button handlers
+        frequencyBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            frequencyBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            selectedFrequency = btn.getAttribute("data-frequency");
+          });
+        });
+
+        // Amount button handlers
+        amountBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            amountBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            selectedAmount = parseInt(btn.getAttribute("data-amount"));
+            if (customAmountInput) {
+              customAmountInput.value = selectedAmount.toString();
+            }
+          });
+        });
+
+        // Custom amount input handler
+        if (customAmountInput) {
+          customAmountInput.addEventListener("input", (e) => {
+            const value = e.target.value.replace(/[^0-9]/g, "");
+            e.target.value = value;
+            if (value) {
+              selectedAmount = parseInt(value);
+              // Remove active state from all amount buttons
+              amountBtns.forEach(b => b.classList.remove("active"));
+            }
+          });
+
+          customAmountInput.addEventListener("blur", () => {
+            if (customAmountInput.value && !isNaN(customAmountInput.value)) {
+              selectedAmount = parseInt(customAmountInput.value);
+            } else if (!customAmountInput.value) {
+              customAmountInput.value = selectedAmount.toString();
+            }
+          });
+        }
+
+        // Donate button handler
+        if (donateSubmitBtn) {
+          donateSubmitBtn.addEventListener("click", () => {
+            const amount = customAmountInput?.value || selectedAmount;
+            const currency = currencySelect?.value || "USD";
+            const isDedicated = document.getElementById("dedicate-donation")?.checked || false;
+            
+            console.log("Donation submitted:", {
+              amount: amount,
+              currency: currency,
+              frequency: selectedFrequency,
+              dedicated: isDedicated
+            });
+            // TODO: Implement actual donation processing
+          });
+        }
+
+        // Past Conversations functionality
+        const conversationsSearch = document.getElementById("conversations-search");
+        const conversationItems = document.querySelectorAll(".conversation-item");
+
+        // Search functionality for conversations
+        if (conversationsSearch) {
+          conversationsSearch.addEventListener("input", (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            conversationItems.forEach(item => {
+              const title = item.querySelector(".conversation-title")?.textContent.toLowerCase() || "";
+              const preview = item.querySelector(".conversation-preview")?.textContent.toLowerCase() || "";
+              
+              if (title.includes(searchTerm) || preview.includes(searchTerm)) {
+                item.style.display = "block";
+              } else {
+                item.style.display = searchTerm === "" ? "block" : "none";
+              }
+            });
+          });
+        }
+
+        // Click handlers for conversations
+        conversationItems.forEach(item => {
+          item.addEventListener("click", () => {
+            const conversationId = item.getAttribute("data-conversation-id");
+            console.log("Opening conversation:", conversationId);
+            // TODO: Implement navigation to conversation when ready
+            // This will redirect the user to that specific chat conversation
+          });
+        });
+
+        // Integrations functionality
+        const integrationCards = document.querySelectorAll(".integration-card");
+        const integrationConnectBtns = document.querySelectorAll(".integration-connect-btn");
+
+        // Handle integration connect button clicks
+        integrationConnectBtns.forEach((btn, index) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const card = btn.closest(".integration-card");
+            const integrationId = card.getAttribute("data-integration");
+            
+            if (card.classList.contains("connected")) {
+              // Disconnect
+              card.classList.remove("connected");
+              const statusEl = card.querySelector(".integration-status");
+              const btnText = btn;
+              if (statusEl) statusEl.textContent = "Not connected";
+              btnText.textContent = "Connect";
+              
+              // Store disconnected state
+              localStorage.setItem(`integration-${integrationId}`, "disconnected");
+              console.log(`Disconnected ${integrationId}`);
+            } else {
+              // Connect
+              card.classList.add("connected");
+              const statusEl = card.querySelector(".integration-status");
+              const btnText = btn;
+              if (statusEl) statusEl.textContent = "Connected";
+              btnText.textContent = "Disconnect";
+              
+              // Store connected state
+              localStorage.setItem(`integration-${integrationId}`, "connected");
+              console.log(`Connected ${integrationId}`);
+              
+              // TODO: Implement actual integration API call here
+              // This would connect to the actual service and provide context for future queries
+            }
+          });
+        });
+
+        // Load saved integration states on page load
+        integrationCards.forEach(card => {
+          const integrationId = card.getAttribute("data-integration");
+          const savedState = localStorage.getItem(`integration-${integrationId}`);
+          if (savedState === "connected") {
+            card.classList.add("connected");
+            const statusEl = card.querySelector(".integration-status");
+            const btn = card.querySelector(".integration-connect-btn");
+            if (statusEl) statusEl.textContent = "Connected";
+            if (btn) btn.textContent = "Disconnect";
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+

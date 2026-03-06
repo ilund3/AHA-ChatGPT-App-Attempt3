@@ -1,0 +1,10 @@
+{
+  "name": "national_ms_society",
+  "version": "0.1.0",
+  "description": "National MS Society ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "organization": "American Cancer Society",
+  "themeColor": "#2748fb",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Patient Programs",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Free Rides to Treatment",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Free Lodging During Treatment",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "ACS CARES™",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "Free Smoking Cessation Support",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "Connect with Survivors",
+      "category": "Services"
+    },
+    {
+      "id": "service-7",
+      "title": "Breast Cancer Support",
+      "category": "Services"
+    },
+    {
+      "id": "service-8",
+      "title": "Cancer Survivors Network",
+      "category": "Services"
+    },
+    {
+      "id": "service-9",
+      "title": "Survivor Stories",
+      "category": "Services"
+    },
+    {
+      "id": "service-10",
+      "title": "24/7 Cancer Helpline (1-800-227-2345)",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Relay For Life",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Making Strides Against Breast Cancer Walk",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Endurance Events",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Galas, Balls, and Parties",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Golf Tournaments",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-6",
+      "title": "Start a Fundraiser",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-7",
+      "title": "Create Your Own Fundraiser",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-8",
+      "title": "Fundraise on Facebook",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-9",
+      "title": "Youth Sports Fundraising",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-10",
+      "title": "Virtual Challenges",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-11",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-12",
+      "title": "Be an Advocate",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-13",
+      "title": "Opportunities for Organizations",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-14",
+      "title": "ACS GenNow Network",
+      "category": "Get Involved"
+    }
+  ]
+}

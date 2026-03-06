@@ -1,0 +1,10 @@
+{
+  "name": "spina_bifida_association",
+  "version": "0.1.0",
+  "description": "Spina Bifida Association ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "parkinsons_foundation",
+  "version": "0.1.0",
+  "description": "Parkinson's Foundation ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

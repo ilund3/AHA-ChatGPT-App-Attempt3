@@ -1,0 +1,83 @@
+{
+  "organization": "Blood Cancer United",
+  "themeColor": "#e60503",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Information Specialists",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Clinical Trial Support Center (CTSC)",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Registered Dietitians",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "Online Chats",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "Support Groups",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "Suggested Reading",
+      "category": "Services"
+    },
+    {
+      "id": "service-7",
+      "title": "Peer-to-Peer Support",
+      "category": "Services"
+    },
+    {
+      "id": "service-8",
+      "title": "Patient Community",
+      "category": "Services"
+    },
+    {
+      "id": "service-9",
+      "title": "Podcasts",
+      "category": "Services"
+    },
+    {
+      "id": "service-10",
+      "title": "Financial Support",
+      "category": "Services"
+    },
+    {
+      "id": "service-11",
+      "title": "Health Manager Mobile App",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Fundraise",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Participate in Advocacy",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Join the Community",
+      "category": "Get Involved"
+    }
+  ]
+}

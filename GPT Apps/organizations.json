@@ -1,0 +1,336 @@
+[
+  {
+    "slug": "sjogrens-foundation",
+    "name": "Sjögren's Foundation",
+    "color": "#1a3398",
+    "services": [
+      "Find a Clinical Trial",
+      "Clinical Trials Sponsored by Corporate Members",
+      "Patient Clinical Trial Stories"
+    ],
+    "getInvolved": [
+      "Walk for Sjögren's",
+      "National Patient Conference",
+      "Sjögren's Awareness Month Stories",
+      "Ways to Give",
+      "Volunteer",
+      "Spread Awareness",
+      "Find an Event",
+      "Become a Member",
+      "Visit Our Shop",
+      "Shop Online to Support Us"
+    ]
+  },
+  {
+    "slug": "spina-bifida-association",
+    "name": "Spina Bifida Association",
+    "color": "#02838f",
+    "services": [
+      "Expectant Families Resources",
+      "Children with Spina Bifida Resources",
+      "Adolescents and Transition Resources",
+      "Adults with Spina Bifida Resources",
+      "SB-YOU",
+      "Find a Provider"
+    ],
+    "getInvolved": [
+      "Advocate",
+      "Join Your Local Chapter",
+      "Volunteer",
+      "Participate in an Event",
+      "Give",
+      "Participate in Research"
+    ]
+  },
+  {
+    "slug": "national-psoriasis-foundation",
+    "name": "National Psoriasis Foundation",
+    "color": "#0f2074",
+    "services": [
+      "Our Spot for Youth and Parents",
+      "Events in Your Area"
+    ],
+    "getInvolved": [
+      "Advocacy",
+      "Support Research",
+      "Become a Partner",
+      "Volunteer",
+      "Take ACTION"
+    ]
+  },
+  {
+    "slug": "cerebral-palsy-foundation",
+    "name": "Cerebral Palsy Foundation",
+    "color": "#2d4359",
+    "services": [
+      "Town Halls",
+      "CPF Live",
+      "Podcasts"
+    ],
+    "getInvolved": [
+      "Advocate",
+      "Fundraise",
+      "Participate in Research"
+    ]
+  },
+  {
+    "slug": "cystic-fibrosis-foundation",
+    "name": "Cystic Fibrosis Foundation",
+    "color": "#1c385b",
+    "services": [
+      "Insurance, Finances, and Legal Resources",
+      "Compass Program",
+      "Contact Us",
+      "New to CF?",
+      "Care Centers",
+      "Find a Local Chapter"
+    ],
+    "getInvolved": [
+      "Events and Conferences",
+      "Community Voice",
+      "Advocacy",
+      "Impact Grants"
+    ]
+  },
+  {
+    "slug": "parkinsons-foundation",
+    "name": "Parkinson's Foundation",
+    "color": "#07bfdb",
+    "services": [
+      "Helpline",
+      "In Your Area",
+      "PD Library",
+      "Hospital Safety Guide",
+      "Online Education",
+      "Events",
+      "Community Grants",
+      "For Care Partners",
+      "For Professionals",
+      "Find Your Chapter",
+      "Blog"
+    ],
+    "getInvolved": [
+      "Volunteer",
+      "Corporate Sponsors",
+      "Planned Giving",
+      "More Ways to Give",
+      "Policy & Advocacy",
+      "Fundraise",
+      "Make a Tribute Gift"
+    ]
+  },
+  {
+    "slug": "alzheimers-association",
+    "name": "Alzheimer's Association",
+    "color": "#490d66",
+    "services": [
+      "I Have Alzheimer's Resources",
+      "Caregiving Resources",
+      "Brain Health Resources",
+      "Find Community Support",
+      "24/7 Helpline"
+    ],
+    "getInvolved": [
+      "Participate in an Event",
+      "Make a Donation",
+      "Volunteer",
+      "Become an Advocate",
+      "Planned Giving",
+      "Tribute Pages",
+      "Other Ways to Give",
+      "Shop for the Cause",
+      "Partners & Sponsors"
+    ]
+  },
+  {
+    "slug": "fare",
+    "name": "Food Allergy Research & Education (FARE)",
+    "color": "#014e95",
+    "services": [
+      "Education Programs & Training",
+      "FARE Food Allergy Academy",
+      "FARECheck",
+      "FARE Food Allergy College Search",
+      "FARE Webinars",
+      "Eat Early Eat Often",
+      "FARE Neighborhoods Initiative",
+      "Awareness Campaigns",
+      "Ready to Act",
+      "Empower",
+      "A World Unaware",
+      "Back-to-School Resource Hub",
+      "FARE 33",
+      "Living Teal",
+      "Teal Pumpkin Project",
+      "Food Allergy Awareness Week",
+      "Youth Programs"
+    ],
+    "getInvolved": [
+      "Hometown Heroes Community Walk",
+      "FARE Food Allergy Summit",
+      "Fundraise",
+      "Attend an Event"
+    ]
+  },
+  {
+    "slug": "arthritis-foundation",
+    "name": "Arthritis Foundation",
+    "color": "#00b15e",
+    "services": [
+      "E-books",
+      "Find a Doctor",
+      "Insurance Management",
+      "Newly Diagnosed Resources",
+      "Podcasts",
+      "Webinars"
+    ],
+    "getInvolved": [
+      "Bike Events",
+      "Walk to Cure Arthritis",
+      "Jingle Bell Run",
+      "Other Events",
+      "Helpline"
+    ]
+  },
+  {
+    "slug": "hydrocephalus-association",
+    "name": "Hydrocephalus Association",
+    "color": "#36c0e7",
+    "services": [
+      "Helpline",
+      "Peer Support: HydrocephalusCONNECT",
+      "Support Groups",
+      "Pen Pal Program (Ages 7–12)",
+      "Webinars",
+      "National Conference: HA CONNECT",
+      "Local Educational Events",
+      "RAISE Resilience Program",
+      "Summer Camp",
+      "Scholarship Programs"
+    ],
+    "getInvolved": [
+      "Fundraise",
+      "WALK to End Hydrocephalus",
+      "Endurance Program",
+      "Games4Brains Program",
+      "Become a Volunteer",
+      "Help Raise Awareness",
+      "Find a Local Event",
+      "Advocate",
+      "Advocacy Toolkit",
+      "Advocacy Action Center",
+      "Congressional Hydrocephalus Caucus"
+    ]
+  },
+  {
+    "slug": "blood-cancer-united",
+    "name": "Blood Cancer United",
+    "color": "#e60503",
+    "services": [
+      "Information Specialists",
+      "Clinical Trial Support Center (CTSC)",
+      "Registered Dietitians",
+      "Online Chats",
+      "Support Groups",
+      "Suggested Reading",
+      "Peer-to-Peer Support",
+      "Patient Community",
+      "Podcasts",
+      "Financial Support",
+      "Health Manager Mobile App"
+    ],
+    "getInvolved": [
+      "Volunteer",
+      "Fundraise",
+      "Participate in Advocacy",
+      "Join the Community"
+    ]
+  },
+  {
+    "slug": "afsp",
+    "name": "American Foundation for Suicide Prevention",
+    "color": "#003cea",
+    "services": [
+      "Support for People Having Thoughts of Suicide",
+      "Support After a Suicide Attempt",
+      "Support for Suicide Loss Survivors",
+      "Support When Someone Is at Risk",
+      "Supporting a Loved One After an Attempt",
+      "Finding Treatment",
+      "Suicide Loss Support Groups"
+    ],
+    "getInvolved": [
+      "Join a Local Chapter",
+      "Advocate for Suicide Prevention",
+      "Participate in Community Programs",
+      "Apply for a Research Grant",
+      "Volunteer",
+      "Careers at AFSP",
+      "Participate in Research"
+    ]
+  },
+  {
+    "slug": "american-cancer-society",
+    "name": "American Cancer Society",
+    "color": "#2748fb",
+    "services": [
+      "Patient Programs",
+      "Free Rides to Treatment",
+      "Free Lodging During Treatment",
+      "ACS CARES™",
+      "Free Smoking Cessation Support",
+      "Connect with Survivors",
+      "Breast Cancer Support",
+      "Cancer Survivors Network",
+      "Survivor Stories",
+      "24/7 Cancer Helpline (1-800-227-2345)"
+    ],
+    "getInvolved": [
+      "Relay For Life",
+      "Making Strides Against Breast Cancer Walk",
+      "Endurance Events",
+      "Galas, Balls, and Parties",
+      "Golf Tournaments",
+      "Start a Fundraiser",
+      "Create Your Own Fundraiser",
+      "Fundraise on Facebook",
+      "Youth Sports Fundraising",
+      "Virtual Challenges",
+      "Volunteer",
+      "Be an Advocate",
+      "Opportunities for Organizations",
+      "ACS GenNow Network"
+    ]
+  },
+  {
+    "slug": "pcos-challenge",
+    "name": "PCOS Challenge",
+    "color": "#408587",
+    "services": [
+      "Clinical Trials"
+    ],
+    "getInvolved": [
+      "Join PCOS Challenge",
+      "Volunteer",
+      "PCOS Challenge Family Building Grant Application",
+      "PCOS Confidence Grant Application"
+    ]
+  },
+  {
+    "slug": "national-ms-society",
+    "name": "National MS Society",
+    "color": "#ee7521",
+    "services": [
+      "Get Support",
+      "Get Connected",
+      "Financial Planning"
+    ],
+    "getInvolved": [
+      "Volunteer",
+      "Advocate",
+      "Raise Awareness",
+      "Fundraising Events",
+      "Research Studies"
+    ]
+  }
+]

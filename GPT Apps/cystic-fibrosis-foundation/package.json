@@ -1,0 +1,10 @@
+{
+  "name": "cystic_fibrosis_foundation",
+  "version": "0.1.0",
+  "description": "Cystic Fibrosis Foundation ChatGPT App",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

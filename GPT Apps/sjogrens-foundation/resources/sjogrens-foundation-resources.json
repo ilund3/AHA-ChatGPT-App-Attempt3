@@ -1,0 +1,73 @@
+{
+  "organization": "Sjögren's Foundation",
+  "themeColor": "#1a3398",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "Find a Clinical Trial",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Clinical Trials Sponsored by Corporate Members",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Patient Clinical Trial Stories",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Walk for Sjögren's",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "National Patient Conference",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Sjögren's Awareness Month Stories",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Ways to Give",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Volunteer",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-6",
+      "title": "Spread Awareness",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-7",
+      "title": "Find an Event",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-8",
+      "title": "Become a Member",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-9",
+      "title": "Visit Our Shop",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-10",
+      "title": "Shop Online to Support Us",
+      "category": "Get Involved"
+    }
+  ]
+}

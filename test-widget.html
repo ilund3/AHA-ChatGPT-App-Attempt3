@@ -53,7 +53,7 @@
             height: 30px;
             border-radius: 8px;
             object-fit: contain;
-            background: radial-gradient(circle at 30% 20%, #111827, #020617);
+            background: #ffffff;
             box-shadow:
                 0 0 0 1px rgba(248, 250, 252, 0.16),
                 0 10px 24px rgba(248, 113, 113, 0.4);
@@ -85,6 +85,119 @@
             letter-spacing: 0.14em;
             color: #9ca3af;
             margin-bottom: 6px;
+        }
+
+        .see-all-apps-btn {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 7px 10px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            color: #cbd5e1;
+            font-size: 12px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .see-all-apps-btn:hover {
+            background: rgba(148, 163, 184, 0.15);
+            border-color: rgba(148, 163, 184, 0.5);
+            color: #e5e7eb;
+        }
+
+        .main-dashboard-view { display: block; }
+        .main-dashboard-view.hidden { display: none; }
+        .see-all-apps-fullpage {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            min-height: 0;
+            background: linear-gradient(160deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.92));
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            padding: 20px 24px;
+            overflow: auto;
+        }
+        .see-all-apps-fullpage.open {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+        }
+        .see-all-apps-fullpage .see-all-apps-back {
+            align-self: flex-start;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: #cbd5e1;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .see-all-apps-fullpage .see-all-apps-back:hover {
+            background: rgba(148, 163, 184, 0.2);
+            border-color: rgba(148, 163, 184, 0.6);
+            color: #e5e7eb;
+        }
+        .see-all-apps-fullpage .see-all-apps-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+        .see-all-apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+        }
+        .see-all-app-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            background: rgba(15, 23, 42, 0.6);
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .see-all-app-card:hover {
+            background: rgba(148, 163, 184, 0.15);
+            border-color: rgba(148, 163, 184, 0.5);
+        }
+        .see-all-app-card .app-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: contain;
+            background: rgba(30, 41, 59, 0.9);
+            padding: 4px;
+        }
+        .see-all-app-card .app-card-name {
+            font-size: 11px;
+            color: #e2e8f0;
+            text-align: center;
+            line-height: 1.25;
+        }
+        .see-all-app-card .app-card-status {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 3px 8px;
+            border-radius: 999px;
+        }
+        .see-all-app-card .app-card-status.active {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+        .see-all-app-card .app-card-status.inactive {
+            background: rgba(71, 85, 105, 0.4);
+            color: #94a3b8;
         }
 
         .sidebar-group {
@@ -1286,6 +1399,19 @@
         .tool-desc { margin: 0; line-height: 1.45; }
         .param-list { margin: 4px 0 0 16px; padding: 0; }
         .param-list li { margin-bottom: 4px; }
+        .param-doc-risk {
+            display: inline-block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 2px 6px;
+            border-radius: 999px;
+            margin-left: 6px;
+            font-weight: 500;
+        }
+        .param-doc-risk.risk-low { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+        .param-doc-risk.risk-medium { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+        .param-doc-risk.risk-high { background: rgba(248, 113, 113, 0.2); color: #fb7185; }
         .tool-field-param-docs { display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
         .tool-field-param-docs .key { margin-bottom: 0; }
         .param-risk-tooltip-icon,
@@ -1441,22 +1567,34 @@
     <div class="app-shell">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <img src="/public/AHA Logo.jpg" alt="American Heart Association" class="org-logo" />
+                <img id="sidebar-org-logo" src="public/Logos/AHA Logo.jpg" alt="American Heart Association" class="org-logo" />
                 <div class="sidebar-title">
-                    <div class="sidebar-title-main">American Heart Association</div>
+                    <div class="sidebar-title-main" id="sidebar-org-name">American Heart Association</div>
                     <div class="sidebar-title-sub">GPT Apps · Hosting, Observability, and Guardrails</div>
                 </div>
             </div>
 
             <div class="sidebar-group">
+                <button type="button" class="see-all-apps-btn" id="see-all-apps-btn" aria-expanded="false" aria-controls="see-all-apps-fullpage">See all apps</button>
                 <div class="sidebar-section-label">App</div>
                 <div class="select-wrapper">
-                    <select>
-                        <option>Patient Support Chat (Web)</option>
-                        <option>Volunteer Onboarding Assistant</option>
-                        <option>Fundraising Copilot</option>
-                        <option>Research Program Q&amp;A</option>
-                        <option>Internal Policy Assistant</option>
+                    <select id="app-select">
+                        <option value="0" data-logo="public/Logos/AHA Logo.jpg" data-name="American Heart Association">American Heart Association</option>
+                        <option value="1" data-logo="public/Logos/Sjögrens Foundation Logo.jpeg" data-name="Sjögren's Foundation">Sjögren's Foundation</option>
+                        <option value="2" data-logo="public/Logos/Spina Bifida Association Logo.png" data-name="Spina Bifida Association">Spina Bifida Association</option>
+                        <option value="3" data-logo="public/Logos/National Psoriasis Foundation Logo.jpg" data-name="National Psoriasis Foundation">National Psoriasis Foundation</option>
+                        <option value="4" data-logo="public/Logos/Cerebral Palsy Foundation Logo.png" data-name="Cerebral Palsy Foundation">Cerebral Palsy Foundation</option>
+                        <option value="5" data-logo="public/Logos/Cystic Fibrosis Foundation Logo.jpeg" data-name="Cystic Fibrosis Foundation">Cystic Fibrosis Foundation</option>
+                        <option value="6" data-logo="public/Logos/Parkinsons Foundation Logo.png" data-name="Parkinson's Foundation">Parkinson's Foundation</option>
+                        <option value="7" data-logo="public/Logos/Alzheimers Association Logo.png" data-name="Alzheimer's Association">Alzheimer's Association</option>
+                        <option value="8" data-logo="public/Logos/FARE Logo.png" data-name="Food Allergy Research &amp; Education (FARE)">Food Allergy Research &amp; Education (FARE)</option>
+                        <option value="9" data-logo="public/Logos/Arthritis Foundation Logo.jpeg" data-name="Arthritis Foundation">Arthritis Foundation</option>
+                        <option value="10" data-logo="public/Logos/Hydrocephalus Association Logo.png" data-name="Hydrocephalus Association">Hydrocephalus Association</option>
+                        <option value="11" data-logo="public/Logos/Blood Cancer United Logo.webp" data-name="Blood Cancer United">Blood Cancer United</option>
+                        <option value="12" data-logo="public/Logos/American Foundation for Suicide Prevention Logo.jpg" data-name="American Foundation for Suicide Prevention">American Foundation for Suicide Prevention</option>
+                        <option value="13" data-logo="public/Logos/American Cancer Society Logo.png" data-name="American Cancer Society">American Cancer Society</option>
+                        <option value="14" data-logo="public/Logos/PCOS Challenge Logo.png" data-name="PCOS Challenge">PCOS Challenge</option>
+                        <option value="15" data-logo="public/Logos/National MS Society Logo.png" data-name="National MS Society">National MS Society</option>
                     </select>
                 </div>
             </div>
@@ -1498,6 +1636,7 @@
         </aside>
 
         <main class="main">
+            <div id="main-dashboard-view" class="main-dashboard-view">
             <div class="test-header">
                 <h1>GPT Apps, Inc. · ChatGPT App Simulation · Admin View</h1>
                 <div class="info">
@@ -1815,6 +1954,83 @@
                                             </div>
                                             <div class="param-bubble">
                                                 <span class="param-bubble-name">payment_card_last4</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">query</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">category</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">title</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">start_time</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">attendees</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low">Low</option>
+                                                        <option value="medium" selected>Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">action</span>
+                                                <div class="param-bubble-risk">
+                                                    <label class="param-risk-label">Risk</label>
+                                                    <select class="param-risk-select">
+                                                        <option value="low" selected>Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="param-bubble">
+                                                <span class="param-bubble-name">return_url</span>
                                                 <div class="param-bubble-risk">
                                                     <label class="param-risk-label">Risk</label>
                                                     <select class="param-risk-select">
@@ -2228,12 +2444,97 @@
                     </div>
                 </div>
             </div>
+            </div>
+            <div id="see-all-apps-fullpage" class="see-all-apps-fullpage" role="region" aria-label="All apps">
+                <button type="button" class="see-all-apps-back" id="see-all-apps-back">Back to dashboard</button>
+                <div class="see-all-apps-title">All apps</div>
+                <div class="see-all-apps-grid" id="see-all-apps-grid"></div>
+            </div>
         </main>
     </div>
 
     <script>
         let currentHeight = 200;
         let isFullscreen = false;
+
+        // App dropdown: update sidebar logo and name when selection changes
+        (function initAppSelect() {
+            const appSelect = document.getElementById('app-select');
+            const logoEl = document.getElementById('sidebar-org-logo');
+            const nameEl = document.getElementById('sidebar-org-name');
+            if (!appSelect || !logoEl || !nameEl) return;
+            function updateSidebarFromApp() {
+                const opt = appSelect.options[appSelect.selectedIndex];
+                if (opt && opt.dataset.logo && opt.dataset.name) {
+                    logoEl.src = opt.dataset.logo;
+                    logoEl.alt = opt.dataset.name;
+                    nameEl.textContent = opt.dataset.name;
+                }
+            }
+            appSelect.addEventListener('change', updateSidebarFromApp);
+            updateSidebarFromApp();
+        })();
+
+        // See all apps: mock active/inactive (value index -> active)
+        var seeAllAppsActiveMock = {
+            0: true, 1: true, 2: false, 3: true, 4: true, 5: false, 6: true, 7: true,
+            8: false, 9: true, 10: true, 11: false, 12: true, 13: true, 14: false, 15: true
+        };
+        function buildSeeAllAppsGrid() {
+            const appSelect = document.getElementById('app-select');
+            const grid = document.getElementById('see-all-apps-grid');
+            if (!appSelect || !grid) return;
+            grid.innerHTML = '';
+            for (let i = 0; i < appSelect.options.length; i++) {
+                const opt = appSelect.options[i];
+                const logo = opt.getAttribute('data-logo') || '';
+                const name = opt.getAttribute('data-name') || opt.textContent;
+                const value = opt.value;
+                const active = seeAllAppsActiveMock[value] !== false;
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'see-all-app-card';
+                card.dataset.value = value;
+                card.innerHTML = '<img class="app-card-icon" src="' + logo + '" alt="" loading="lazy">' +
+                    '<span class="app-card-name">' + escapeHtml(name) + '</span>' +
+                    '<span class="app-card-status ' + (active ? 'active' : 'inactive') + '">' + (active ? 'Active' : 'Inactive') + '</span>';
+                card.addEventListener('click', function() {
+                    appSelect.value = value;
+                    appSelect.dispatchEvent(new Event('change'));
+                    const fullpage = document.getElementById('see-all-apps-fullpage');
+                    const dashboardView = document.getElementById('main-dashboard-view');
+                    if (fullpage) fullpage.classList.remove('open');
+                    if (dashboardView) dashboardView.classList.remove('hidden');
+                    document.getElementById('see-all-apps-btn').setAttribute('aria-expanded', 'false');
+                });
+                grid.appendChild(card);
+            }
+        }
+        function escapeHtml(s) {
+            const div = document.createElement('div');
+            div.textContent = s;
+            return div.innerHTML;
+        }
+        function setupSeeAllApps() {
+            const btn = document.getElementById('see-all-apps-btn');
+            const fullpage = document.getElementById('see-all-apps-fullpage');
+            const dashboardView = document.getElementById('main-dashboard-view');
+            const backBtn = document.getElementById('see-all-apps-back');
+            if (!btn || !fullpage || !dashboardView) return;
+            buildSeeAllAppsGrid();
+            btn.addEventListener('click', function() {
+                fullpage.classList.add('open');
+                dashboardView.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'true');
+            });
+            if (backBtn) {
+                backBtn.addEventListener('click', function() {
+                    fullpage.classList.remove('open');
+                    dashboardView.classList.remove('hidden');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            }
+        }
 
         // Mock the window.openai API that ChatGPT provides
         function setupOpenAIMock() {
@@ -2539,11 +2840,21 @@
             });
         }
 
+        const PARAM_DESCRIPTIONS = {
+            query: 'User question or request. Example: "What are signs of high blood pressure?"',
+            category: 'Product category. e.g. "workout gear", "clothing".',
+            title: 'Event title. Example: "Team standup"',
+            start_time: 'ISO datetime. Example: "2025-02-25T10:00:00Z"',
+            attendees: 'Email addresses. Array, optional. Enum: max 50.',
+            action: 'Billing action. Enum: "view" | "update_card".',
+            return_url: 'Callback URL. String, optional.',
+        };
+
         const TOOL_META = {
             'calendar.create_event': {
                 name: 'calendar.create_event',
                 description: 'Use this when the user wants to create a calendar event. Do not use for reminders.',
-                params: '<ul class="param-list"><li><code>title</code> (string, required) – Event title. Example: "Team standup"</li><li><code>start_time</code> (string, required) – ISO datetime.</li><li><code>attendees</code> (array, optional) – Email addresses. Enum: max 50.</li></ul>',
+                paramNames: ['title', 'start_time', 'attendees'],
                 readOnly: false,
                 destructive: false,
                 openWorld: false,
@@ -2555,7 +2866,7 @@
             'search_aha_resources': {
                 name: 'search_aha_resources',
                 description: 'Use this when the user asks for heart health information, symptoms, conditions, or AHA resources. Do not use for medical emergencies or to replace a doctor.',
-                params: '<ul class="param-list"><li><code>query</code> (string, required) – User question. Example: "What are signs of high blood pressure?"</li></ul>',
+                paramNames: ['query'],
                 readOnly: true,
                 destructive: false,
                 openWorld: false,
@@ -2566,7 +2877,7 @@
             'open_store': {
                 name: 'open_store',
                 description: 'Use this when the user wants to open or browse the AHA store. Do not use for donations or external shopping.',
-                params: '<ul class="param-list"><li><code>category</code> (string, optional) – e.g. "workout gear", "clothing".</li></ul>',
+                paramNames: ['category'],
                 readOnly: false,
                 destructive: false,
                 openWorld: true,
@@ -2578,7 +2889,7 @@
             'aha_widget': {
                 name: 'aha_widget',
                 description: 'Use this when the user asks to see the AHA widget or general branding. Do not use for store or specific health searches.',
-                params: '<ul class="param-list"><li><code>query</code> (string, optional) – User request.</li></ul>',
+                paramNames: ['query'],
                 readOnly: true,
                 destructive: false,
                 openWorld: false,
@@ -2589,7 +2900,7 @@
             'billing_portal': {
                 name: 'billing_portal',
                 description: 'Use this when the user explicitly requests billing or payment portal. Do not use for general account questions.',
-                params: '<ul class="param-list"><li><code>action</code> (enum: "view" | "update_card") – Billing action.</li><li><code>return_url</code> (string, optional) – Callback URL.</li></ul>',
+                paramNames: ['action', 'return_url'],
                 readOnly: false,
                 destructive: false,
                 openWorld: false,
@@ -2600,6 +2911,28 @@
             },
         };
 
+        function getParamRiskFromDOM(paramName) {
+            const bubbles = document.querySelectorAll('.param-bubble');
+            for (const b of bubbles) {
+                const nameEl = b.querySelector('.param-bubble-name');
+                if (!nameEl || nameEl.textContent.trim() !== paramName) continue;
+                const sel = b.querySelector('.param-risk-select');
+                return (sel && sel.value) ? sel.value : 'low';
+            }
+            return 'low';
+        }
+
+        function buildToolParamDocs(paramNames) {
+            if (!paramNames || !paramNames.length) return '<ul class="param-list"><li><em>No parameters from privacy policy.</em></li></ul>';
+            const items = paramNames.map(name => {
+                const risk = getParamRiskFromDOM(name);
+                const desc = PARAM_DESCRIPTIONS[name] || '';
+                const riskLabel = risk.charAt(0).toUpperCase() + risk.slice(1);
+                return '<li><code>' + name + '</code><span class="param-doc-risk risk-' + risk + '">' + riskLabel + '</span> – ' + desc + '</li>';
+            });
+            return '<ul class="param-list">' + items.join('') + '</ul>';
+        }
+
         function updateToolDetail() {
             const sel = document.getElementById('tool-select');
             const id = sel && sel.value;
@@ -2609,7 +2942,7 @@
             const set = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
             set('tool-name', meta.name);
             set('tool-desc', meta.description);
-            set('tool-params', meta.params);
+            set('tool-params', buildToolParamDocs(meta.paramNames));
 
             setPermissionToggle('toggle-readonly', meta.readOnly);
             setPermissionToggle('toggle-destructive', meta.destructive);
@@ -2784,6 +3117,10 @@
             setupTabs();
             setupSubTabs();
             setupPrivacyUpload();
+            setupSeeAllApps();
+            document.querySelectorAll('.param-risk-select').forEach(s => {
+                s.addEventListener('change', updateToolDetail);
+            });
             setupParamAddGuardrail();
             setupPermissionToggles();
             setupContextSelector();

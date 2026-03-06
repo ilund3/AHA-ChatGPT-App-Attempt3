@@ -6,7 +6,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { z } from "zod";
 
 // Read the logo image (only needed once)
-const logoImage = readFileSync("public/AHA Logo.jpg");
+const logoImage = readFileSync("public/Logos/AHA Logo.jpg");
 const logoBase64 = logoImage.toString("base64");
 
 // Function to read HTML fresh on each request (no caching)

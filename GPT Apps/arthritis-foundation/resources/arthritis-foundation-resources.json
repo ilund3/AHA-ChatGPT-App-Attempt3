@@ -1,0 +1,63 @@
+{
+  "organization": "Arthritis Foundation",
+  "themeColor": "#00b15e",
+  "services": [
+    {
+      "id": "service-1",
+      "title": "E-books",
+      "category": "Services"
+    },
+    {
+      "id": "service-2",
+      "title": "Find a Doctor",
+      "category": "Services"
+    },
+    {
+      "id": "service-3",
+      "title": "Insurance Management",
+      "category": "Services"
+    },
+    {
+      "id": "service-4",
+      "title": "Newly Diagnosed Resources",
+      "category": "Services"
+    },
+    {
+      "id": "service-5",
+      "title": "Podcasts",
+      "category": "Services"
+    },
+    {
+      "id": "service-6",
+      "title": "Webinars",
+      "category": "Services"
+    }
+  ],
+  "getInvolved": [
+    {
+      "id": "get-involved-1",
+      "title": "Bike Events",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-2",
+      "title": "Walk to Cure Arthritis",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-3",
+      "title": "Jingle Bell Run",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-4",
+      "title": "Other Events",
+      "category": "Get Involved"
+    },
+    {
+      "id": "get-involved-5",
+      "title": "Helpline",
+      "category": "Get Involved"
+    }
+  ]
+}
