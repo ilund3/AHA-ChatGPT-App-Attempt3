@@ -2281,7 +2281,7 @@
           }
           
           heightNotifyTimeout = setTimeout(() => {
-            if (window.openai?.notifyIntrinsicHeight && barContainer) {
+            if (barContainer) {
               void barContainer.offsetHeight;
               const height = barContainer.scrollHeight;
               
@@ -2289,7 +2289,15 @@
               if (force || Math.abs(height - lastNotifiedHeight) > 1) {
                 lastNotifiedHeight = height;
                 // Use actual height - the widget should expand automatically when content is large enough
-                window.openai.notifyIntrinsicHeight(height);
+                if (window.openai?.notifyIntrinsicHeight) {
+                  window.openai.notifyIntrinsicHeight(height);
+                }
+                // Also send postMessage for cross-origin iframe hosts (e.g. test simulator)
+                try {
+                  window.parent.postMessage({ type: 'height', height: height }, '*');
+                } catch (e) {
+                  // ignore if no parent
+                }
                 console.log("Widget notified height:", height);
               }
             }

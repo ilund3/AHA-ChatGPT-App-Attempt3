@@ -72,13 +72,14 @@ ${items}
 `;
 }
 
-// Find section boundaries in template (use unique markers)
-const supportGroupsStart = template.indexOf('<div id="support-groups-view" class="tab-view">');
-const volunteerViewStart = template.indexOf('<div id="volunteer-view" class="tab-view">');
-const integrationsStart = template.indexOf('<div id="integrations-view" class="tab-view">');
-const donateViewStart = template.indexOf('<div id="donate-view" class="tab-view">');
-
-if (supportGroupsStart === -1 || volunteerViewStart === -1 || integrationsStart === -1 || donateViewStart === -1) {
+// Verify template has all required section markers before processing
+const _checkTemplate = template;
+if (
+  _checkTemplate.indexOf('<div id="support-groups-view" class="tab-view">') === -1 ||
+  _checkTemplate.indexOf('<div id="volunteer-view" class="tab-view">') === -1 ||
+  _checkTemplate.indexOf('<div id="integrations-view" class="tab-view">') === -1 ||
+  _checkTemplate.indexOf('<div id="donate-view" class="tab-view">') === -1
+) {
   console.error("Template structure changed; could not find section markers.");
   process.exit(1);
 }
@@ -97,13 +98,24 @@ for (const org of orgs) {
   html = html.replace(/American Heart Association<\//g, `${org.name}</`);
 
   // Replace Get Involved section (from support-groups-view to just before volunteer-view)
+  // IMPORTANT: search in the already-modified html so positions are accurate after name replacements
+  const supportGroupsStart = html.indexOf('<div id="support-groups-view" class="tab-view">');
+  const volunteerViewStart = html.indexOf('<div id="volunteer-view" class="tab-view">');
+  if (supportGroupsStart === -1 || volunteerViewStart === -1) {
+    console.error(`Could not find support-groups-view or volunteer-view markers for ${org.slug}`);
+    process.exit(1);
+  }
   const beforeGetInvolved = html.slice(0, supportGroupsStart);
   const afterGetInvolved = html.slice(volunteerViewStart);
   html = beforeGetInvolved + buildGetInvolvedSection(org) + "\n      " + afterGetInvolved;
 
-  // Re-find integrations start (position may have changed)
+  // Re-find integrations start (position changed after inserting Get Involved section)
   const integrationsStart2 = html.indexOf('<div id="integrations-view" class="tab-view">');
   const donateViewStart2 = html.indexOf('<div id="donate-view" class="tab-view">');
+  if (integrationsStart2 === -1 || donateViewStart2 === -1) {
+    console.error(`Could not find integrations-view or donate-view markers for ${org.slug}`);
+    process.exit(1);
+  }
   const beforeServices = html.slice(0, integrationsStart2);
   const afterServices = html.slice(donateViewStart2);
   html = beforeServices + buildServicesSection(org) + "\n      " + afterServices;

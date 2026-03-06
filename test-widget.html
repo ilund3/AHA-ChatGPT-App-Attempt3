@@ -175,7 +175,7 @@
             height: 48px;
             border-radius: 12px;
             object-fit: contain;
-            background: rgba(30, 41, 59, 0.9);
+            background: #fff;
             padding: 4px;
         }
         .see-all-app-card .app-card-name {
@@ -2457,22 +2457,38 @@
         let currentHeight = 200;
         let isFullscreen = false;
 
-        // App dropdown: update sidebar logo and name when selection changes
+        // App dropdown: update sidebar logo, name, and preview iframe when selection changes
         (function initAppSelect() {
             const appSelect = document.getElementById('app-select');
             const logoEl = document.getElementById('sidebar-org-logo');
             const nameEl = document.getElementById('sidebar-org-name');
+            const widgetFrame = document.getElementById('widget-frame');
             if (!appSelect || !logoEl || !nameEl) return;
-            function updateSidebarFromApp() {
-                const opt = appSelect.options[appSelect.selectedIndex];
+            // Ports when using start-all: AHA=8787, orgs 1-15 = 8788-8802
+            var MCP_BASE_PORT = 8787;
+            function getWidgetUrl(value) {
+                var v = parseInt(value, 10);
+                if (v === 0) return '/public/aha-widget.html';
+                return 'http://localhost:' + (MCP_BASE_PORT + v) + '/public/widget.html';
+            }
+            function updateSidebarAndPreview() {
+                var opt = appSelect.options[appSelect.selectedIndex];
                 if (opt && opt.dataset.logo && opt.dataset.name) {
                     logoEl.src = opt.dataset.logo;
                     logoEl.alt = opt.dataset.name;
                     nameEl.textContent = opt.dataset.name;
                 }
+                if (widgetFrame) {
+                    widgetFrame.src = getWidgetUrl(appSelect.value);
+                    widgetFrame.title = (opt && opt.dataset.name) ? opt.dataset.name + ' Widget' : 'Widget';
+                }
+                // Re-attach onload handler so the mock is ready for the new widget
+                setupOpenAIMock();
+                currentHeight = 200;
+                updateIframeHeight();
             }
-            appSelect.addEventListener('change', updateSidebarFromApp);
-            updateSidebarFromApp();
+            appSelect.addEventListener('change', updateSidebarAndPreview);
+            updateSidebarAndPreview();
         })();
 
         // See all apps: mock active/inactive (value index -> active)
@@ -2537,46 +2553,47 @@
         }
 
         // Mock the window.openai API that ChatGPT provides
+        // Uses direct window access for same-origin iframes (AHA widget),
+        // and falls back to postMessage for cross-origin iframes (all other org widgets).
         function setupOpenAIMock() {
             const iframe = document.getElementById('widget-frame');
-            const iframeWindow = iframe.contentWindow;
+            if (!iframe) return;
 
-            if (iframeWindow) {
-                // Wait for iframe to load
-                iframe.addEventListener('load', () => {
+            // Use onload (not addEventListener) to avoid stacking duplicate listeners
+            // on repeated calls (org switch, reload, etc.)
+            iframe.onload = function() {
+                // Attempt same-origin window injection (works for AHA widget)
+                try {
                     const widgetWindow = iframe.contentWindow;
-
-                    // Mock window.openai API
                     widgetWindow.window.openai = {
-                        // Request display mode (fullscreen)
                         requestDisplayMode: async function(options) {
                             console.log('Widget requested display mode:', options);
-                            
                             if (options.mode === 'fullscreen') {
                                 enterFullscreen();
                                 return { mode: 'fullscreen' };
                             }
-                            
                             return { mode: 'compact' };
                         },
-
-                        // Notify intrinsic height
                         notifyIntrinsicHeight: function(height) {
-                            console.log('Widget notified height:', height);
+                            console.log('Widget notified height (same-origin):', height);
                             currentHeight = height;
                             updateIframeHeight();
                         }
                     };
 
-                    // Initial height notification
+                    // Trigger initial height for same-origin widget
                     setTimeout(() => {
-                        if (widgetWindow.window.openai?.notifyIntrinsicHeight) {
-                            const initialHeight = widgetWindow.document.body.scrollHeight;
-                            widgetWindow.window.openai.notifyIntrinsicHeight(initialHeight);
-                        }
+                        try {
+                            const h = widgetWindow.document.body.scrollHeight;
+                            widgetWindow.window.openai.notifyIntrinsicHeight(h);
+                        } catch (e) { /* cross-origin – height will arrive via postMessage */ }
                     }, 100);
-                });
-            }
+                } catch (e) {
+                    // Cross-origin iframe: window.openai cannot be injected.
+                    // Height updates will arrive via postMessage from the widget.
+                    console.log('Cross-origin widget – relying on postMessage for height updates.');
+                }
+            };
         }
 
         function enterFullscreen() {

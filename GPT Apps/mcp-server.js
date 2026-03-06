@@ -4,8 +4,8 @@
  * Example: APP_SLUG=sjogrens-foundation PORT=8787 node mcp-server.js
  */
 import { createServer } from "node:http";
-import { readFileSync, existsSync } from "node:fs";
-import { extname, join } from "node:path";
+import { readFileSync, existsSync, realpathSync } from "node:fs";
+import { extname, join, resolve, normalize, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
@@ -21,7 +21,8 @@ if (!APP_SLUG) {
   process.exit(1);
 }
 
-const appDir = join(__dirname, APP_SLUG);
+const appDirRaw = resolve(join(__dirname, APP_SLUG));
+const appDir = existsSync(appDirRaw) ? realpathSync(appDirRaw) : appDirRaw;
 const widgetPath = join(appDir, "public", "widget.html");
 const resourcesPath = join(appDir, "resources", `${APP_SLUG}-resources.json`);
 
@@ -188,8 +189,21 @@ const httpServer = createServer(async (req, res) => {
     let path = decodeURIComponent(url.pathname);
     if (path.startsWith("/")) path = path.slice(1);
     if (path === "" || path === "index.html") path = "index.html";
-    const filePath = join(appDir, path);
-    if (!filePath.startsWith(appDir) || !existsSync(filePath)) {
+    // Explicitly serve widget from validated path (fixes some path-resolution edge cases)
+    if (path === "public/widget.html" && existsSync(widgetPath)) {
+      try {
+        const body = readFileSync(widgetPath);
+        res.writeHead(200, { "content-type": "text/html" }).end(body);
+        return;
+      } catch (err) {
+        res.writeHead(500).end("Error");
+        return;
+      }
+    }
+    const filePath = resolve(join(appDir, normalize(path)));
+    const rel = relative(appDir, filePath);
+    const isUnderAppDir = rel !== "" && !rel.startsWith("..") && !rel.startsWith(sep);
+    if (!isUnderAppDir || !existsSync(filePath)) {
       res.writeHead(404).end("Not Found");
       return;
     }
